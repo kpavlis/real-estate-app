@@ -20,6 +20,7 @@ using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT;
+using System.Diagnostics;
 
 
 namespace Software_Technology
@@ -34,7 +35,6 @@ namespace Software_Technology
         Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
 
         // Attributes for Mica - End
-
 
 
         // Attributes for Windowing - Start
