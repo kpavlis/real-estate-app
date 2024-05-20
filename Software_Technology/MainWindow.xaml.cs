@@ -24,7 +24,6 @@ using WinRT;
 
 namespace Software_Technology
 {
-    
     public sealed partial class MainWindow : Window
     {
         // Attributes for Mica - Start
