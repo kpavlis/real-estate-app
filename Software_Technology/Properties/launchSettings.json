@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Software_Technology (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Software_Technology (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
