@@ -9,11 +9,13 @@ namespace Software_Technology.Classes
 {
     class Members:Users
     {
-        private readonly int _customerID;
-        private string _email { get; set; }
-        private string _phoneNumber { get; set; }
-        public Members() { }
-
+        public string email { get; private set; }
+        public string phoneNumber { get; private set; }
+        public Members(string email, string phoneNumber, int _usersID, string username,string _password) :base(_usersID, username, _password)
+        {
+            this.email = email;
+            this.phoneNumber = phoneNumber;
+        }
         public static string ShowRealEstateToBuy() { return ""; }
         public static string ShowRealEstateToRent() { return ""; }
         public static string ViewRealEstateInformation() { return ""; }
@@ -24,6 +26,10 @@ namespace Software_Technology.Classes
         public void ShowMyPurchased_RentedRealEstates() { }
         public void ShowMySold_LeasedRealEstates() { }
         public void DeleteMyRealEstate() { }
-        public void ChangeContactDetails() { }
+        public void ChangeContactDetails(string newEmail, string newPhoneNumber)
+        {
+            this.email = newEmail;
+            this.phoneNumber = newPhoneNumber;
+        }
     }
 }

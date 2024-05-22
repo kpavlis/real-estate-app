@@ -7,24 +7,30 @@ using System.Text;
 using Windows.Media.AppBroadcasting;
 using Windows.System;
 
-public class Users
+public abstract class Users
 {
-    public string username { get; set; }
+    private  int _usersID { get; }
+    public string username { get; }
 	private string _password { get; set; }
-
     private string _encryptedPassword { get; set; }
 
-    public Users()
-	{
-		
-		_encryptedPassword = HashPassword(_password); //Call method to encrypt password
-        ValidatePassword(_password,_encryptedPassword); //Call method to validate password
-		
-	}
+    //_encryptedPassword = HashPassword(_password); //Call method to encrypt password
+    //ValidatePassword(_password, _encryptedPassword); //Call method to validate password
+    public Users(int _usersID, string username, string _password)
+    {
+        this._usersID = _usersID;
+        this.username = username;
+        this._password = _password;
+    }
+    public string GetUsername()
+    {
+        return username;
+    }
 
-	public void ChangePassword(String _password)
+	public string ChangePassword(String newPassword)
 	{
-
+        _password = newPassword;
+        return _password;
 	}
 
     public static string ShowAreas()
