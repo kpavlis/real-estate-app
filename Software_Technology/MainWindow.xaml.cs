@@ -62,7 +62,8 @@ namespace Software_Technology
             SizeWindow(appWindow);
 
             this.InitializeComponent();
-            TrySetMicaBackdrop();
+            //TrySetMicaBackdrop();
+            this.SystemBackdrop = new MicaBackdrop();
 
             AppWindow.Title = "Real Estate";
 
