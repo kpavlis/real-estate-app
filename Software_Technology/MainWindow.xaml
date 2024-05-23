@@ -11,8 +11,11 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        
 
         <StackPanel  Grid.Row="0" Orientation="Horizontal" Visibility="Visible" Spacing="15" Height="30"  x:Name="TitleBar" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Margin="0, 0, 0, 2">
             <ImageIcon Height="18" Width="18" Margin="15, 0, 0, 0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="Assets/house_icon.png"/>
@@ -20,19 +23,48 @@
             <TextBlock Visibility="Visible" VerticalAlignment="Center" Text="PREVIEW" Foreground="Gray" />
         </StackPanel>
 
-     
-        <Grid Grid.Row="1">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Σύνδεση/Εγγραφή" Margin="0, 0, 17, 7" Height="30" FontSize="12" FontWeight="SemiBold" Click="Sign_In_Click"/>
+            <PersonPicture HorizontalAlignment="Right" DisplayName=""  Height="35" Margin="0, 0, 13, 7"  />
+        </StackPanel>
+        
+        <NavigationView x:Name="nvSample" Grid.Row="2" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Home" Content="Αρχική" Tag="SamplePage1" />
+                <NavigationViewItem Content="Ακίνητα προς Πώληση" Tag="SamplePage2" >
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xF582;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Ακίνητα προς Μίσθωση" Tag="SamplePage2" >
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xF588;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Visibility="Visible" Content="Ιστορικό" Tag="SamplePage3" >
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE81C;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Visibility="Visible" Icon="Contact" Content="Προσωπικά Στοιχεία" Tag="SamplePage3" />
+   
+            </NavigationView.MenuItems>
 
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ImageIcon Height="300" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center" Source="Assets/house_icon.png"/>
-                <TextBlock FontSize="40" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Welcome," />
-                <TextBlock FontSize="30" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Home" />
-                <TextBlock FontSize="25" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Theofanis - Matina - Sotiria"/>
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Σχετικά με την εφαρμογή" Tag="Settings">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xF167;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.FooterMenuItems>
+            <Frame x:Name="contentFrame">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <Image Source="Assets/house_icon.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="250" Width="250"/>
+                    <TextBlock Text="...the UI is a work in progress !" FontSize="30" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Frame>
+        </NavigationView>
 
-            </StackPanel>
 
-        </Grid>
-
-     
     </Grid>
 </Window>
