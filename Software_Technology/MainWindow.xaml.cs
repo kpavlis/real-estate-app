@@ -26,7 +26,6 @@ using Windows.Foundation.Metadata;
 
 namespace Software_Technology
 {
-    
     public sealed partial class MainWindow : Window
     {
         public ContentDialog dialog = new ContentDialog();
