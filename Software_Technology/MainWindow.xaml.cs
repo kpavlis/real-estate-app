@@ -22,6 +22,7 @@ using Windows.Foundation.Collections;
 using WinRT;
 using System.Diagnostics;
 using Windows.Foundation.Metadata;
+using System.Threading;
 
 
 namespace Software_Technology
@@ -29,7 +30,7 @@ namespace Software_Technology
     public sealed partial class MainWindow : Window
     {
         public ContentDialog dialog = new ContentDialog();
-        IAsyncOperation<ContentDialogResult> result;
+        
 
         // Attributes for Mica - Start
 
@@ -238,10 +239,10 @@ namespace Software_Technology
             {
                 dialog.XamlRoot = nvSample.XamlRoot;
             }
+
+            await dialog.ShowAsync();
+           
             
-            result = dialog.ShowAsync();
-            
-            await result;
         }
 
         internal void Sign_Up_Click(object sender, RoutedEventArgs e)
