@@ -50,6 +50,7 @@
    
             </NavigationView.MenuItems>
 
+
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem Content="Σχετικά με την εφαρμογή" Tag="Settings">
                     <NavigationViewItem.Icon>
@@ -57,6 +58,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.FooterMenuItems>
+          
             <Frame x:Name="contentFrame">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <Image Source="Assets/house_icon.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="250" Width="250"/>
