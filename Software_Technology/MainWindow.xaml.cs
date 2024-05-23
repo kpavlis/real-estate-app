@@ -1,4 +1,4 @@
-using Microsoft.UI;
+﻿using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Composition;
 using Microsoft.UI.Xaml;
@@ -20,13 +20,17 @@ using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT;
+using System.Diagnostics;
+using Windows.Foundation.Metadata;
 
 
 namespace Software_Technology
 {
-    
     public sealed partial class MainWindow : Window
     {
+        public ContentDialog dialog = new ContentDialog();
+        IAsyncOperation<ContentDialogResult> result;
+
         // Attributes for Mica - Start
 
         WindowsSystemDispatcherQueueHelper m_wsdqHelper;
@@ -34,7 +38,6 @@ namespace Software_Technology
         Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
 
         // Attributes for Mica - End
-
 
 
         // Attributes for Windowing - Start
@@ -62,7 +65,11 @@ namespace Software_Technology
             SizeWindow(appWindow);
 
             this.InitializeComponent();
-            TrySetMicaBackdrop();
+            this.SystemBackdrop = new MicaBackdrop();
+            dialog.PrimaryButtonClick += Log_In;
+            dialog.SecondaryButtonClick += Sign_Up;
+            
+            
 
             AppWindow.Title = "Real Estate";
 
@@ -215,6 +222,53 @@ namespace Software_Technology
         }
 
         // Methods for Mica - End //
+
+        internal async void Sign_In_Click(object sender, RoutedEventArgs e)
+        {
+
+            
+            dialog.Title = "Σύνδεση/Εγγραφή";
+            dialog.PrimaryButtonText = "Σύνδεση";
+            dialog.SecondaryButtonText = "";
+            dialog.CloseButtonText = "Κλείσιμο";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new Sing_In_Page(this);
+
+            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 8))
+            {
+                dialog.XamlRoot = nvSample.XamlRoot;
+            }
+            
+            result = dialog.ShowAsync();
+            
+            await result;
+        }
+
+        internal void Sign_Up_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            dialog.Title = "Εγγραφή";
+            dialog.PrimaryButtonText = "";
+            dialog.SecondaryButtonText = "Εγγραφή";
+            dialog.CloseButtonText = "Κλείσιμο";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            dialog.Content = new Sign_Up_Page();
+            
+        }
+
+        private void Log_In(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            Debug.WriteLine(((Sing_In_Page)sender.Content).username.Text);
+            Debug.WriteLine(((Sing_In_Page)sender.Content).password.Password);
+        }
+
+        private void Sign_Up(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            Debug.WriteLine(((Sign_Up_Page)sender.Content).name.Text);
+            Debug.WriteLine(((Sign_Up_Page)sender.Content).surname.Text);
+            Debug.WriteLine(((Sign_Up_Page)sender.Content).email.Text);
+        }
 
 
     }
