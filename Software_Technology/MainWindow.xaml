@@ -51,6 +51,7 @@
             </NavigationView.MenuItems>
 
 
+
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem Content="Σχετικά με την εφαρμογή" Tag="Settings">
                     <NavigationViewItem.Icon>
@@ -66,7 +67,6 @@
                 </StackPanel>
             </Frame>
         </NavigationView>
-
 
     </Grid>
 </Window>
