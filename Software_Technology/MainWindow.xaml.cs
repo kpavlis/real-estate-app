@@ -22,6 +22,9 @@ using Windows.Foundation.Collections;
 using WinRT;
 using System.Diagnostics;
 using Windows.Foundation.Metadata;
+using Microsoft.WindowsAppSDK.Runtime.Packages;
+using System.Xml.Linq;
+using Software_Technology.Classes;
 
 
 namespace Software_Technology
@@ -259,18 +262,17 @@ namespace Software_Technology
 
         private void Log_In(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Debug.WriteLine(((Sing_In_Page)sender.Content).username.Text);
-            Debug.WriteLine(((Sing_In_Page)sender.Content).password.Password);
+            Users.LogIn(((Sing_In_Page)sender.Content).username.Text, ((Sing_In_Page)sender.Content).password.Password);
+            //app main window (successfull sign in == successfull log in)
         }
 
         private void Sign_Up(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Debug.WriteLine(((Sign_Up_Page)sender.Content).name.Text);
-            Debug.WriteLine(((Sign_Up_Page)sender.Content).surname.Text);
-            Debug.WriteLine(((Sign_Up_Page)sender.Content).email.Text);
-        }
-
-
+            Random random = new Random();
+            string memberID = "M" + random.Next(1000, 5001);
+            Members member = new Members(((Sign_Up_Page)sender.Content).email.Text, memberID, ((Sign_Up_Page)sender.Content).username.Text, ((Sign_Up_Page)sender.Content).name.Text, ((Sign_Up_Page)sender.Content).surname.Text, ((Sign_Up_Page)sender.Content).password.Password);
+            //app main window (successfull sign in == successfull log in)
+        }  
     }
 
 

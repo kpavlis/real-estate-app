@@ -1,25 +1,32 @@
-﻿using System;
+﻿using Microsoft.WindowsAppSDK.Runtime.Packages;
+using Software_Technology.Classes;
+using System;
+using System.ComponentModel.Design;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Text;
+using System.Xml.Linq;
 using Windows.Media.AppBroadcasting;
 using Windows.System;
 
 public abstract class Users
 {
-    private  int _usersID { get; }
+    private  string _usersID { get; }
     public string username { get; }
+    public string name { get; private set;}
+    public string surname { get; private set;}
 	private string _password { get; set; }
-    private string _encryptedPassword { get; set; }
 
     //_encryptedPassword = HashPassword(_password); //Call method to encrypt password
     //ValidatePassword(_password, _encryptedPassword); //Call method to validate password
-    public Users(int _usersID, string username, string _password)
+    public Users(string _usersID, string username, string name, string surname, string _password)
     {
         this._usersID = _usersID;
         this.username = username;
+        this.name = name;
+        this.surname = surname;
         this._password = _password;
     }
     public string GetUsername()
@@ -27,17 +34,42 @@ public abstract class Users
         return username;
     }
 
-	public string ChangePassword(String newPassword)
+    public static bool LogIn(string username, string password)
+    {
+        string usersIDLogin = null; //To be retrieved from database
+        string nameLogin = null; //To be retrieved from database
+        string surnameLogin = null; //To be retrieved from database
+        string encryptedPassword = ""; //To be retrieved from database
+        bool flag = false;
+        if (usersIDLogin.Equals("A")){
+            Admins admin = new Admins(usersIDLogin, username, nameLogin, surnameLogin, password);    
+        }else if(usersIDLogin.Equals("M")){
+            flag = ValidatePassword(password,encryptedPassword);
+            if (flag == true)
+            {
+                string email = null; //To be retrieved from database
+                Members member = new Members(email, usersIDLogin, username, nameLogin, surnameLogin, password);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+    public string ChangePassword(String newPassword)
 	{
         _password = newPassword;
         return _password;
-	}
-
+    }
     public static string ShowAreas()
-	{
-		return "";
-	}
+    {
+        return "";
+    }
 
+    
     //Encypt password 
     public string HashPassword(String _password) 
 	{
@@ -56,7 +88,7 @@ public abstract class Users
 	}
 
     //Validate Password
-    public void ValidatePassword(string enteredPassword, string storedPassword) 
+    public static bool ValidatePassword(string enteredPassword, string storedPassword) 
 	{
         byte[] hashBytes = Convert.FromBase64String(storedPassword); //Convert the stored Base64 string to byte array
         byte[] salt = new byte[16]; //Extract the salt from the stored hash
@@ -65,8 +97,13 @@ public abstract class Users
         byte[] hash = pbkdf2.GetBytes(20);
         for (int i = 0; i < 20; i++) //Compare the stored hash and the entered passwod's hash byte by byte
             if (hashBytes[i + 16] != hash[i])
+            {
                 throw new UnauthorizedAccessException("Password is incorrect!"); //If any byte does not match, the password is invalid
+                return false;
+            }
         Debug.WriteLine("Success"); //If all bytes match, the password is valid
+
+        return true;
     }
 
 
