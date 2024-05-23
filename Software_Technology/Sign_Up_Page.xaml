@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Software_Technology.Sign_Up_Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Software_Technology"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    >
+
+    <Grid>
+
+        <ScrollViewer Height="280" Width="300" ZoomMode="Disabled"
+            IsTabStop="True" IsVerticalScrollChainingEnabled="True"
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto"
+            VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
+
+            <StackPanel Orientation="Vertical" Spacing="6" Margin="0, 10, 15 ,0">
+                <FontIcon Glyph="&#xE70F;" HorizontalAlignment="Center" FontSize="30" Margin="0,6,0, 5"/>
+                <TextBlock Text="Συμπληρώστε όλα τα πεδία" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0, 15"/>
+                <TextBlock Text="Ψευδώνυμο"/>
+                <TextBox x:Name="username" x:FieldModifier="internal"/>
+                <TextBlock Text="Email" Margin="0, 10, 0,0"/>
+                <TextBox x:Name="email" x:FieldModifier="internal"/>
+                <TextBlock Text="Όνομα" Margin="0, 10, 0,0"/>
+                <TextBox x:Name="name" x:FieldModifier="internal"/>
+                <TextBlock Text="Επώνυμο" Margin="0, 10, 0,0"/>
+                <TextBox x:Name="surname" x:FieldModifier="internal" />
+                <TextBlock Text="Κωδικός" Margin="0, 10, 0,0"/>
+                <PasswordBox x:Name="password" x:FieldModifier="internal"/>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Page>
