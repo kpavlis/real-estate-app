@@ -28,15 +28,15 @@
             <PersonPicture HorizontalAlignment="Right" DisplayName=""  Height="35" Margin="0, 0, 13, 7"  />
         </StackPanel>
         
-        <NavigationView x:Name="nvSample" Grid.Row="2" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
+        <NavigationView x:Name="nvSample" SelectionChanged="nvSample_SelectionChanged" Grid.Row="2" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Home" Content="Αρχική" Tag="SamplePage1" />
-                <NavigationViewItem Content="Ακίνητα προς Πώληση" Tag="SamplePage2" >
+                <NavigationViewItem Icon="Home" Content="Αρχική" Tag="Start" />
+                <NavigationViewItem Content="Ακίνητα προς Πώληση" Tag="Homes_for_Sale" >
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xF582;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Ακίνητα προς Μίσθωση" Tag="SamplePage2" >
+                <NavigationViewItem Content="Ακίνητα προς Μίσθωση" Tag="Homes_for_Rent" >
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xF588;"/>
                     </NavigationViewItem.Icon>

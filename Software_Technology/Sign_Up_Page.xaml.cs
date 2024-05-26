@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -21,7 +22,14 @@ namespace Software_Technology
     
     public sealed partial class Sign_Up_Page : Page
     {
-        
+
+        internal string Username { get { return username_obg.Text; } }
+        internal string Password { get { return password_obj.Password; } }
+        internal string Phone { get { return phone_obj.Text; } }
+        internal string Email { get { return email_obj.Text; } }
+        internal string Name { get { return name_obj.Text; } }
+        internal string Surname { get { return surname_obj.Text; } }
+
         public Sign_Up_Page()
         {
             this.InitializeComponent();
