@@ -24,6 +24,9 @@ using System.Diagnostics;
 using Windows.Foundation.Metadata;
 using System.Threading;
 using Software_Technology.Navigation_UI_Pages;
+using Microsoft.WindowsAppSDK.Runtime.Packages;
+using System.Xml.Linq;
+using Software_Technology.Classes;
 
 
 namespace Software_Technology
@@ -177,13 +180,22 @@ namespace Software_Technology
 
         private void Log_In(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            
+            Users.LogIn(((Sing_In_Page)sender.Content).Username, ((Sing_In_Page)sender.Content).Password);
+            //app main window (successfull sign in == successfull log in)
         }
 
         private void Sign_Up(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            
-        }
+
+            Random random = new Random();
+            string memberID = "M" + random.Next(1000, 5001);
+            Members member = new Members(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Password);
+            //app main window (successfull sign in == successfull log in)
+        } 
+
+
+
+
 
         private void nvSample_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
