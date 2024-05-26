@@ -10,11 +10,11 @@ namespace Software_Technology.Classes
     class Members:Users
     {
         public string email { get; private set; }
-        public string phoneNumber { get; private set; }
-        public Members(string email, string phoneNumber, int _usersID, string username,string _password) :base(_usersID, username, _password)
+        public Members(string email, string _usersID, string username, string  name, string surname/*,string PhoneNumber*/, string _password) :base(_usersID, username, name, surname, _password)
         {
             this.email = email;
-            this.phoneNumber = phoneNumber;
+            //this.phoneNumber;
+            HashPassword(_password);
         }
         public static string ShowRealEstateToBuy() { return ""; }
         public static string ShowRealEstateToRent() { return ""; }
@@ -26,10 +26,10 @@ namespace Software_Technology.Classes
         public void ShowMyPurchased_RentedRealEstates() { }
         public void ShowMySold_LeasedRealEstates() { }
         public void DeleteMyRealEstate() { }
-        public void ChangeContactDetails(string newEmail, string newPhoneNumber)
+        public void ChangeContactDetails(string newEmail /*,string newPhoneNumber*/)
         {
             this.email = newEmail;
-            this.phoneNumber = newPhoneNumber;
+            //this.phoneNumber = newPhoneNumber;
         }
     }
 }
