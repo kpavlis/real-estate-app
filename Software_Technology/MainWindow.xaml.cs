@@ -23,6 +23,7 @@ using WinRT;
 using System.Diagnostics;
 using Windows.Foundation.Metadata;
 using System.Threading;
+using Software_Technology.Navigation_UI_Pages;
 
 
 namespace Software_Technology
@@ -55,6 +56,7 @@ namespace Software_Technology
             this.SystemBackdrop = new MicaBackdrop();
             dialog.PrimaryButtonClick += Log_In;
             dialog.SecondaryButtonClick += Sign_Up;
+            nvSample.SelectedItem = nvSample.MenuItems[0];
 
             AppWindow.Title = "Real Estate";
             AppWindow.SetIcon("Assets/house_icon.ico");
@@ -175,20 +177,60 @@ namespace Software_Technology
 
         private void Log_In(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Debug.WriteLine(((Sign_In_Page)sender.Content).Username);
-            Debug.WriteLine(((Sign_In_Page)sender.Content).Password);
+            
         }
 
         private void Sign_Up(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Debug.WriteLine(((Sign_Up_Page)sender.Content).Name);
-            Debug.WriteLine(((Sign_Up_Page)sender.Content).Surname);
-            Debug.WriteLine(((Sign_Up_Page)sender.Content).Email);
-            Debug.WriteLine(((Sign_Up_Page)sender.Content).Username);
-            Debug.WriteLine(((Sign_Up_Page)sender.Content).Password);
-            Debug.WriteLine(((Sign_Up_Page)sender.Content).Phone);
+            
         }
 
+        private void nvSample_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.IsSettingsSelected)
+            {
+                //contentFrame.Navigate(typeof(Page_Settings), x);
+            }
+            else if (args.SelectedItem != null)
+            {
+
+                NavigationViewItem item = args.SelectedItem as NavigationViewItem;
+
+
+                if (item != null && item.Tag != null)
+                {
+                    string selectedTag = item.Tag.ToString();
+                    switch (selectedTag)
+                    {
+                        case "Page1":
+                            //contentFrame.Navigate(typeof(Page_Customer_1));
+                            break;
+                        case "Homes_for_Sale":
+                            contentFrame.Navigate(typeof(Real_Estate_for_Sale));
+                            break;
+                        case "Homes_for_Rent":
+                            contentFrame.Navigate(typeof(Real_Estate_for_Rent));
+                            break;
+                        case "Page4":
+                            //contentFrame.Navigate(typeof(Page_Customer_4), x);
+                            break;
+                        case "Page5":
+                            //contentFrame.Navigate(typeof(Page_Customer_5), x);
+                            break;
+                        case "Page6":
+                            //contentFrame.Navigate(typeof(Page_Customer_6));
+                            break;
+                        case "Page7":
+                            //contentFrame.Navigate(typeof(Page_Customer_7));
+                            break;
+                        case "Settings":
+                            //contentFrame.Navigate(typeof(Page_Settings), x);
+                            break;
+
+                    }
+                }
+            }
+        }
     }
 
 }

@@ -28,6 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Navigation_UI_Pages\Real_Estate_for_Rent.xaml" />
+    <None Remove="Navigation_UI_Pages\Real_Estate_for_Sale.xaml" />
     <None Remove="Sign_In_Page.xaml" />
     <None Remove="Sign_Up_Page.xaml" />
   </ItemGroup>
@@ -46,6 +48,16 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Navigation_UI_Pages\Real_Estate_for_Sale.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Navigation_UI_Pages\Real_Estate_for_Rent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Sign_In_Page.xaml">
