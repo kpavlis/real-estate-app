@@ -180,7 +180,7 @@ namespace Software_Technology
 
         private void Log_In(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Users.LogIn(((Sing_In_Page)sender.Content).Username, ((Sing_In_Page)sender.Content).Password);
+            Users.LogIn(((Sign_In_Page)sender.Content).Username, ((Sign_In_Page)sender.Content).Password);
             //app main window (successfull sign in == successfull log in)
         }
 
