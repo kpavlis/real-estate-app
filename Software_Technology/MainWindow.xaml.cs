@@ -22,6 +22,8 @@ using Windows.Foundation.Collections;
 using WinRT;
 using System.Diagnostics;
 using Windows.Foundation.Metadata;
+using System.Threading;
+using Software_Technology.Navigation_UI_Pages;
 using Microsoft.WindowsAppSDK.Runtime.Packages;
 using System.Xml.Linq;
 using Software_Technology.Classes;
@@ -32,24 +34,12 @@ namespace Software_Technology
     public sealed partial class MainWindow : Window
     {
         public ContentDialog dialog = new ContentDialog();
-        IAsyncOperation<ContentDialogResult> result;
-
-        // Attributes for Mica - Start
-
-        WindowsSystemDispatcherQueueHelper m_wsdqHelper;
-        Microsoft.UI.Composition.SystemBackdrops.MicaController m_micaController;
-        Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration m_configurationSource;
-
-        // Attributes for Mica - End
-
-
+        
         // Attributes for Windowing - Start
 
         IntPtr hWnd = IntPtr.Zero;
         private SUBCLASSPROC SubClassDelegate;
-
-        int x = 1;
-
+        
         int width = 450;
         int height = 400;
 
@@ -63,18 +53,16 @@ namespace Software_Technology
         public MainWindow()
         {
             hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-            var windowId = Win32Interop.GetWindowIdFromWindow(hWnd);
-            var appWindow = AppWindow.GetFromWindowId(windowId);
-            SizeWindow(appWindow);
+            SizeWindow();
 
             this.InitializeComponent();
             this.SystemBackdrop = new MicaBackdrop();
             dialog.PrimaryButtonClick += Log_In;
             dialog.SecondaryButtonClick += Sign_Up;
-            
-            
+            nvSample.SelectedItem = nvSample.MenuItems[0];
 
             AppWindow.Title = "Real Estate";
+            AppWindow.SetIcon("Assets/house_icon.ico");
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(TitleBar);
@@ -84,7 +72,7 @@ namespace Software_Technology
 
         // Methods for Window Resize - Start //
 
-        private async Task SizeWindow(AppWindow appWindow)
+        private async Task SizeWindow()
         {
             var displayList = await DeviceInformation.FindAllAsync
                               (DisplayMonitor.GetDeviceSelector());
@@ -156,76 +144,6 @@ namespace Software_Technology
         // Methods for Window Resize - End //
 
 
-
-
-        // Methods for Mica - Start //
-        bool TrySetMicaBackdrop()
-        {
-            if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
-            {
-                m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
-                m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
-
-                // Hooking up the policy object
-                m_configurationSource = new Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration();
-                this.Activated += Window_Activated;
-                this.Closed += Window_Closed;
-                ((FrameworkElement)this.Content).ActualThemeChanged += Window_ThemeChanged;
-
-                // Initial configuration state.
-                m_configurationSource.IsInputActive = true;
-                SetConfigurationSourceTheme();
-
-                m_micaController = new Microsoft.UI.Composition.SystemBackdrops.MicaController();
-
-                // Enable the system backdrop.
-                // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
-                m_micaController.AddSystemBackdropTarget(this.As<ICompositionSupportsSystemBackdrop>());
-                m_micaController.SetSystemBackdropConfiguration(m_configurationSource);
-                return true; // Succeeded.
-            }
-
-            return false; // Mica is not supported on this system.
-        }
-
-        private void Window_Activated(object sender, WindowActivatedEventArgs args)
-        {
-            m_configurationSource.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;
-        }
-
-        private void Window_Closed(object sender, WindowEventArgs args)
-        {
-            // Make sure any Mica/Acrylic controller is disposed so it doesn't try to
-            // use this closed window.
-            if (m_micaController != null)
-            {
-                m_micaController.Dispose();
-                m_micaController = null;
-            }
-            this.Activated -= Window_Activated;
-            m_configurationSource = null;
-        }
-
-        private void Window_ThemeChanged(FrameworkElement sender, object args)
-        {
-            if (m_configurationSource != null)
-            {
-                SetConfigurationSourceTheme();
-            }
-        }
-
-        private void SetConfigurationSourceTheme()
-        {
-            switch (((FrameworkElement)this.Content).ActualTheme)
-            {
-                case ElementTheme.Dark: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Dark; break;
-                case ElementTheme.Light: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Light; break;
-                case ElementTheme.Default: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Default; break;
-            }
-        }
-
-        // Methods for Mica - End //
-
         internal async void Sign_In_Click(object sender, RoutedEventArgs e)
         {
 
@@ -235,16 +153,16 @@ namespace Software_Technology
             dialog.SecondaryButtonText = "";
             dialog.CloseButtonText = "Κλείσιμο";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new Sing_In_Page(this);
+            dialog.Content = new Sign_In_Page(this);
 
             if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 8))
             {
                 dialog.XamlRoot = nvSample.XamlRoot;
             }
+
+            await dialog.ShowAsync();
+           
             
-            result = dialog.ShowAsync();
-            
-            await result;
         }
 
         internal void Sign_Up_Click(object sender, RoutedEventArgs e)
@@ -262,52 +180,69 @@ namespace Software_Technology
 
         private void Log_In(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Users.LogIn(((Sing_In_Page)sender.Content).username.Text, ((Sing_In_Page)sender.Content).password.Password);
+            Users.LogIn(((Sing_In_Page)sender.Content).Username, ((Sing_In_Page)sender.Content).Password);
             //app main window (successfull sign in == successfull log in)
         }
 
         private void Sign_Up(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+
             Random random = new Random();
             string memberID = "M" + random.Next(1000, 5001);
-            Members member = new Members(((Sign_Up_Page)sender.Content).email.Text, memberID, ((Sign_Up_Page)sender.Content).username.Text, ((Sign_Up_Page)sender.Content).name.Text, ((Sign_Up_Page)sender.Content).surname.Text, ((Sign_Up_Page)sender.Content).password.Password);
+            Members member = new Members(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Password);
             //app main window (successfull sign in == successfull log in)
-        }  
+        } 
+
+
+
+
+
+        private void nvSample_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.IsSettingsSelected)
+            {
+                //contentFrame.Navigate(typeof(Page_Settings), x);
+            }
+            else if (args.SelectedItem != null)
+            {
+
+                NavigationViewItem item = args.SelectedItem as NavigationViewItem;
+
+
+                if (item != null && item.Tag != null)
+                {
+                    string selectedTag = item.Tag.ToString();
+                    switch (selectedTag)
+                    {
+                        case "Page1":
+                            //contentFrame.Navigate(typeof(Page_Customer_1));
+                            break;
+                        case "Homes_for_Sale":
+                            contentFrame.Navigate(typeof(Real_Estate_for_Sale));
+                            break;
+                        case "Homes_for_Rent":
+                            contentFrame.Navigate(typeof(Real_Estate_for_Rent));
+                            break;
+                        case "Page4":
+                            //contentFrame.Navigate(typeof(Page_Customer_4), x);
+                            break;
+                        case "Page5":
+                            //contentFrame.Navigate(typeof(Page_Customer_5), x);
+                            break;
+                        case "Page6":
+                            //contentFrame.Navigate(typeof(Page_Customer_6));
+                            break;
+                        case "Page7":
+                            //contentFrame.Navigate(typeof(Page_Customer_7));
+                            break;
+                        case "Settings":
+                            //contentFrame.Navigate(typeof(Page_Settings), x);
+                            break;
+
+                    }
+                }
+            }
+        }
     }
 
-
-
-    class WindowsSystemDispatcherQueueHelper
-    {
-        [StructLayout(LayoutKind.Sequential)]
-        struct DispatcherQueueOptions
-        {
-            internal int dwSize;
-            internal int threadType;
-            internal int apartmentType;
-        }
-
-        [DllImport("CoreMessaging.dll")]
-        private static extern int CreateDispatcherQueueController([In] DispatcherQueueOptions options, [In, Out, MarshalAs(UnmanagedType.IUnknown)] ref object dispatcherQueueController);
-
-        object m_dispatcherQueueController = null;
-        public void EnsureWindowsSystemDispatcherQueueController()
-        {
-            if (Windows.System.DispatcherQueue.GetForCurrentThread() != null)
-            {
-                // one already exists, so we'll just use it.
-                return;
-            }
-
-            if (m_dispatcherQueueController == null)
-            {
-                DispatcherQueueOptions options;
-                options.dwSize = Marshal.SizeOf(typeof(DispatcherQueueOptions));
-                options.threadType = 2;    // DQTYPE_THREAD_CURRENT
-                options.apartmentType = 2; // DQTAT_COM_STA
-
-                CreateDispatcherQueueController(options, ref m_dispatcherQueueController);
-            }
-        }
-    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="Software_Technology.Sing_In_Page"
+    x:Class="Software_Technology.Sign_In_Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Software_Technology"
@@ -14,9 +14,9 @@
         <StackPanel Orientation="Vertical" Spacing="6" Margin="0, 10, 0 ,0">
             <FontIcon Glyph="&#xE716;" HorizontalAlignment="Center" FontSize="50" Margin="0,0,0, 10"/>
             <TextBlock  Text="Ψευδώνυμο"/>
-            <TextBox x:Name="username" x:FieldModifier="internal"/>
+            <TextBox x:Name="username_obg"/>
             <TextBlock Text="Κωδικός" Margin="0, 5, 0,0"/>
-            <PasswordBox  x:Name="password" x:FieldModifier="internal"/>
+            <PasswordBox  x:Name="password_obg"/>
             <TextBlock Text="Ή πραγματοποιήστε Εγγραφή" Margin="0, 20, 0,10" TextAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
             <Button HorizontalAlignment="Center" Click="Pop_Up_Click">
                 <StackPanel Orientation="Horizontal" Spacing="10">
@@ -27,4 +27,5 @@
         </StackPanel>
 
     </Grid>
+
 </Page>

@@ -1,4 +1,4 @@
-﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -18,11 +18,17 @@ using Windows.Foundation.Collections;
 
 namespace Software_Technology
 {
-    
-    public sealed partial class Sing_In_Page : Page
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class Sign_In_Page : Page
     {
+        internal string Username { get { return username_obg.Text; } }
+        internal string Password { get { return password_obg.Password; } }
+
         MainWindow x;
-        public Sing_In_Page(MainWindow current)
+
+        public Sign_In_Page(MainWindow current)
         {
             this.InitializeComponent();
             x = current;
@@ -32,7 +38,7 @@ namespace Software_Technology
         {
 
             x.Sign_Up_Click(sender, e);
-            
+
         }
     }
 }

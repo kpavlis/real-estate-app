@@ -21,15 +21,17 @@
                 <FontIcon Glyph="&#xE70F;" HorizontalAlignment="Center" FontSize="30" Margin="0,6,0, 5"/>
                 <TextBlock Text="Συμπληρώστε όλα τα πεδία" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0, 15"/>
                 <TextBlock Text="Ψευδώνυμο"/>
-                <TextBox x:Name="username" x:FieldModifier="internal"/>
+                <TextBox x:Name="username_obg"/>
                 <TextBlock Text="Email" Margin="0, 10, 0,0"/>
-                <TextBox x:Name="email" x:FieldModifier="internal"/>
+                <TextBox x:Name="email_obj" />
+                <TextBlock Text="Κινητό Τηλέφωνο" Margin="0, 10, 0,0"/>
+                <TextBox x:Name="phone_obj"/>
                 <TextBlock Text="Όνομα" Margin="0, 10, 0,0"/>
-                <TextBox x:Name="name" x:FieldModifier="internal"/>
+                <TextBox x:Name="name_obj"/>
                 <TextBlock Text="Επώνυμο" Margin="0, 10, 0,0"/>
-                <TextBox x:Name="surname" x:FieldModifier="internal" />
+                <TextBox x:Name="surname_obj"/>
                 <TextBlock Text="Κωδικός" Margin="0, 10, 0,0"/>
-                <PasswordBox x:Name="password" x:FieldModifier="internal"/>
+                <PasswordBox x:Name="password_obj"/>
 
             </StackPanel>
         </ScrollViewer>
