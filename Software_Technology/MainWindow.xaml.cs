@@ -27,6 +27,7 @@ using Software_Technology.Navigation_UI_Pages;
 using Microsoft.WindowsAppSDK.Runtime.Packages;
 using System.Xml.Linq;
 using Software_Technology.Classes;
+using System.Data.SQLite;
 
 
 namespace Software_Technology
@@ -34,7 +35,10 @@ namespace Software_Technology
     public sealed partial class MainWindow : Window
     {
         public ContentDialog dialog = new ContentDialog();
-        
+
+        String connectionString = "Data source=realEstateApp.db;Version=3";
+        SQLiteConnection connection;
+
         // Attributes for Windowing - Start
 
         IntPtr hWnd = IntPtr.Zero;
@@ -48,10 +52,21 @@ namespace Software_Technology
 
         // Attributes for Windowing - End
 
-
+        
 
         public MainWindow()
-        {
+        { 
+            connection = new SQLiteConnection(connectionString);
+            connection.Open();
+            String createSQLMembers = "Create table if not exists Members(email Text,usersID Text primary key,username Text,name Text,surname Text,phoneNumber Text,hashedPassword Text,soldRealEstates Text,boughtRealEstates Text,leasedRealEstates Text,rentedRealEstates Text)";
+            SQLiteCommand commandMembers = new SQLiteCommand(createSQLMembers, connection);
+            commandMembers.ExecuteNonQuery();
+
+            String createSQLAdmins = "Create table if not exists Admins(usersID Text,username Text,name Text,surname Text,hashedPassword Text)";
+            SQLiteCommand commandAdmins = new SQLiteCommand(createSQLAdmins, connection);
+            commandAdmins.ExecuteNonQuery();
+            connection.Close();
+
             hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             SizeWindow();
 
@@ -184,16 +199,16 @@ namespace Software_Technology
             //app main window (successfull sign in == successfull log in)
         }
 
+
         private void Sign_Up(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
 
             Random random = new Random();
             string memberID = "M" + random.Next(1000, 5001);
-            Members member = new Members(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Password);
+            Members member = new Members(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Phone,((Sign_Up_Page)sender.Content).Password);
+            member.SignUpMember(member.email,memberID,member.username,member.name,member.surname,member.phoneNumber, member.GetPassword());
             //app main window (successfull sign in == successfull log in)
         } 
-
-
 
 
 
