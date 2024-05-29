@@ -28,8 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+
     <None Remove="Navigation_UI_Pages\Admins_Data.xaml" />
     <None Remove="Navigation_UI_Pages\Members_Data.xaml" />
+    <None Remove="Navigation_UI_Pages\Home.xaml" />
     <None Remove="Navigation_UI_Pages\Real_Estate_for_Rent.xaml" />
     <None Remove="Navigation_UI_Pages\Real_Estate_for_Sale.xaml" />
     <None Remove="Navigation_UI_Pages\Submit_Home.xaml" />
@@ -51,6 +53,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Navigation_UI_Pages\Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Navigation_UI_Pages\Real_Estate_for_Sale.xaml">
