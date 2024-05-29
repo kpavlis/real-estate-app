@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,9 @@ namespace Software_Technology.Classes
         public string area { get; private set; }
         public string type { get; private set; }
         public string details { get; private set; }
+        public string image { get; private set; }
 
-        public RealEstate(int realEstateID, int submitterID, int seller_lessorID, int price, int size, int floor, int year, int bedrooms, bool availability, bool leaseSell, string area, string type, string details) 
+        public RealEstate(int realEstateID, int submitterID, int seller_lessorID, int price, int size, int floor, int year, int bedrooms, bool availability, bool leaseSell, string area, string type, string details, string image) 
         {
             this.realEstateID = realEstateID;
             this.submitterID = submitterID;
@@ -37,9 +39,10 @@ namespace Software_Technology.Classes
             this.area = area;
             this.type = type;
             this.details = details;
+            this.image = image;
         }
 
-        protected void ChangeRealEstateAttributes(int newPrice, int newSize, int newFloor, int newYear, int newBedrooms, bool newAvailability,bool newLeaseSell, string newArea, string newType, string newDetails)
+        protected void ChangeRealEstateAttributes(int newPrice, int newSize, int newFloor, int newYear, int newBedrooms, bool newAvailability,bool newLeaseSell, string newArea, string newType, string newDetails, string newImage)
         {
             this.price = newPrice;
             this.size = newSize;
@@ -51,6 +54,7 @@ namespace Software_Technology.Classes
             this.area = newArea;
             this.type = newType;
             this.details = newDetails;
+            this.image = newImage;
         }
     }
 }
