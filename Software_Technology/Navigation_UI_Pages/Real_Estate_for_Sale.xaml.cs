@@ -29,15 +29,15 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             this.InitializeComponent();
             // This is a temporary code. It will be removed in a future update.
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
+            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
+            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
+            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
+            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
+            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
+            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
+            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
+            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
+            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό."));
 
         }
 
@@ -52,13 +52,14 @@ namespace Software_Technology.Navigation_UI_Pages
     // This is a temporary class. It will be removed in a future update.
     class Test_Real
     {
-        internal string image;
+        internal List<string> image = new List<string>();
         internal string name;
         internal string comments;
 
-        public Test_Real(string image, string name, string comments)
+        public Test_Real(string image, string image2, string name, string comments)
         {
-            this.image = image;
+            this.image.Add(image);
+            this.image.Add(image2);
             this.name = name;
             this.comments = comments;
         }
