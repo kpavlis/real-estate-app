@@ -60,13 +60,18 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select usersID,email,name,surname,phoneNumber,hashedPassword from Members where username=@username";
+                String selectSQL = "Select usersID,email,name,hashedPassword,surname,phoneNumber from Members where username=@username";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     command.Parameters.AddWithValue("@username", username);
                     using (var reader = command.ExecuteReader())
                     {
-                        if (reader.Read() == true)
+                        if (!reader.Read())
+                        {
+                            Debug.WriteLine("Username not found!");
+                            return logInValues;
+                        }
+                        else if (reader.Read() == true)
                         {
                             logInValues.Add(reader.GetString(0));
                             logInValues.Add(reader.GetString(1));
@@ -139,6 +144,8 @@ namespace Software_Technology.Classes
                 }
             }
         }
+
+
 
     }
 }

@@ -38,44 +38,29 @@ public abstract class Users
         return _password;
     }
 
-    public static bool LogIn(string username, string password)
+    public static List<string> LogIn(string username, string password)
     {
-        string usersIDLogin = null; //To be retrieved from database
-        string nameLogin = null; //To be retrieved from database
-        string surnameLogin = null; //To be retrieved from database
         string encryptedPassword = ""; //To be retrieved from database
         bool flag = false;
         List<string> logInValues = new List<string>();
         logInValues = DatabaseController.LogIn(username);
-        usersIDLogin = logInValues[0].ToString();
-        if (usersIDLogin.StartsWith("A")){
-            nameLogin = logInValues[1];
-            surnameLogin = logInValues[2];
+        if (!logInValues.Count.Equals(0))
+        {
             encryptedPassword = logInValues[3];
-            Admins admin = new Admins(usersIDLogin, username, nameLogin, surnameLogin, password);    
-        }else if(usersIDLogin.StartsWith("M")){
-            encryptedPassword = logInValues[5];
-            flag = ValidatePassword(password,encryptedPassword);
+            flag = ValidatePassword(password, encryptedPassword);
             if (flag == true)
             {
-                string emailLogin = null; //To be retrieved from database
-                string phoneNumber = null; //To be retrieved from database
-                emailLogin = logInValues[1];
-                nameLogin = logInValues[2];
-                surnameLogin = logInValues[3];
-                phoneNumber = logInValues[4];
-                Members member = new Members(emailLogin, usersIDLogin, username, nameLogin, surnameLogin, phoneNumber, password);
-                member.UpdateRealEstatesListMember(username);
+                return logInValues;
             }
             else
             {
-                Debug.WriteLine("Incorect Users!");
-                return false;
+                Debug.WriteLine("Incorect User!");
+                logInValues.Clear();
+                return logInValues;
             }
-
         }
-        
-        return true;
+        logInValues.Clear();
+        return logInValues;
     }
 
     public string ChangePassword(String newPassword)
@@ -118,8 +103,7 @@ public abstract class Users
         for (int i = 0; i < 20; i++) //Compare the stored hash and the entered passwod's hash byte by byte
             if (hashBytes[i + 16] != hash[i])
             {
-                throw new UnauthorizedAccessException("Password is incorrect!"); //If any byte does not match, the password is invalid
-                return false;
+               return false;
             }
         Debug.WriteLine("Success"); //If all bytes match, the password is valid
 

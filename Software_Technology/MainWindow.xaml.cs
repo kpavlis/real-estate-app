@@ -195,8 +195,22 @@ namespace Software_Technology
 
         private void Log_In(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Users.LogIn(((Sign_In_Page)sender.Content).Username, ((Sign_In_Page)sender.Content).Password);
-            //app main window (successfull sign in == successfull log in)
+            List<string> logInValues = Users.LogIn(((Sign_In_Page)sender.Content).Username, ((Sign_In_Page)sender.Content).Password);
+            logInValues.Add(((Sign_In_Page)sender.Content).Username);
+            if (!logInValues.Count.Equals(1) && logInValues[6].StartsWith("A"))
+            {
+                //ID=0,Name=1,Surname=2,EncryptedPassword=3,Username=4
+                Admins admin = new Admins(logInValues[0], logInValues[4], logInValues[1], logInValues[2], logInValues[3]);
+
+            }
+            else if (!logInValues.Count.Equals(1) && logInValues[6].StartsWith("M"))
+            {
+                //ID=0,Email=1,Name=2,Surname=3,PhoneNumber=4,EncryptedPassword=5,USername=6
+                Members member = new Members(logInValues[1], logInValues[0], logInValues[6], logInValues[2], logInValues[3], logInValues[4], logInValues[5]);
+                member.UpdateRealEstatesListMember(logInValues[6]); //Show my sold real estates
+                Debug.WriteLine(member.soldRealEstates.Count());
+                Debug.WriteLine(member.boughtRealEstates.Count());
+            }
         }
 
 

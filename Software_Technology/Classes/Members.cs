@@ -19,8 +19,8 @@ namespace Software_Technology.Classes
         public string phoneNumber { get; private set; }
         public string hashedPassword { get; private set; }
 
-        List<RealEstate> soldRealEstates = new List<RealEstate>();
-        List<RealEstate> boughtRealEstates = new List<RealEstate>();
+        public List<RealEstate> soldRealEstates = new List<RealEstate>();
+        public List<RealEstate> boughtRealEstates = new List<RealEstate>();
         List<RealEstate> leasedRealEstates = new List<RealEstate>();
         List<RealEstate> rentedRealEstates = new List<RealEstate> ();
         
