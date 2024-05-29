@@ -60,18 +60,13 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select usersID,email,name,hashedPassword,surname,phoneNumber from Members where username=@username";
+                String selectSQL = "Select usersID,email,name,hashedPassword,surname,phoneNumber from Members  where @username=username";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     command.Parameters.AddWithValue("@username", username);
                     using (var reader = command.ExecuteReader())
                     {
-                        if (!reader.Read())
-                        {
-                            Debug.WriteLine("Username not found!");
-                            return logInValues;
-                        }
-                        else if (reader.Read() == true)
+                        if (reader.Read() == true)
                         {
                             logInValues.Add(reader.GetString(0));
                             logInValues.Add(reader.GetString(1));
@@ -79,23 +74,39 @@ namespace Software_Technology.Classes
                             logInValues.Add(reader.GetString(3));
                             logInValues.Add(reader.GetString(4));
                             logInValues.Add(reader.GetString(5));
+                            Debug.WriteLine("Welcome Member!!!!!");
+
                         }
                         else
                         {
-                            selectSQL = "Select usersID,name,surname,hashedPassword from Admins where username=@username";
-                            command.CommandText = selectSQL;
-                            using(var adminReader = command.ExecuteReader())
-                            {
-                                if (adminReader.Read())
-                                {
-                                    logInValues.Add(reader.GetString(0));
-                                    logInValues.Add(reader.GetString(1));
-                                    logInValues.Add(reader.GetString(2));
-                                    logInValues.Add(reader.GetString(3));
-                                }
-                            }
-                            
+                            return logInValues;
                         }
+
+                    }
+                }
+            }
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select usersID,name,surname,hashedPassword from Admins where username=@username";
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            logInValues.Add(reader.GetString(0));
+                            logInValues.Add(reader.GetString(1));
+                            logInValues.Add(reader.GetString(2));
+                            logInValues.Add(reader.GetString(3));
+                            Debug.WriteLine("Welcome Admin!!!!!");
+                        }
+                        else
+                        {
+                            return logInValues;
+                        }
+
                     }
                 }
             }
@@ -145,7 +156,29 @@ namespace Software_Technology.Classes
             }
         }
 
-
+        public static bool DeleteRealEstateFromDatabase(int realEstateID)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Delete from RealEstaes WHERE realEstateID =@realEstateID";
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@realEstateID", realEstateID);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Debug.WriteLine("Deleted!");
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Not Deleted!");
+                        return false;
+                    }
+                }
+            }
+        }
 
     }
 }
