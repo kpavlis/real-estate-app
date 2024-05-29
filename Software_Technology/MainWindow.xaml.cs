@@ -221,8 +221,8 @@ namespace Software_Technology
                     string selectedTag = item.Tag.ToString();
                     switch (selectedTag)
                     {
-                        case "Page1":
-                            //contentFrame.Navigate(typeof(Page_Customer_1));
+                        case "Start":
+                            contentFrame.Navigate(typeof(Home));
                             break;
                         case "Homes_for_Sale":
                             contentFrame.Navigate(typeof(Real_Estate_for_Sale));
