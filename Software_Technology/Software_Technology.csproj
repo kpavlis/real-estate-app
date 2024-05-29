@@ -30,6 +30,7 @@
   <ItemGroup>
     <None Remove="Navigation_UI_Pages\Real_Estate_for_Rent.xaml" />
     <None Remove="Navigation_UI_Pages\Real_Estate_for_Sale.xaml" />
+    <None Remove="Navigation_UI_Pages\Submit_Home.xaml" />
     <None Remove="Sign_In_Page.xaml" />
     <None Remove="Sign_Up_Page.xaml" />
   </ItemGroup>
@@ -78,4 +79,10 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Navigation_UI_Pages\Submit_Home.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Remove="Navigation_UI_Pages\Submit_Home.xaml" />
+  </ItemGroup>
 </Project>
