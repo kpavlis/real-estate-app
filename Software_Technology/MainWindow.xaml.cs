@@ -178,6 +178,13 @@ namespace Software_Technology
             
         }
 
+        internal void Sign_Out_Click(object sender, RoutedEventArgs e)
+        {
+
+            //Code will be added here
+
+        }
+
         private void Log_In(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             Users.LogIn(((Sign_In_Page)sender.Content).Username, ((Sign_In_Page)sender.Content).Password);
@@ -223,8 +230,8 @@ namespace Software_Technology
                         case "Homes_for_Rent":
                             contentFrame.Navigate(typeof(Real_Estate_for_Rent));
                             break;
-                        case "Page4":
-                            //contentFrame.Navigate(typeof(Page_Customer_4), x);
+                        case "Submit_Home":
+                            contentFrame.Navigate(typeof(Submit_Home), this);
                             break;
                         case "Page5":
                             //contentFrame.Navigate(typeof(Page_Customer_5), x);

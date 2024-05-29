@@ -40,13 +40,12 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Row="0" Margin="0,0, 130, 0">
+                    <StackPanel Grid.Row="0" Margin="0,0, 130, 0" VerticalAlignment="Center">
                         <TextBlock Text="Επιλέξτε περιοχή:" FontWeight="SemiBold"/>
                         <RadioButtons SelectedIndex="0"  >
-                            <RadioButton Content="Όλες οι περιοχές" />
+                            <RadioButton Content="Όλες οι διαθέσιμες περιοχές" />
                             <RadioButton Content="Αθήνα" />
                             <RadioButton Content="Θεσσαλονίκη" />
-                            <RadioButton Content="Υπόλοιπη Ελλάδα" />
                         </RadioButtons>
                     </StackPanel>
 
@@ -88,8 +87,15 @@
                     <DataTemplate x:DataType="local:Test_Real">
                     <Border BorderThickness="1.2" BorderBrush="LightGray" Background="{ThemeResource AcrylicInAppFillColorBaseBrush}" CornerRadius="12" Margin="8" Padding="10" Width="250">
                         <StackPanel Spacing="18" >
-                            <Image Source="{x:Bind image}" Width="230" Height="140" />
-                            <TextBlock Text="{x:Bind name}" FontSize="20" FontWeight="SemiBold" Width="200" TextWrapping="WrapWholeWords"/>
+                            
+                            <FlipView Height="150" ItemsSource="{x:Bind image}">
+                                <FlipView.ItemTemplate>
+                                    <DataTemplate x:DataType="x:String">
+                                        <Image Source="{x:Bind}"/>
+                                    </DataTemplate>
+                                </FlipView.ItemTemplate>
+                            </FlipView>
+                                    <TextBlock Text="{x:Bind name}" FontSize="20" FontWeight="SemiBold" Width="200" TextWrapping="WrapWholeWords"/>
                             <Grid>
 
                                 <Grid.RowDefinitions>
