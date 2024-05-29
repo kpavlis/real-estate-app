@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAppSDK.Runtime.Packages;
 using Software_Technology.Classes;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -13,14 +14,12 @@ using Windows.System;
 
 public abstract class Users
 {
-    private  string _usersID { get; }
+    private string _usersID { get; }
     public string username { get; }
     public string name { get; private set;}
     public string surname { get; private set;}
 	private string _password { get; set; }
 
-    //_encryptedPassword = HashPassword(_password); //Call method to encrypt password
-    //ValidatePassword(_password, _encryptedPassword); //Call method to validate password
     public Users(string _usersID, string username, string name, string surname, string _password)
     {
         this._usersID = _usersID;
@@ -34,29 +33,34 @@ public abstract class Users
         return username;
     }
 
-    public static bool LogIn(string username, string password)
+    public string GetPassword()
     {
-        string usersIDLogin = null; //To be retrieved from database
-        string nameLogin = null; //To be retrieved from database
-        string surnameLogin = null; //To be retrieved from database
+        return _password;
+    }
+
+    public static List<string> LogIn(string username, string password)
+    {
         string encryptedPassword = ""; //To be retrieved from database
         bool flag = false;
-        if (usersIDLogin.Equals("A")){
-            Admins admin = new Admins(usersIDLogin, username, nameLogin, surnameLogin, password);    
-        }else if(usersIDLogin.Equals("M")){
-            flag = ValidatePassword(password,encryptedPassword);
+        List<string> logInValues = new List<string>();
+        logInValues = DatabaseController.LogIn(username);
+        if (!logInValues.Count.Equals(0))
+        {
+            encryptedPassword = logInValues[3];
+            flag = ValidatePassword(password, encryptedPassword);
             if (flag == true)
             {
-                string email = null; //To be retrieved from database
-                Members member = new Members(email, usersIDLogin, username, nameLogin, surnameLogin, password);
+                return logInValues;
             }
             else
             {
-                return false;
+                Debug.WriteLine("Incorect User!");
+                logInValues.Clear();
+                return logInValues;
             }
         }
-        
-        return true;
+        logInValues.Clear();
+        return logInValues;
     }
 
     public string ChangePassword(String newPassword)
@@ -71,7 +75,7 @@ public abstract class Users
 
     
     //Encypt password 
-    public string HashPassword(String _password) 
+    public static string HashPassword(String _password) 
 	{
         byte[] salt; //Generate a 128-bit salt using a secure PRNG
         new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
@@ -87,6 +91,7 @@ public abstract class Users
         return storedPassword; //return the hashed password
 	}
 
+
     //Validate Password
     public static bool ValidatePassword(string enteredPassword, string storedPassword) 
 	{
@@ -98,13 +103,11 @@ public abstract class Users
         for (int i = 0; i < 20; i++) //Compare the stored hash and the entered passwod's hash byte by byte
             if (hashBytes[i + 16] != hash[i])
             {
-                throw new UnauthorizedAccessException("Password is incorrect!"); //If any byte does not match, the password is invalid
-                return false;
+               return false;
             }
         Debug.WriteLine("Success"); //If all bytes match, the password is valid
 
         return true;
     }
-
 
 }
