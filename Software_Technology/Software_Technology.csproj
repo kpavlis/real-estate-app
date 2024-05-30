@@ -30,6 +30,8 @@
   <ItemGroup>
 
     <None Remove="Navigation_UI_Pages\Admins_Data.xaml" />
+
+    <None Remove="Navigation_UI_Pages\Info_Page.xaml" />
     <None Remove="Navigation_UI_Pages\Members_Data.xaml" />
     <None Remove="Navigation_UI_Pages\Home.xaml" />
     <None Remove="Navigation_UI_Pages\Real_Estate_for_Rent.xaml" />
@@ -93,6 +95,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Remove="Navigation_UI_Pages\Submit_Home.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Navigation_UI_Pages\Info_Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Navigation_UI_Pages\Admins_Data.xaml">
