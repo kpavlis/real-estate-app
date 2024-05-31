@@ -77,10 +77,6 @@ namespace Software_Technology.Classes
                             Debug.WriteLine("Welcome Member!!!!!");
 
                         }
-                        else
-                        {
-                            return logInValues;
-                        }
 
                     }
                 }
@@ -102,13 +98,14 @@ namespace Software_Technology.Classes
                             logInValues.Add(reader.GetString(3));
                             Debug.WriteLine("Welcome Admin!!!!!");
                         }
-                        else
-                        {
-                            return logInValues;
-                        }
 
                     }
                 }
+            }
+
+            if(logInValues.Count == 0)
+            {
+                Debug.WriteLine("User not found!!!");
             }
             return logInValues;
         }
