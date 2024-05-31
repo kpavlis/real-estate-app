@@ -34,6 +34,9 @@ namespace Software_Technology
 {
     public sealed partial class MainWindow : Window
     {
+        internal Members member_variable;
+        internal Admins admin_variable;
+
         public ContentDialog dialog = new ContentDialog();
 
         String connectionString = "Data source=realEstateApp.db;Version=3";
@@ -265,11 +268,11 @@ namespace Software_Technology
                         case "Page5":
                             //contentFrame.Navigate(typeof(Page_Customer_5), x);
                             break;
-                        case "Page6":
-                            //contentFrame.Navigate(typeof(Page_Customer_6));
+                        case "Members_Data":
+                            contentFrame.Navigate(typeof(Members_Data), this);
                             break;
-                        case "Page7":
-                            //contentFrame.Navigate(typeof(Page_Customer_7));
+                        case "Admins_Data":
+                            contentFrame.Navigate(typeof(Admins_Data), this);
                             break;
                         case "Settings":
                             //contentFrame.Navigate(typeof(Page_Settings), x);

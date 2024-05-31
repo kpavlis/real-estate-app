@@ -42,13 +42,14 @@
                         <FontIcon Glyph="&#xF588;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Visibility="Collapsed" Icon="Add" Content="Καταχώρηση Ακινήτου" Tag="Submit_Home"/>
+                <NavigationViewItem Visibility="Visible" Icon="Add" Content="Καταχώρηση Ακινήτου" Tag="Submit_Home"/>
                 <NavigationViewItem Visibility="Collapsed" Content="Ενοικιασμένα Ακίνητα" Tag="SamplePage3" >
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE81C;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Visibility="Collapsed" Icon="Contact" Content="Προσωπικά Στοιχεία" Tag="SamplePage3" />
+                <NavigationViewItem Visibility="Visible" Icon="Contact" Content="Προσωπικά Στοιχεία" Tag="Members_Data" />
+                <NavigationViewItem Visibility="Visible" Icon="Contact" Content="Προσωπικά Στοιχεία Admins" Tag="Admins_Data" />
    
             </NavigationView.MenuItems>
 

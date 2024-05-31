@@ -23,9 +23,19 @@ namespace Software_Technology.Navigation_UI_Pages
     /// </summary>
     public sealed partial class Admins_Data : Page
     {
+        MainWindow x;
+
         public Admins_Data()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                x = e.Parameter as MainWindow;
+            }
         }
     }
 }
