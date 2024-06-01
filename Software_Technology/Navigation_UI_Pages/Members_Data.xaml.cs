@@ -18,14 +18,21 @@ using Windows.Foundation.Collections;
 
 namespace Software_Technology.Navigation_UI_Pages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+    
     public sealed partial class Members_Data : Page
     {
+        MainWindow x;
         public Members_Data()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                x = e.Parameter as MainWindow;
+            }
         }
     }
 }

@@ -10,6 +10,69 @@
     >
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <StackPanel Orientation="Horizontal" Spacing="15" HorizontalAlignment="Center" Margin="0, 15,0,5">
+            <FontIcon Glyph="&#xE77B;" FontSize="42"/>
+            <TextBlock Text="Προσωπικά Στοιχεία" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Text="Επεξεργασία των προσωπικών σου στοιχείων" HorizontalAlignment="Center" FontSize="17" FontWeight="SemiBold" Margin="0, 20, 0, 0"/>
+
+        <ScrollViewer Grid.Row="2" ZoomMode="Disabled"
+            IsTabStop="True" IsVerticalScrollChainingEnabled="True"            
+            HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto"
+            VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
+
+            <Grid VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"  Margin="0,20,0,80">
+                    <TextBlock Text="Ψευδώνυμο"/>
+                    <TextBox x:Name="username_obj" IsEnabled="False" Width="300"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"  Margin="0,0,0,80">
+                    <TextBlock Text="Όνομα"/>
+                    <TextBox x:Name="name_obj" Width="300"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10" Margin="0,0,0,50">
+                    <TextBlock Text="Επώνυμο"/>
+                    <TextBox x:Name="surname_obj" Width="300"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"  Margin="0,20,0,80">
+                    <TextBlock Text="Κωδικός"/>
+                    <PasswordBox x:Name="password_obj" Width="300"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"  Margin="0,0,0,80">
+                    <TextBlock Text="Email"/>
+                    <TextBox x:Name="email_obj" Width="300"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10" Margin="0,0,0,50">
+                    <TextBlock Text="Κινητό τηλέφωνο"/>
+                    <TextBox x:Name="phone_obj" Width="300"/>
+                </StackPanel>
+
+                <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Ενημέρωση Στοιχείων" Margin="0,0,0,20" />
+            </Grid>
+
+        </ScrollViewer>
     </Grid>
 </Page>

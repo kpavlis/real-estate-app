@@ -17,7 +17,7 @@
 
         <StackPanel Orientation="Horizontal" Spacing="15" HorizontalAlignment="Center" Margin="0, 15,0,5">
             <FontIcon Glyph="&#xE710;" FontSize="42"/>
-            <TextBlock Text="Καταχώρηση Ακινήτου" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <TextBlock Text="Καταχώρηση Ακινήτου" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center" TextWrapping="Wrap"/>
         </StackPanel>
 
 
