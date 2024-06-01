@@ -34,6 +34,9 @@ namespace Software_Technology
 {
     public sealed partial class MainWindow : Window
     {
+        internal Members member_variable;
+        internal Admins admin_variable;
+
         public ContentDialog dialog = new ContentDialog();
 
         String connectionString = "Data source=realEstateApp.db;Version=3";
@@ -212,7 +215,7 @@ namespace Software_Technology
             {
                 //ID=0,Name=1,Surname=2,EncryptedPassword=3,Username=4
                 Admins admin = new Admins(logInValues[0], logInValues[4], logInValues[1], logInValues[2], logInValues[3]);
-
+               
             }
             else if (!logInValues.Count.Equals(1) && logInValues[6].StartsWith("M"))
             {
@@ -258,10 +261,10 @@ namespace Software_Technology
                             contentFrame.Navigate(typeof(Home));
                             break;
                         case "Homes_for_Sale":
-                            contentFrame.Navigate(typeof(Real_Estate_for_Sale));
+                            contentFrame.Navigate(typeof(Real_Estate_for_Sale), this);
                             break;
                         case "Homes_for_Rent":
-                            contentFrame.Navigate(typeof(Real_Estate_for_Rent));
+                            contentFrame.Navigate(typeof(Real_Estate_for_Rent), this);
                             break;
                         case "Submit_Home":
                             contentFrame.Navigate(typeof(Submit_Home), this);
@@ -269,11 +272,11 @@ namespace Software_Technology
                         case "Page5":
                             //contentFrame.Navigate(typeof(Page_Customer_5), x);
                             break;
-                        case "Page6":
-                            //contentFrame.Navigate(typeof(Page_Customer_6));
+                        case "Members_Data":
+                            contentFrame.Navigate(typeof(Members_Data), this);
                             break;
-                        case "Page7":
-                            //contentFrame.Navigate(typeof(Page_Customer_7));
+                        case "Admins_Data":
+                            contentFrame.Navigate(typeof(Admins_Data), this);
                             break;
                         case "Settings":
                             //contentFrame.Navigate(typeof(Page_Settings), x);

@@ -37,6 +37,8 @@
     <None Remove="Navigation_UI_Pages\Submit_Home.xaml" />
     <None Remove="Sign_In_Page.xaml" />
     <None Remove="Sign_Up_Page.xaml" />
+    <None Remove="Special_UI_Pages\Payment_Form.xaml" />
+    <None Remove="Special_UI_Pages\Real_Estate_Info.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -95,12 +97,22 @@
     <Resource Remove="Navigation_UI_Pages\Submit_Home.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Special_UI_Pages\Payment_Form.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Navigation_UI_Pages\Admins_Data.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Navigation_UI_Pages\Members_Data.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Special_UI_Pages\Real_Estate_Info.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
