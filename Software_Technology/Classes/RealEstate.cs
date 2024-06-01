@@ -10,8 +10,8 @@ namespace Software_Technology.Classes
     class RealEstate
     {
         public int realEstateID { get; }
-        public int submitterID { get; }
-        public int seller_lessorID { get; private set; }
+        public int submitterID { get; private set; }
+        public int seller_lessorID { get; }
         public int price { get; private set; }
         public int size { get; private set; }
         public int floor { get; private set; }
