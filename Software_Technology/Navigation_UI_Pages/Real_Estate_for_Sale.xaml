@@ -127,7 +127,7 @@
                             </Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
                                  <Button HorizontalAlignment="Center" Content="Περισσότερα" Tag="{x:Bind}" Click="Button_Click" />
-                                 <Button HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Αγορά" />
+                                 <Button HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Αγορά" Click="Buy_Click" />
                             </StackPanel>
                             
                         </StackPanel>

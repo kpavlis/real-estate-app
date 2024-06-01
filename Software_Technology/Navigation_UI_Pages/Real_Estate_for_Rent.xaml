@@ -21,7 +21,7 @@
             <TextBlock Text="Ενοικίαση Ακινήτων" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <Expander x:Name="Search_Menu" Grid.Row="1" IsEnabled="False" HorizontalAlignment="Center" Margin="0, 10, 0, 10" Padding="10, 0, 10, 0">
+        <Expander x:Name="Search_Menu" Grid.Row="1" IsEnabled="True" HorizontalAlignment="Center" Margin="0, 10, 0, 10" Padding="10, 0, 10, 0">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal" Spacing="15">
                     <FontIcon Glyph="&#xE773;" FontSize="33"/>
@@ -81,7 +81,7 @@
             IsItemClickEnabled="False"
             SelectionMode="None"
             Grid.Row="2"
-            Visibility="Collapsed"
+            Visibility="Visible"
             >
 
             <GridView.ItemTemplate>
@@ -128,7 +128,7 @@
                             </Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
                                 <Button HorizontalAlignment="Center" Content="Περισσότερα" Tag="{x:Bind}" Click="Button_Click" />
-                                <Button HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Ενοικίαση" />
+                                <Button HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Ενοικίαση" Click="Rent_Click"/>
                             </StackPanel>
 
                         </StackPanel>
@@ -138,7 +138,7 @@
 
         </GridView>
 
-        <StackPanel x:Name="Loading_Message" Grid.Row="2" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+        <StackPanel x:Name="Loading_Message" Grid.Row="2" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
             <ProgressRing IsEnabled="True"/>
             <TextBlock Text="Τα ακίνητα φορτώνονται..."/>
         </StackPanel>
