@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Software_Technology.Special_UI_Pages.Real_Estate_Info"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Software_Technology.Special_UI_Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    >
+
+    <Grid Height="330" Width="500">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <FlipView  Height="145" Width="250" ItemsSource="{x:Bind _object.image}" Margin="0, 0, 0, 5">
+            <FlipView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <Image Source="{x:Bind}"/>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+
+        <ScrollViewer Grid.Row="1" ZoomMode="Disabled"
+            IsTabStop="True" IsVerticalScrollChainingEnabled="True"            
+            HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto"
+            VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
+
+            <Grid Margin="0,0, 15,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Spacing="5"  VerticalAlignment="Center" Margin="0, 20,0, 15">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <FontIcon Glyph="&#xE731;" FontSize="25"/>
+                        <TextBlock Text="Όρωφος:" FontSize="15" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind _object.floor}" FontWeight="SemiBold" FontSize="15" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Spacing="5"  VerticalAlignment="Center" Margin="0, 0,0, 15">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <FontIcon Glyph="&#xE81C;" FontSize="25"/>
+                        <TextBlock Text="Έτος Ανέγερσης:" FontSize="15" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind _object.square_meters}" FontWeight="SemiBold" FontSize="15" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Spacing="5"  VerticalAlignment="Center" Margin="0, 0,0, 15">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <FontIcon Glyph="&#xE708;" FontSize="25"/>
+                        <TextBlock Text="Αριθμός Υπνοδωματίων:" FontSize="15" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind _object.square_meters}" FontWeight="SemiBold" FontSize="15" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Spacing="5"  VerticalAlignment="Center" Margin="0, 0,0, 15">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <FontIcon Glyph="&#xE743;" FontSize="25"/>
+                        <TextBlock Text="Τετραγωνικά Μέτρα:" FontSize="15" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind _object.square_meters}" FontWeight="SemiBold" FontSize="15" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="1" Spacing="5"  VerticalAlignment="Center" Margin="0, 20,0, 15">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <FontIcon Glyph="&#xE8EF;" FontSize="25"/>
+                        <TextBlock Text="Τιμή:" FontSize="15" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind _object.square_meters}" FontWeight="SemiBold" FontSize="15" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="1" Spacing="5"  VerticalAlignment="Center" Margin="0, 0,0, 15">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <FontIcon Glyph="&#xE707;" FontSize="25"/>
+                        <TextBlock Text="Περιοχή:" FontSize="15" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind _object.area}" FontWeight="SemiBold" FontSize="15" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="1" Spacing="5"  VerticalAlignment="Center" Margin="0, 0,0, 15">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <FontIcon Glyph="&#xEC06;" FontSize="25"/>
+                        <TextBlock Text="Είδος Ακινήτου:" FontSize="15" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind _object.name}" FontWeight="SemiBold" FontSize="15" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Grid.Column="1" Spacing="5"  VerticalAlignment="Center" Margin="0, 0,0, 15">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <FontIcon Glyph="&#xE946;" FontSize="25"/>
+                        <TextBlock Text="Αναλυτική Περιγραφή:" FontSize="15" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <ScrollViewer ZoomMode="Disabled" Height="60"
+                       IsTabStop="True" IsVerticalScrollChainingEnabled="True"            
+                       HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto"
+                       VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
+                        <TextBlock Text="{x:Bind _object.details}" Width="225" TextWrapping="WrapWholeWords" FontWeight="SemiBold" FontSize="15" HorizontalAlignment="Center"/>
+                    </ScrollViewer>
+                </StackPanel>
+
+                <TextBlock Grid.Row="4" Text="Στοιχεία Ιδιοκτήτη" FontSize="18" FontWeight="SemiBold"/>
+
+                <StackPanel Grid.Row="5" Spacing="5"  VerticalAlignment="Center" Margin="0, 20,0, 10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12">
+                        <FontIcon Glyph="&#xE717;" FontSize="25"/>
+                        <TextBlock Text="Αριθμος Κινητού" FontSize="16" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind phone_number}" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="5" Grid.Column="1" Spacing="5"  VerticalAlignment="Center" Margin="0, 20,0, 10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12">
+                        <FontIcon Glyph="&#xE715;" FontSize="25"/>
+                        <TextBlock Text="Ηλεκτρονικό Ταχυδρομείο" FontSize="16" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind email}" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

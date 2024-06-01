@@ -22,7 +22,7 @@ namespace Software_Technology.Classes
         public List<RealEstate> soldRealEstates = new List<RealEstate>();
         public List<RealEstate> boughtRealEstates = new List<RealEstate>();
         List<RealEstate> leasedRealEstates = new List<RealEstate>();
-        List<RealEstate> rentedRealEstates = new List<RealEstate> ();
+        List<RealEstate> rentedRealEstates = new List<RealEstate>();
         
         
         public Members(string email, string _usersID, string username, string  name, string surname,string phoneNumber, string _password) :base(_usersID, username, name, surname, _password)

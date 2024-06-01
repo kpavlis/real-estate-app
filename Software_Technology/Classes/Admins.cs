@@ -12,7 +12,16 @@ namespace Software_Technology.Classes
     {
         public Admins(string _usersID, string username, string name, string surname, string _password) : base(_usersID, username, name, surname, _password) { }
 
-        public void DeleteRealEstate(RealEstate realEstateToBeDeleted,Members member) { }
+        public bool DeleteRealEstate(RealEstate realEstateToBeDeleted) {
+
+            if (realEstateToBeDeleted.submitterID == null) {
+                return DatabaseController.DeleteRealEstateFromDatabase(realEstateToBeDeleted.realEstateID);
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public void DeleteMember(Members memberToBeDeleted) { }
     }
