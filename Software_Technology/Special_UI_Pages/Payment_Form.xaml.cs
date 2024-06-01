@@ -16,26 +16,16 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace Software_Technology.Navigation_UI_Pages
+namespace Software_Technology.Special_UI_Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Admins_Data : Page
+    public sealed partial class Payment_Form : Page
     {
-        MainWindow x;
-
-        public Admins_Data()
+        public Payment_Form()
         {
             this.InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (e.Parameter != null)
-            {
-                x = e.Parameter as MainWindow;
-            }
         }
     }
 }
