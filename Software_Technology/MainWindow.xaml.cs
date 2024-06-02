@@ -69,8 +69,8 @@ namespace Software_Technology
             SQLiteCommand commandAdmins = new SQLiteCommand(createSQLAdmins, connection);
             commandAdmins.ExecuteNonQuery();
 
-            String createSQLRealEstates = "Create table if not exists RealEstaes(realEstateID Int,submitterID Int,seller_lessorID Int,price Int,size Int,floor Int,year Int,bedrooms Int,availability Boolean,leaseSell Boolean,area Text,type Text,details Text,image Text)";
-            SQLiteCommand commandRealEstates = new SQLiteCommand(createSQLAdmins, connection);
+            String createSQLRealEstates = "Create table if not exists RealEstates(realEstateID Int,buyer_tenantID Text,seller_lessorID Text,price Int,size Int,floor Int,year Int,bedrooms Int,availability Boolean,leaseSell Boolean,area Text,type Text,details Text,image Text)";
+            SQLiteCommand commandRealEstates = new SQLiteCommand(createSQLRealEstates, connection);
             commandRealEstates.ExecuteNonQuery();
             connection.Close();
 

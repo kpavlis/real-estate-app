@@ -177,5 +177,114 @@ namespace Software_Technology.Classes
             }
         }
 
+
+
+        public static List<RealEstate> LoadRealEstatesForBuyerTenant(bool leaseSell,string buyer_tenantID)
+        {
+            List<RealEstate> bought_rentedRealEsatets = new List<RealEstate>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from Members where @leaseSell=leaseSell and @buyer_tenantID=buyer_tenantID";
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@leaseSell", leaseSell);
+                    command.Parameters.AddWithValue("@buyer_tenantID", buyer_tenantID);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int realEstateID = (int)reader.GetInt32(0);
+                            string seller_lessorID = reader.GetString(2);
+                            int price = (int)reader.GetInt32(3);
+                            int size = (int)reader.GetInt32(4);
+                            int floor = (int)reader.GetInt32(5);
+                            int year = (int)reader.GetInt32(6);
+                            int bedrooms = (int)reader.GetInt32(7);
+                            bool availability = reader.GetBoolean(8);
+                            string area = reader.GetString(10);
+                            string type = reader.GetString(11);
+                            string details = reader.GetString(12);
+                            string listimage = reader.GetString(13);
+
+
+                            string[] images = listimage.Split(",", StringSplitOptions.None);
+
+                            List<string> list = images.ToList();
+
+
+                            Debug.WriteLine("!!!!!");
+
+                            RealEstate boughtRealEstate = new RealEstate(realEstateID, buyer_tenantID, seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,list);
+
+                            bought_rentedRealEsatets.Add(boughtRealEstate);
+                        }
+
+                    }
+                }
+            }
+
+            if (bought_rentedRealEsatets.Count == 0)
+            {
+                Debug.WriteLine("No bought Real Estates!!!");
+            }
+            return bought_rentedRealEsatets;
+        }
+
+
+        public static List<RealEstate> LoadRealEstateForBuyerLessor(bool leaseSell, string seller_lessorID)
+        {
+            List<RealEstate> sold_leasedRealEsatets = new List<RealEstate>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from Members where @leaseSell=leaseSell and @seller_lessorID=seller_lessorID";
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@username", leaseSell);
+                    command.Parameters.AddWithValue("@seller_lessorID", seller_lessorID);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int realEstateID = (int)reader.GetInt32(0);
+                            string buyer_tenantID = reader.GetString(1);
+                            int price = (int)reader.GetInt32(3);
+                            int size = (int)reader.GetInt32(4);
+                            int floor = (int)reader.GetInt32(5);
+                            int year = (int)reader.GetInt32(6);
+                            int bedrooms = (int)reader.GetInt32(7);
+                            bool availability = reader.GetBoolean(8);
+                            string area = reader.GetString(10);
+                            string type = reader.GetString(11);
+                            string details = reader.GetString(12);
+                            string listimage = reader.GetString(13);
+
+
+                            string[] images = listimage.Split(",", StringSplitOptions.None);
+
+                            List<string> list = images.ToList();
+
+
+                            Debug.WriteLine("!!!!!");
+
+                            RealEstate boughtRealEstate = new RealEstate(realEstateID, buyer_tenantID, seller_lessorID, price, size, floor, year, bedrooms, availability, leaseSell, area, type, details, list);
+
+                            sold_leasedRealEsatets.Add(boughtRealEstate);
+                        }
+
+                    }
+                }
+            }
+
+            if (sold_leasedRealEsatets.Count == 0)
+            {
+                Debug.WriteLine("No bought Real Estates!!!");
+            }
+            return sold_leasedRealEsatets;
+        }
+
+
+
     }
 }
