@@ -14,7 +14,7 @@ namespace Software_Technology.Classes
 
         public bool DeleteRealEstate(RealEstate realEstateToBeDeleted) {
 
-            if (realEstateToBeDeleted.submitterID == null) {
+            if (realEstateToBeDeleted.buyer_tenantID == null) {
                 return DatabaseController.DeleteRealEstateFromDatabase(realEstateToBeDeleted.realEstateID);
             }
             else

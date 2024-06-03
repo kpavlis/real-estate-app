@@ -38,6 +38,11 @@ public abstract class Users
         return _password;
     }
 
+    public string GetUserID()
+    {
+        return _usersID;
+    }
+
     public static List<string> LogIn(string username, string password)
     {
         string encryptedPassword = ""; //To be retrieved from database
