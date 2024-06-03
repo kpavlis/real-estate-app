@@ -110,48 +110,7 @@ namespace Software_Technology.Classes
             return logInValues;
         }
 
-        public static void UpdateRealEstatesList(string username, string realEstatesList, string listType)
-        {
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-                Debug.WriteLine("Hello " + username);
-                Debug.WriteLine("Hello " + realEstatesList);
-                string columnName;
-                switch (listType.ToLower())
-                {
-                    case "sold":
-                        columnName = "soldRealEstates";
-                        break;
-                    case "bought":
-                        columnName = "boughtRealEstates";
-                        break;
-                    case "leased":
-                        columnName = "leasedRealEstates";
-                        break;
-                    case "rented":
-                        columnName = "rentedRealEstates";
-                        break;
-                    default:
-                        throw new ArgumentException("Invalid list type!");
-                }
-                String updateSQL = $"UPDATE Members SET {columnName} = @realEstatesList WHERE username = @username";
-                using( var command = new SQLiteCommand(updateSQL, connection))
-                {
-                    command.Parameters.AddWithValue("username", username);
-                    command.Parameters.AddWithValue("realEstatesList", realEstatesList);
-                    int rowsAffected = command.ExecuteNonQuery();
-                    if (rowsAffected > 0)
-                    {
-                        Debug.WriteLine("Success Update!");
-                    }
-                    else
-                    {
-                        Debug.WriteLine("Failed Update!");
-                    }
-                }
-            }
-        }
+        
 
         public static bool DeleteRealEstateFromDatabase(int realEstateID)
         {
@@ -176,6 +135,12 @@ namespace Software_Technology.Classes
                 }
             }
         }
+
+
+
+        
+
+
 
     }
 }

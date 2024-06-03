@@ -37,18 +37,19 @@ namespace Software_Technology.Classes
             DatabaseController.SignUp(email, usersID, username, name, surname, phoneNumber, hashedPassword);
         }
 
-        public void UpdateRealEstatesListMember(string username)
+        public void AddRealEstate(RealEstate realEstate)
         {
-            RealEstate real = new RealEstate(1, 2, 3, 4, 5, 6, 7, 8, true, true, "1", "2", "3", "4");
-            soldRealEstates.Add(real);
+            if(realEstate.leaseSell==true)
+            {
+                leasedRealEstates.Add(realEstate);
+            }
+            else
+            {
+                soldRealEstates.Add(realEstate);
+            }
 
-            string json = JsonSerializer.Serialize(soldRealEstates);
-            Console.WriteLine("Serialized JSON: " + json);
-
-            // Save JSON to database
-            DatabaseController.UpdateRealEstatesList(username, json,"sold");  
-
-            //Deserialize
+            
+           
         }
         
         public static string ShowRealEstateToBuy() { return ""; }

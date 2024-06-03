@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Software_Technology.Classes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -119,6 +120,20 @@ namespace Software_Technology.Navigation_UI_Pages
                     //Debug.WriteLine(file_path);
                     //Debug.WriteLine(File.Exists(AppContext.BaseDirectory + file_path).ToString());
                     //Debug.WriteLine("The Operation Completed!");
+                    Random random = new Random();
+                    int realEstateID = random.Next(1000, 5001);
+                    if (Property_State.Equals("Πώληση"))
+                    {
+                        RealEstate realEstate = new RealEstate(realEstateID, x.member_variable.GetUserID(),null, Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
+                        x.member_variable.AddRealEstate(realEstate);
+                    }
+                    else if (Property_State.Equals("Ενοικίαση"))
+                    {
+                        RealEstate realEstate = new RealEstate(realEstateID, x.member_variable.GetUserID(), null, Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, true, Area, Type, Info, database_file_list);
+                        x.member_variable.AddRealEstate(realEstate);
+                    }
+
+                    
                 }
                 else
                 {
