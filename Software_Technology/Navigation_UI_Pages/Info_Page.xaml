@@ -5,10 +5,53 @@
     xmlns:local="using:Software_Technology.Navigation_UI_Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Spacing="15" HorizontalAlignment="Center" Margin="0, 15,0,5">
+            <FontIcon Glyph="&#xE70C;" FontSize="42"/>
+            <TextBlock Text="Λίγα λόγια για την εφαρμογή!" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Width="700" CornerRadius="15" BorderThickness="1.2" BorderBrush="LightGray" Background="{ThemeResource AcrylicInAppFillColorBaseBrush}" Padding="5" Margin="15,15,15,15">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+            <TextBlock 
+            Width="480"
+            FontSize="14" 
+            TextWrapping="Wrap" 
+            HorizontalAlignment="Center"
+            CharacterSpacing="4">
+                Η εφαρμογή ενός γραφείου πώλησης και ενοικίασης ακινήτων προσφέρει στους χρήστες μια ολοκληρωμένη πλατφόρμα για την εύρεση και διαχείριση ακινήτων. Οι χρήστες μπορούν να δημιουργήσουν λογαριασμό και να πλοηγηθούν σε μια μεγάλη ποικιλία ακινήτων, είτε για αγορά είτε για ενοικίαση. Η εφαρμογή παρέχει λεπτομερείς πληροφορίες για κάθε ακίνητο, συμπεριλαμβανομένων φωτογραφιών, περιγραφών και τιμών, καθώς και εργαλεία για την εύκολη επικοινωνία με τους ιδιοκτήτες ή τους διαχειριστές των ακινήτων. Επιπλέον, υποστηρίζει τη διαδικασία καταχώρησης νέων ακινήτων, διευκολύνοντας τους χρήστες να προωθήσουν την πώληση ή την ενοικίαση των ιδιοκτησιών τους. 
+                <LineBreak />
+                Oι Δημιουργοί:
+                <LineBreak />
+                ΚΩΝΣΤΑΝΤΙΝΟΣ ΠΑΥΛΗΣ – Π21137
+                <LineBreak />
+                ΘΕΟΦΑΝΗΣ ΤΖΟΥΜΑΚΑΣ – Π21166
+                <LineBreak />
+                ΜΑΤΙΝΑ ΠΑΠΑΔΑΚΟΥ – Π21127
+                <LineBreak />
+                ΣΩΤΗΡΙΑ ΛΑΜΠΡΙΝΙΔΟΥ – Π21083
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Grid.Row="2" Margin="15,15,15,15">
+            <TextBlock 
+            FontWeight="SemiBold"
+            FontSize="14" 
+            TextWrapping="Wrap" 
+            HorizontalAlignment="Center"
+            Text="Βαθμολογείστε την Εφαρμογή:"/>
+            <RatingControl AutomationProperties.Name="RatingControl with placeholder" PlaceholderValue="0" />
+            <Button HorizontalAlignment="Center" Content="Βαθμολογείστε"  FontWeight="SemiBold"/>
+        </StackPanel>
 
     </Grid>
 </Page>

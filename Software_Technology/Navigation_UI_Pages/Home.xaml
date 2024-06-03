@@ -42,41 +42,60 @@
                     <TextBlock Text="Συχνές Ερωτήσεις" HorizontalAlignment="Center" FontSize="25" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,15,0,10"/>
 
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="15">
+
                         <Expander
-			 IsExpanded="False"
-			 ExpandDirection="Down"
-			 VerticalAlignment="Top"
-			 Header="This text is in the header"
-			 Width="500">
+			     IsExpanded="False"
+			     ExpandDirection="Down"
+			     VerticalAlignment="Top"
+			     Header="Πως μπορώ να συνδεθώ στην εφαρμογή;"
+			     Width="500">
                             <Expander.Content>
-                                <TextBlock Width="480" TextWrapping="WrapWholeWords" Text="crhjbfhberhfbhweufrjuhwiufrheuirfhurhfuierhfiuehrfuiwrhfuiwhfiuwhfuihfiuhiuwjfjewuirfjiuujrfiujriujjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj text"/>
+                                <TextBlock Width="480" TextWrapping="WrapWholeWords" Text="Για να συνδεθεί ένας χρήστης στην εφαρμογή, θα πρέπει πρώτα να έχει εγγραφεί. Πατώντας το κουμπί 'Σύνδεση/Εγγραφή' που βρίσκεται πάνω αριστερά, ο χρήστης έχει τη δυνατότητα είτε να συνδεθεί στην εφαρμογή είτε να πραγματοποιήσει εγγραφή. "/>
                             </Expander.Content>
                         </Expander>
 
 
                         <Expander
-				 IsExpanded="False"
-				 ExpandDirection="Down"
-				 VerticalAlignment="Top"
-				 Header="This text is in the header"
-				 Content="This is in the content"
-				 Width="500"/>
+			     IsExpanded="False"
+			     ExpandDirection="Down"
+			     VerticalAlignment="Top"
+			     Header="Πως μπορώ να πουλήσω ή να εκμισθώσω ένα ακίνητο;"
+			     Width="500">
+                            <Expander.Content>
+                                <TextBlock Width="480" TextWrapping="WrapWholeWords" Text="Κάθε χρήστης που δημιουργεί λογαριασμό έχει τη δυνατότητα να     πουλήσει ή να εκμισθώσει ένα ακίνητο. Μεταβαίνοντας στην αντίστοιχη καρτέλα, είτε για εκμίσθωση είτε για πώληση, μπορεί να καταχωρήσει το ακίνητό του."/>
+                            </Expander.Content>
+                        </Expander>
+
 
                         <Expander
-				 IsExpanded="False"
-				 ExpandDirection="Down"
-				 VerticalAlignment="Top"
-				 Header="This text is in the header"
-				 Content="This is in the content"
-				 Width="500"/>
+                        IsExpanded="False"
+			     ExpandDirection="Down"
+			     VerticalAlignment="Top"
+			     Header="Πως μπορώ να αγοράσω ή να μισθώσω ένα ακίνητο;"
+			     Width="500">
+                        <Expander.Content>
+                                <TextBlock Width="480" TextWrapping="WrapWholeWords" Text="Κάθε χρήστης που δημιουργεί λογαριασμό έχει τη δυνατότητα να    αγοράσει ή να μισθώσει κάποιο ακίνητο. Μέσω των αντίστοιχων  καρτελών μπορεί να πλοηγηθεί σε μια πληθώρα ακινήτων. Πατώντας το κουμπί 'Αγορά' ή 'Ενοικίαση', μεταβαίνει στη φόρμα συμπλήρωσης στοιχείων για να ολοκληρώσει την ενέργεια."/>
+                        </Expander.Content>
+                        </Expander>
+
+
 
                         <Expander
-				IsExpanded="False"
-				ExpandDirection="Down"
-				VerticalAlignment="Top"
-				Header="This text is in the header"
-				Content="This is in the content"
-				Width="500"/>
+                 IsExpanded="False"
+                 ExpandDirection="Down"
+                 VerticalAlignment="Top"
+                 Width="500">    
+                        <Expander.Header>
+                                <TextBlock Width="480" TextWrapping="WrapWholeWords" Text="Υπάρχει κάποιο μέσω επικοινωνίας με τους Διαχειριστές της           εφαρμογής;" />
+                            </Expander.Header>
+                            <Expander.Content>
+                                <TextBlock 
+                Width="480" 
+                TextWrapping="WrapWholeWords" 
+                Text="Για οποιοδήποτε πρόβλημα αντιμετωπίσετε μπορείτε να επικοινωνήσετε μέσω email στην διεύθυνση unipi@gmail.com είτε να καλέσετε το τηλεφωνικό μας κέντρο στο τηλέφωνο 2101234567 το οποίο είναι διαθέσιμο όλο το 24ωρο." /> 
+                            </Expander.Content>
+                        </Expander>
+
 
                     </StackPanel>
                 </StackPanel>
