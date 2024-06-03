@@ -89,5 +89,10 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             ((Button)sender.Tag).IsEnabled = false;
         }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

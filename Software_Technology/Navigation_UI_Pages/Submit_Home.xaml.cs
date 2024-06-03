@@ -43,6 +43,7 @@ namespace Software_Technology.Navigation_UI_Pages
         int Year { get { return (int)year_obj.Value; } }
         int Floor { get { return (int)floor_obj.Value; } }
         string Property_State { get { return property_state_obj.Text; } }
+        int Size { get { return (int)square_meters_obj.Value; } }
 
         public Submit_Home()
         {
@@ -74,15 +75,18 @@ namespace Software_Technology.Navigation_UI_Pages
                 openPicker.FileTypeFilter.Add(".jpg");
 
                 current_file = await openPicker.PickSingleFileAsync();
-                current_file_list.Add(current_file);
-                photos_group.Text += "\n" + current_file.Name;
-                counter++;
-
-                
-
-                if (counter == 4)
+                if (current_file != null)
                 {
-                    ((Button)sender).IsEnabled = false;
+                  current_file_list.Add(current_file);
+                  photos_group.Text += "\n" + current_file.Name;
+                  counter++;
+
+
+
+                  if (counter == 4)
+                  {
+                      ((Button)sender).IsEnabled = false;
+                  }
                 }
         }
 
