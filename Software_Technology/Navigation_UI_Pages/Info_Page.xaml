@@ -19,12 +19,18 @@
             <TextBlock Text="Λίγα λόγια για την εφαρμογή!" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <Border Grid.Row="1" Width="700" CornerRadius="15" BorderThickness="1.2" BorderBrush="LightGray" Background="{ThemeResource AcrylicInAppFillColorBaseBrush}" Padding="5" Margin="15,15,15,15">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-            <TextBlock 
+        <ScrollViewer Grid.Row="1" ZoomMode="Disabled"
+             IsTabStop="True" IsVerticalScrollChainingEnabled="True"            
+             HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto"
+             VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
+
+            <StackPanel>
+                <Border Width="540" CornerRadius="12" BorderThickness="1.2" BorderBrush="LightGray" Background="{ThemeResource AcrylicInAppFillColorBaseBrush}" Padding="0, 20, 0, 20" Margin="15,15,15,15">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <TextBlock 
             Width="480"
             FontSize="14" 
-            TextWrapping="Wrap" 
+            TextWrapping="Wrap" TextAlignment="Justify" 
             HorizontalAlignment="Center"
             CharacterSpacing="4">
                 Η εφαρμογή ενός γραφείου πώλησης και ενοικίασης ακινήτων προσφέρει στους χρήστες μια ολοκληρωμένη πλατφόρμα για την εύρεση και διαχείριση ακινήτων. Οι χρήστες μπορούν να δημιουργήσουν λογαριασμό και να πλοηγηθούν σε μια μεγάλη ποικιλία ακινήτων, είτε για αγορά είτε για ενοικίαση. Η εφαρμογή παρέχει λεπτομερείς πληροφορίες για κάθε ακίνητο, συμπεριλαμβανομένων φωτογραφιών, περιγραφών και τιμών, καθώς και εργαλεία για την εύκολη επικοινωνία με τους ιδιοκτήτες ή τους διαχειριστές των ακινήτων. Επιπλέον, υποστηρίζει τη διαδικασία καταχώρησης νέων ακινήτων, διευκολύνοντας τους χρήστες να προωθήσουν την πώληση ή την ενοικίαση των ιδιοκτησιών τους. 
@@ -38,20 +44,21 @@
                 ΜΑΤΙΝΑ ΠΑΠΑΔΑΚΟΥ – Π21127
                 <LineBreak />
                 ΣΩΤΗΡΙΑ ΛΑΜΠΡΙΝΙΔΟΥ – Π21083
-                </TextBlock>
-            </StackPanel>
-        </Border>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
 
-        <StackPanel Grid.Row="2" Margin="15,15,15,15">
-            <TextBlock 
+                <StackPanel Margin="15,15,15,15">
+                    <TextBlock 
             FontWeight="SemiBold"
             FontSize="14" 
             TextWrapping="Wrap" 
             HorizontalAlignment="Center"
             Text="Βαθμολογείστε την Εφαρμογή:"/>
-            <RatingControl AutomationProperties.Name="RatingControl with placeholder" PlaceholderValue="0" />
-            <Button HorizontalAlignment="Center" Content="Βαθμολογείστε"  FontWeight="SemiBold"/>
-        </StackPanel>
-
+                    <RatingControl AutomationProperties.Name="RatingControl with placeholder" PlaceholderValue="0" />
+                    <Button HorizontalAlignment="Center" Content="Βαθμολογείστε"  FontWeight="SemiBold"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
