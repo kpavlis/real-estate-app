@@ -242,7 +242,7 @@ namespace Software_Technology
             {
                 //ID=0,Email=1,Name=2,Surname=3,PhoneNumber=4,EncryptedPassword=5,USername=6
                 Members member = new Members(logInValues[1], logInValues[0], logInValues[6], logInValues[2], logInValues[4], logInValues[5], logInValues[3]);
-                member.UpdateRealEstatesListMember(logInValues[6]); //Show my sold real estates
+                //member.UpdateRealEstatesListMember(logInValues[6]); //Show my sold real estates
                 Debug.WriteLine(member.soldRealEstates.Count());
                 Debug.WriteLine(member.boughtRealEstates.Count());
                 member_variable = member;
