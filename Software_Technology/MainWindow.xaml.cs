@@ -279,7 +279,7 @@ namespace Software_Technology
                             contentFrame.Navigate(typeof(Admins_Data), this);
                             break;
                         case "Settings":
-                            //contentFrame.Navigate(typeof(Page_Settings), x);
+                            contentFrame.Navigate(typeof(Info_Page), this);
                             break;
 
                     }
