@@ -67,7 +67,7 @@
                         Value="200000" />
                     </StackPanel>
 
-                    <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Margin="0, 15, 0 ,0" Style="{StaticResource AccentButtonStyle}" Content="Αναζήτηση" />
+                    <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Margin="0, 15, 0 ,0" Style="{StaticResource AccentButtonStyle}" Content="Αναζήτηση" Click="Search_Click" />
                 </Grid>
             </Expander.Content>
         </Expander>

@@ -70,7 +70,7 @@
                     <TextBox x:Name="phone_obj" Text="{x:Bind x.member_variable.phoneNumber}" Width="300"/>
                 </StackPanel>
 
-                <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Ενημέρωση Στοιχείων" Margin="0,0,0,20" />
+                <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Ενημέρωση Στοιχείων" Margin="0,0,0,20" Click="Update_Click" />
             </Grid>
 
         </ScrollViewer>

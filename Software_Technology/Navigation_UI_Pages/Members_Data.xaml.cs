@@ -18,10 +18,17 @@ using Windows.Foundation.Collections;
 
 namespace Software_Technology.Navigation_UI_Pages
 {
-    
+
     public sealed partial class Members_Data : Page
     {
         MainWindow x;
+
+        string Username { get { return username_obj.Text; } }
+        string Surname { get { return surname_obj.Text; } }
+        string Password { get { return password_obj.Password.ToString(); } }
+        string Email { get {  return email_obj.Text; } }
+        string Phone { get { return phone_obj.Text; } }
+
         public Members_Data()
         {
             this.InitializeComponent();
@@ -33,6 +40,11 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 x = e.Parameter as MainWindow;
             }
+        }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
