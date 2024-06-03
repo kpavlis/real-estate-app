@@ -68,7 +68,7 @@ namespace Software_Technology
             String createSQLAdmins = "Create table if not exists Admins(usersID Text,username Text,name Text,surname Text,hashedPassword Text)";
             SQLiteCommand commandAdmins = new SQLiteCommand(createSQLAdmins, connection);
             commandAdmins.ExecuteNonQuery();
-
+            
             String createSQLRealEstates = "Create table if not exists RealEstaes(realEstateID Int,submitterID Int,seller_lessorID Int,price Int,size Int,floor Int,year Int,bedrooms Int,availability Boolean,leaseSell Boolean,area Text,type Text,details Text,image Text)";
             SQLiteCommand commandRealEstates = new SQLiteCommand(createSQLAdmins, connection);
             commandRealEstates.ExecuteNonQuery();
@@ -203,27 +203,63 @@ namespace Software_Technology
         internal void Sign_Out_Click(object sender, RoutedEventArgs e)
         {
 
-            //Code will be added here
+            nvSample.SelectedItem = nvSample.MenuItems[0];
+            admin_variable = null;
+            member_variable = null;
+            nv_Add_Property.Visibility = Visibility.Collapsed;
+            nv_Member_Data.Visibility = Visibility.Collapsed;
+            nv_Admin_Data.Visibility = Visibility.Collapsed;
 
+            sign_out_button.Visibility = Visibility.Collapsed;
+            sign_in_sign_up_button.Visibility = Visibility.Visible;
+
+            Person_Image.DisplayName = "";
+        
         }
 
         private void Log_In(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             List<string> logInValues = Users.LogIn(((Sign_In_Page)sender.Content).Username, ((Sign_In_Page)sender.Content).Password);
             logInValues.Add(((Sign_In_Page)sender.Content).Username);
-            if (!logInValues.Count.Equals(1) && logInValues[6].StartsWith("A"))
+            foreach(string log in logInValues)
+            {
+                //Debug.WriteLine(log);
+            }
+            if (!logInValues.Count.Equals(1) && logInValues[0].StartsWith("A"))
             {
                 //ID=0,Name=1,Surname=2,EncryptedPassword=3,Username=4
                 Admins admin = new Admins(logInValues[0], logInValues[4], logInValues[1], logInValues[2], logInValues[3]);
-               
+                admin_variable = admin;
+                nv_Admin_Data.Visibility = Visibility.Visible;
+
+                Person_Image.DisplayName = admin_variable.name + " " + admin_variable.surname;
+
+                sign_in_sign_up_button.Visibility = Visibility.Collapsed;
+                sign_out_button.Visibility = Visibility.Visible;  
             }
-            else if (!logInValues.Count.Equals(1) && logInValues[6].StartsWith("M"))
+            else if (!logInValues.Count.Equals(1) && logInValues[0].StartsWith("M"))
             {
                 //ID=0,Email=1,Name=2,Surname=3,PhoneNumber=4,EncryptedPassword=5,USername=6
-                Members member = new Members(logInValues[1], logInValues[0], logInValues[6], logInValues[2], logInValues[3], logInValues[4], logInValues[5]);
+                Members member = new Members(logInValues[1], logInValues[0], logInValues[6], logInValues[2], logInValues[4], logInValues[5], logInValues[3]);
                 member.UpdateRealEstatesListMember(logInValues[6]); //Show my sold real estates
                 Debug.WriteLine(member.soldRealEstates.Count());
                 Debug.WriteLine(member.boughtRealEstates.Count());
+                member_variable = member;
+                nv_Add_Property.Visibility = Visibility.Visible;
+                nv_Member_Data.Visibility = Visibility.Visible;
+
+                Person_Image.DisplayName = member_variable.name + " " + member_variable.surname;
+
+                sign_in_sign_up_button.Visibility = Visibility.Collapsed;
+                sign_out_button.Visibility = Visibility.Visible;
+            }
+
+
+            if(admin_variable == null && member_variable == null)
+            {
+                TeachingTip.Title = "Αποτυχία Σύνδεσης";
+                TeachingTip.Subtitle = "Το Username ή/και το Password είναι λανθασμένα. Προσπάθησε ξανά!";
+                TeachingTip.IsOpen = true;
             }
         }
 
@@ -236,6 +272,14 @@ namespace Software_Technology
             Members member = new Members(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Phone,((Sign_Up_Page)sender.Content).Password);
             member.SignUpMember(member.email,memberID,member.username,member.name,member.surname,member.phoneNumber, member.GetPassword());
             //app main window (successfull sign in == successfull log in)
+            member_variable = member;
+            nv_Add_Property.Visibility = Visibility.Visible;
+            nv_Member_Data.Visibility = Visibility.Visible;
+
+            Person_Image.DisplayName = member_variable.name + " " + member_variable.surname;
+
+            sign_in_sign_up_button.Visibility = Visibility.Collapsed;
+            sign_out_button.Visibility = Visibility.Visible;
         } 
 
 

@@ -50,6 +50,7 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 x = e.Parameter as MainWindow;
             }
+            //Query for Properties
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -93,6 +94,11 @@ namespace Software_Technology.Navigation_UI_Pages
         private void Pay_Click(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             ((Button)sender.Tag).IsEnabled = false;
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 
