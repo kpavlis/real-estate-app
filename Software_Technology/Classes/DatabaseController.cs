@@ -226,7 +226,7 @@ namespace Software_Technology.Classes
 
             if (bought_rentedRealEsatets.Count == 0)
             {
-                Debug.WriteLine("No bought Real Estates!!!");
+                Debug.WriteLine("No Real Estates!!!");
             }
             return bought_rentedRealEsatets;
         }
@@ -279,7 +279,7 @@ namespace Software_Technology.Classes
 
             if (sold_leasedRealEsatets.Count == 0)
             {
-                Debug.WriteLine("No bought Real Estates!!!");
+                Debug.WriteLine("No Real Estates!!!");
             }
             return sold_leasedRealEsatets;
         }
