@@ -120,12 +120,15 @@ namespace Software_Technology.Navigation_UI_Pages
                     int realEstateID = random.Next(1000, 5001);
                     if (Property_State.Equals("Πώληση"))
                     {
-                        RealEstate realEstate = new RealEstate(realEstateID, x.member_variable.GetUserID(), null, Price, 0, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
+                        RealEstate realEstate = new RealEstate(realEstateID, x.member_variable.GetUserID(),null, Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
+                        x.member_variable.AddRealEstate(realEstate);
                     }
                     else if (Property_State.Equals("Ενοικίαση"))
                     {
-                        RealEstate realEstate = new RealEstate(realEstateID, x.member_variable.GetUserID(), null, Price, 0, Floor, Year, Bedrooms, true, true, Area, Type, Info, database_file_list);
+                        RealEstate realEstate = new RealEstate(realEstateID, x.member_variable.GetUserID(), null, Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, true, Area, Type, Info, database_file_list);
+                        x.member_variable.AddRealEstate(realEstate);
                     }
+
                     
                 }
                 else
