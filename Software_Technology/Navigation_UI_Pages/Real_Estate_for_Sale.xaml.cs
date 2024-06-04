@@ -51,6 +51,7 @@ namespace Software_Technology.Navigation_UI_Pages
                 x = e.Parameter as MainWindow;
             }
             //Query for Properties
+            //x.member_variable.ShowRealEstateToBuy_Rent()
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -94,11 +95,12 @@ namespace Software_Technology.Navigation_UI_Pages
         private void Pay_Click(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             ((Button)sender.Tag).IsEnabled = false;
+            //x.member_variable.Buy_Sell_Rent_LeaseRealEstate
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-
+            //x.member_variable.ShowRealEstateToBuy_Rent()
         }
     }
 

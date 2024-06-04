@@ -14,6 +14,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Software_Technology.Classes;
 
 
 namespace Software_Technology.Navigation_UI_Pages
@@ -46,6 +47,7 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 x = e.Parameter as MainWindow;
             }
+            //x.member_variable.ShowRealEstateToBuy_Rent()
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -88,11 +90,14 @@ namespace Software_Technology.Navigation_UI_Pages
         private void Pay_Click(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             ((Button)sender.Tag).IsEnabled = false;
+            //x.member_variable.Buy_Sell_Rent_LeaseRealEstate()
+
+
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-
+            //x.member_variable.ShowRealEstateToBuy_Rent()
         }
     }
 }

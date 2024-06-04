@@ -117,7 +117,7 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Delete from RealEstaes WHERE realEstateID =@realEstateID";
+                String selectSQL = "Delete * from RealEstaes WHERE realEstateID =@realEstateID";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     command.Parameters.AddWithValue("@realEstateID", realEstateID);
@@ -137,8 +137,67 @@ namespace Software_Technology.Classes
         }
 
 
+        public static bool DeleteMemberFromDatabase(String usersID)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Delete * from RealEstaes WHERE usersID =@usersID";
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@usersID", usersID);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Debug.WriteLine("Deleted!");
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Not Deleted!");
+                        return false;
+                    }
+                }
+            }
+        }
 
-        
+        public static bool UpdateRealEstateFromDatabase(int realEstateID, String buyer_tenantID, String seller_lessorID, int price, int size, int floor, int year, int bedrooms, bool availability, bool leaseSell, String area, String type, String details, List<String> images)
+        {
+            String myString = String.Join(",", images);
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Update * SET realEstateID = @realEstateID, buyer_tenantID = @buyer_tenantID, seller_lessorID = @seller_lessorID, price = @price, size = @size, floor = @floor,year = @year, bedrooms = @bedrooms, availability = @availability, leaseSell = @leaseSell, area = @area, type = @type, details = @details, image = @image WHERE realEstateID =@realEstateID";
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@realEstateID", realEstateID);
+                    command.Parameters.AddWithValue("@buyer_tenantID", buyer_tenantID);
+                    command.Parameters.AddWithValue("@seller_lessorID", seller_lessorID);
+                    command.Parameters.AddWithValue("@price", price);
+                    command.Parameters.AddWithValue("@size", size);
+                    command.Parameters.AddWithValue("@floor", floor);
+                    command.Parameters.AddWithValue("@year", year);
+                    command.Parameters.AddWithValue("@bedrooms", bedrooms);
+                    command.Parameters.AddWithValue("@availability", availability);
+                    command.Parameters.AddWithValue("@leaseSell", leaseSell);
+                    command.Parameters.AddWithValue("@area", area);
+                    command.Parameters.AddWithValue("@type", type);
+                    command.Parameters.AddWithValue("@details", details);
+                    command.Parameters.AddWithValue("@image", myString);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Debug.WriteLine("Edited!");
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Not Edited!");
+                        return false;
+                    }
+                }
+            }
+        }
 
 
 
