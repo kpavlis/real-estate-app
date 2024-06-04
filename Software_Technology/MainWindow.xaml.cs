@@ -117,7 +117,7 @@ namespace Software_Technology
             }
             else
             {
-                double dheight = monitorInfo.NativeResolutionInRawPixels.Height / 1.5;
+                double dheight = monitorInfo.NativeResolutionInRawPixels.Height / 1.4;
                 double dwidth = monitorInfo.NativeResolutionInRawPixels.Width / 1.4;
 
                 height = (int)dheight;
