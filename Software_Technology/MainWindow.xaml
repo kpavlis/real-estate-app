@@ -43,7 +43,14 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem x:Name="nv_Add_Property" Visibility="Collapsed" Icon="Add" Content="Καταχώρηση Ακινήτου" Tag="Submit_Home"/>
-                <NavigationViewItem Visibility="Collapsed" Content="Ενοικιασμένα Ακίνητα" Tag="SamplePage3" >
+                <NavigationViewItem x:Name="nv_Status_Property" Visibility="Collapsed" Content="Κατάσταση Ακινήτων" Tag="Status_Properties">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE73A;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="nv_Edit_Property" Visibility="Collapsed" Icon="Edit" Content="Επεξεργασία Ακινήτων" Tag="Edit_Properties"/>
+                <NavigationViewItem x:Name="nv_Delete_Property" Visibility="Collapsed" Icon="Delete" Content="Διαγραφή Ακινήτων" Tag="Delete_Properties"/>
+                <NavigationViewItem x:Name="nv_History_Property" Visibility="Collapsed" Content="Ιστορικό Ακινήτων" Tag="History_Properties">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE81C;"/>
                     </NavigationViewItem.Icon>

@@ -74,7 +74,7 @@ namespace Software_Technology
 
             commandRealEstates.ExecuteNonQuery();
             connection.Close();
-
+            
             hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             SizeWindow();
 
@@ -208,6 +208,10 @@ namespace Software_Technology
             admin_variable = null;
             member_variable = null;
             nv_Add_Property.Visibility = Visibility.Collapsed;
+            nv_Status_Property.Visibility = Visibility.Collapsed;
+            nv_Edit_Property.Visibility = Visibility.Collapsed;
+            nv_Delete_Property.Visibility = Visibility.Collapsed;
+            nv_History_Property.Visibility = Visibility.Collapsed;
             nv_Member_Data.Visibility = Visibility.Collapsed;
             nv_Admin_Data.Visibility = Visibility.Collapsed;
 
@@ -247,6 +251,10 @@ namespace Software_Technology
                 Debug.WriteLine(member.boughtRealEstates.Count());
                 member_variable = member;
                 nv_Add_Property.Visibility = Visibility.Visible;
+                nv_Status_Property.Visibility = Visibility.Visible;
+                nv_Edit_Property.Visibility = Visibility.Visible;
+                nv_Delete_Property.Visibility = Visibility.Visible;
+                nv_History_Property.Visibility = Visibility.Visible;
                 nv_Member_Data.Visibility = Visibility.Visible;
 
                 Person_Image.DisplayName = member_variable.name + " " + member_variable.surname;
@@ -275,7 +283,12 @@ namespace Software_Technology
             //app main window (successfull sign in == successfull log in)
             member_variable = member;
             nv_Add_Property.Visibility = Visibility.Visible;
+            nv_Status_Property.Visibility = Visibility.Visible;
+            nv_Edit_Property.Visibility = Visibility.Visible;
+            nv_Delete_Property.Visibility = Visibility.Visible;
+            nv_History_Property.Visibility = Visibility.Visible;
             nv_Member_Data.Visibility = Visibility.Visible;
+            
 
             Person_Image.DisplayName = member_variable.name + " " + member_variable.surname;
 
@@ -314,8 +327,17 @@ namespace Software_Technology
                         case "Submit_Home":
                             contentFrame.Navigate(typeof(Submit_Home), this);
                             break;
-                        case "Page5":
-                            //contentFrame.Navigate(typeof(Page_Customer_5), x);
+                        case "Status_Properties":
+                            contentFrame.Navigate(typeof(Status_Properties), this);
+                            break;
+                        case "Edit_Properties":
+                            contentFrame.Navigate(typeof(Edit_Properties), this);
+                            break;
+                        case "Delete_Properties":
+                            contentFrame.Navigate(typeof(Delete_Properties), this);
+                            break;
+                        case "History_Properties":
+                            contentFrame.Navigate(typeof(History_Properties), this);
                             break;
                         case "Members_Data":
                             contentFrame.Navigate(typeof(Members_Data), this);

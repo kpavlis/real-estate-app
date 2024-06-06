@@ -62,10 +62,10 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private async void Rent_Click(object sender, RoutedEventArgs e)
         {
-            if (x.admin_variable == null && x.member_variable == null)
+            if (x.member_variable == null)
             {
                 x.TeachingTip.Title = "Αποτυχία Ενοικίασης";
-                x.TeachingTip.Subtitle = "Πρέπει να συνδεθείς για να ενοικιάσεις το ακίνητο !";
+                x.TeachingTip.Subtitle = "Πρέπει να συνδεθείς ως πελάτης για να ενοικιάσεις το ακίνητο !";
                 x.TeachingTip.IsOpen = true;
             }
             else

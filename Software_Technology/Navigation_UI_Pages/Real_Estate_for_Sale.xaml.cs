@@ -68,10 +68,10 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private async void Buy_Click(object sender, RoutedEventArgs e)
         {
-            if (x.admin_variable == null && x.member_variable == null)
+            if (x.member_variable == null)
             {
                 x.TeachingTip.Title = "Αποτυχία Αγοράς";
-                x.TeachingTip.Subtitle = "Πρέπει να συνδεθείς για να αγοράσεις το ακίνητο !";
+                x.TeachingTip.Subtitle = "Πρέπει να συνδεθείς ως πελάτης για να αγοράσεις το ακίνητο !";
                 x.TeachingTip.IsOpen = true;
             }
             else
