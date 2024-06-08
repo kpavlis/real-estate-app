@@ -25,6 +25,11 @@ namespace Software_Technology.Navigation_UI_Pages
     {
         MainWindow x;
 
+        string Username { get { return username_obj.Text; } set { username_obj.Text = value; } }
+        string Name { get { return name_obj.Text; } set {  name_obj.Text = value; } }
+        string Surname { get { return surname_obj.Text; } set { surname_obj.Text = value; } }
+        string Password { get { return password_obj.Password.ToString(); } }
+
         public Admins_Data()
         {
             this.InitializeComponent();

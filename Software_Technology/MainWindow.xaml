@@ -43,12 +43,29 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem x:Name="nv_Add_Property" Visibility="Collapsed" Icon="Add" Content="Καταχώρηση Ακινήτου" Tag="Submit_Home"/>
-                <NavigationViewItem Visibility="Collapsed" Content="Ενοικιασμένα Ακίνητα" Tag="SamplePage3" >
+                <NavigationViewItem x:Name="nv_Status_Property" Visibility="Collapsed" Content="Κατάσταση Ακινήτων" Tag="Status_Properties">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE73A;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="nv_Edit_Property" Visibility="Collapsed" Icon="Edit" Content="Επεξεργασία Ακινήτων" Tag="Edit_Properties"/>
+                <NavigationViewItem x:Name="nv_Delete_Property" Visibility="Collapsed" Icon="Delete" Content="Διαγραφή Ακινήτων" Tag="Delete_Properties"/>
+                <NavigationViewItem x:Name="nv_History_Property" Visibility="Collapsed" Content="Ιστορικό Ακινήτων" Tag="History_Properties">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE81C;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem x:Name="nv_Member_Data" Visibility="Collapsed" Icon="Contact" Content="Προσωπικά Στοιχεία" Tag="Members_Data" />
+                <NavigationViewItem x:Name="nv_Delete_Property_Admins" Visibility="Collapsed" Content="Αφαίρεση Ακινήτων Admins" Tag="Delete_Properties_Admins">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xECC9;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="nv_Delete_User_Admins" Visibility="Collapsed" Content="Αφαίρεση Χρηστών Admins" Tag="Delete_Users_Admins">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xEE57;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem x:Name="nv_Admin_Data" Visibility="Collapsed" Icon="Contact" Content="Προσωπικά Στοιχεία Admins" Tag="Admins_Data" />
    
             </NavigationView.MenuItems>
