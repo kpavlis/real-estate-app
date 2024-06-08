@@ -74,7 +74,7 @@ namespace Software_Technology
 
             commandRealEstates.ExecuteNonQuery();
             connection.Close();
-
+            
             hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             SizeWindow();
 
@@ -117,7 +117,7 @@ namespace Software_Technology
             }
             else
             {
-                double dheight = monitorInfo.NativeResolutionInRawPixels.Height / 1.5;
+                double dheight = monitorInfo.NativeResolutionInRawPixels.Height / 1.4;
                 double dwidth = monitorInfo.NativeResolutionInRawPixels.Width / 1.4;
 
                 height = (int)dheight;
@@ -208,7 +208,13 @@ namespace Software_Technology
             admin_variable = null;
             member_variable = null;
             nv_Add_Property.Visibility = Visibility.Collapsed;
+            nv_Status_Property.Visibility = Visibility.Collapsed;
+            nv_Edit_Property.Visibility = Visibility.Collapsed;
+            nv_Delete_Property.Visibility = Visibility.Collapsed;
+            nv_History_Property.Visibility = Visibility.Collapsed;
             nv_Member_Data.Visibility = Visibility.Collapsed;
+            nv_Delete_Property_Admins.Visibility = Visibility.Collapsed;
+            nv_Delete_User_Admins.Visibility = Visibility.Collapsed;
             nv_Admin_Data.Visibility = Visibility.Collapsed;
 
             sign_out_button.Visibility = Visibility.Collapsed;
@@ -231,6 +237,8 @@ namespace Software_Technology
                 //ID=0,Name=1,Surname=2,EncryptedPassword=3,Username=4
                 Admins admin = new Admins(logInValues[0], logInValues[4], logInValues[1], logInValues[2], logInValues[3]);
                 admin_variable = admin;
+                nv_Delete_Property_Admins.Visibility = Visibility.Visible;
+                nv_Delete_User_Admins.Visibility = Visibility.Visible;
                 nv_Admin_Data.Visibility = Visibility.Visible;
 
                 Person_Image.DisplayName = admin_variable.name + " " + admin_variable.surname;
@@ -247,6 +255,10 @@ namespace Software_Technology
                 Debug.WriteLine(member.boughtRealEstates.Count());
                 member_variable = member;
                 nv_Add_Property.Visibility = Visibility.Visible;
+                nv_Status_Property.Visibility = Visibility.Visible;
+                nv_Edit_Property.Visibility = Visibility.Visible;
+                nv_Delete_Property.Visibility = Visibility.Visible;
+                nv_History_Property.Visibility = Visibility.Visible;
                 nv_Member_Data.Visibility = Visibility.Visible;
 
                 Person_Image.DisplayName = member_variable.name + " " + member_variable.surname;
@@ -275,7 +287,12 @@ namespace Software_Technology
             //app main window (successfull sign in == successfull log in)
             member_variable = member;
             nv_Add_Property.Visibility = Visibility.Visible;
+            nv_Status_Property.Visibility = Visibility.Visible;
+            nv_Edit_Property.Visibility = Visibility.Visible;
+            nv_Delete_Property.Visibility = Visibility.Visible;
+            nv_History_Property.Visibility = Visibility.Visible;
             nv_Member_Data.Visibility = Visibility.Visible;
+            
 
             Person_Image.DisplayName = member_variable.name + " " + member_variable.surname;
 
@@ -314,11 +331,26 @@ namespace Software_Technology
                         case "Submit_Home":
                             contentFrame.Navigate(typeof(Submit_Home), this);
                             break;
-                        case "Page5":
-                            //contentFrame.Navigate(typeof(Page_Customer_5), x);
+                        case "Status_Properties":
+                            contentFrame.Navigate(typeof(Status_Properties), this);
+                            break;
+                        case "Edit_Properties":
+                            contentFrame.Navigate(typeof(Edit_Properties), this);
+                            break;
+                        case "Delete_Properties":
+                            contentFrame.Navigate(typeof(Delete_Properties), this);
+                            break;
+                        case "History_Properties":
+                            contentFrame.Navigate(typeof(History_Properties), this);
                             break;
                         case "Members_Data":
                             contentFrame.Navigate(typeof(Members_Data), this);
+                            break;
+                        case "Delete_Properties_Admins":
+                            contentFrame.Navigate(typeof(Delete_Properties_Admins), this);
+                            break;
+                        case "Delete_Users_Admins":
+                            contentFrame.Navigate(typeof(Delete_Users_Admins), this);
                             break;
                         case "Admins_Data":
                             contentFrame.Navigate(typeof(Admins_Data), this);

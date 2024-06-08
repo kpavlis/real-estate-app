@@ -23,6 +23,11 @@ namespace Software_Technology.Navigation_UI_Pages
     {
         MainWindow x;
 
+        int Location_Selection { get { return Location_Radios.SelectedIndex; } set { Location_Radios.SelectedIndex = value; } }
+        int Min_Square_Meters_Selection { get { return (int)Min_Square_Meters_Slider.Value; } set { Min_Square_Meters_Slider.Value = value; } }
+        int Bedrooms_Selection { get { return Bedrooms_Combobox.SelectedIndex; } set { Bedrooms_Combobox.SelectedIndex = value; } }
+        int Max_Price_Selection { get { return (int)Max_Price_Slider.Value; } set { Max_Price_Slider.Value = value; } }
+
         ObservableCollection<Test_Real> collect = new ObservableCollection<Test_Real>();
 
         public Real_Estate_for_Rent()
@@ -62,10 +67,10 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private async void Rent_Click(object sender, RoutedEventArgs e)
         {
-            if (x.admin_variable == null && x.member_variable == null)
+            if (x.member_variable == null)
             {
                 x.TeachingTip.Title = "Αποτυχία Ενοικίασης";
-                x.TeachingTip.Subtitle = "Πρέπει να συνδεθείς για να ενοικιάσεις το ακίνητο !";
+                x.TeachingTip.Subtitle = "Πρέπει να συνδεθείς ως πελάτης για να ενοικιάσεις το ακίνητο !";
                 x.TeachingTip.IsOpen = true;
             }
             else
@@ -91,6 +96,11 @@ namespace Software_Technology.Navigation_UI_Pages
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Clear_Filters_Click(object sender, RoutedEventArgs e)
         {
 
         }
