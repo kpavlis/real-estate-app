@@ -47,7 +47,7 @@
                 <StackPanel Spacing="5"  VerticalAlignment="Center" Margin="0, 20,0, 15">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <FontIcon Glyph="&#xE731;" FontSize="25"/>
-                        <TextBlock Text="Όρωφος:" FontSize="15" VerticalAlignment="Center"/>
+                        <TextBlock Text="Όροφος:" FontSize="15" VerticalAlignment="Center"/>
                     </StackPanel>
                     <TextBlock Text="{x:Bind _object.floor}" FontWeight="SemiBold" FontSize="15" HorizontalAlignment="Center"/>
                 </StackPanel>

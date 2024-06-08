@@ -41,6 +41,17 @@ namespace Software_Technology.Navigation_UI_Pages
 
         List<string> _data_bind_edit = new List<string>();
 
+        //Properties
+        string Type { get { return type_obj.Text; } set { type_obj.Text = value; } }
+        string Area { get { return area_obj.Text; } set { area_obj.Text = value; } }
+        string Info { get { return info_obj.Document.ToString(); } set { info_obj.Document.SetText(Microsoft.UI.Text.TextSetOptions.None, value); } }
+        int Bedrooms { get { return (int)bedrooms_obj.Value; } set { bedrooms_obj.Value = value; } }
+        int Price { get { return (int)price_obj.Value; } set { price_obj.Value = value; } }
+        int Year { get { return (int)year_obj.Value; } set { year_obj.Value = value; } }
+        int Floor { get { return (int)floor_obj.Value; } set { floor_obj.Value = value; } }
+        string Property_State { get { return property_state_obj.SelectedIndex.ToString(); } set { property_state_obj.SelectedIndex = 1; } }
+        int Size { get { return (int)square_meters_obj.Value; } set { square_meters_obj.Value = value; } }
+
         public List<string> Data_bind_Edit { get { return _data_bind_edit; } 
             set
             {
@@ -86,7 +97,8 @@ namespace Software_Technology.Navigation_UI_Pages
             Photos_Selection.Visibility = Visibility.Collapsed;
             //Test_Real x = (Test_Real)e.ClickedItem;
             //edit_property = x;
-            property_state_obj.SelectedIndex = 1;
+            //property_state_obj.SelectedIndex = 1;
+            Size = 1000;
         }
 
         private void Delete_All_Photos_Click(object sender, RoutedEventArgs e)
@@ -201,11 +213,12 @@ namespace Software_Technology.Navigation_UI_Pages
             if(((ComboBox)sender).SelectedValue.ToString() == "Πώληση")
             {
                 Data_bind_Edit = test_list;
-                
+                Pane_Type.Text = "προς Πώληση";
             }
             else
             {
                 Data_bind_Edit = myproperties;
+                Pane_Type.Text = "προς Εκμίσθωση";
             }
         }
     }

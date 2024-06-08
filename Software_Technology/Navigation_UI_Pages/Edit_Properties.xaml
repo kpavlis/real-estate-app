@@ -21,7 +21,7 @@
             <TextBlock Text="Επεξεργασία Ακινήτων" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <TextBlock Grid.Row="1" FontWeight="SemiBold" FontSize="18" HorizontalAlignment="Center" Text="Επιλέξτε ακίνητο για επεξεργασία από τη λίστα στα αριστερά."/>
+        <TextBlock Grid.Row="1" FontWeight="SemiBold" FontSize="18" HorizontalAlignment="Center" Text="Επιλέξτε ακίνητο για επεξεργασία από τη λίστα στα αριστερά." Margin="0, 10, 0, 20"/>
 
         <SplitView x:Name="splitView" Grid.Row="2" PaneBackground="Transparent"
            IsPaneOpen="True" OpenPaneLength="200" CompactPaneLength="48" DisplayMode="Inline">
@@ -103,7 +103,7 @@
                                 <NumberBox x:Name="year_obj"/>
                                 <TextBlock Text="Τετραγωνικά μέτρα:"/>
                                 <NumberBox x:Name="square_meters_obj"/>
-                                <TextBlock Text="Όρωφος:"/>
+                                <TextBlock Text="Όροφος:"/>
                                 <NumberBox x:Name="floor_obj"/>
                                 <TextBlock Text="Προς Πώληση ή Ενοικίαση:"/>
                                 <ComboBox x:Name="property_state_obj" PlaceholderText="Επιλογή" Width="200">

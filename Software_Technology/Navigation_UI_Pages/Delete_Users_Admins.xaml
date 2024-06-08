@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="Software_Technology.Navigation_UI_Pages.Delete_Properties"
+    x:Class="Software_Technology.Navigation_UI_Pages.Delete_Users_Admins"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Software_Technology.Navigation_UI_Pages"
@@ -14,34 +14,30 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Spacing="15" HorizontalAlignment="Center" Margin="0, 15,0,5">
-            <FontIcon Glyph="&#xE74D;" FontSize="42"/>
-            <TextBlock Text="Διαγραφή Ακινήτων" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <FontIcon Glyph="&#xEE57;" FontSize="42"/>
+            <TextBlock Text="Αφαίρεση Χρηστών" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <TextBlock Grid.Row="1" FontWeight="SemiBold" FontSize="18" HorizontalAlignment="Center" Text="Επιλέξτε ακίνητο για διαγραφή από τη λίστα."/>
+        <TextBlock Grid.Row="1" FontWeight="SemiBold" FontSize="18" HorizontalAlignment="Center" Text="Επίλεξε το ακίνητο προς διαγραφή." Margin="0, 10,0,10"/>
 
-        <ComboBox SelectionChanged="Combo_Selection_SelectionChanged" Grid.Row="2" PlaceholderText="Επιλογή" x:Name="Combo_Selection" Header="Τύπος" Width="150" HorizontalAlignment="Center" Margin="0, 20,0,0">
-            <x:String>Πώληση</x:String>
-            <x:String>Μίσθωση</x:String>
-        </ComboBox>
 
-        <ListView x:Name="NavLinksList" Margin="0,12,0,0" SelectionMode="None" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Padding="12"
-            IsItemClickEnabled="False" ItemsSource="{x:Bind Data_bind_Delete, Mode=OneWay}">
+        <ListView x:Name="NavLinksList" Margin="0,12,0,0" SelectionMode="None" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Padding="12" 
+IsItemClickEnabled="False" ItemsSource="{x:Bind Data_bind_Delete_Users_Admins, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <Border Margin="0, 10, 0, 10" Padding="2,10,2,10" Background="{ThemeResource AcrylicInAppFillColorBaseBrush}" BorderThickness="1" BorderBrush="Black" CornerRadius="6" Width="600">
-                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <FontIcon Glyph="&#xED14;"/>
-                            <StackPanel>
-                                <TextBlock Text="Κωδικός Ακινήτου:"/>
-                                <TextBlock FontWeight="SemiBold" Text="{x:Bind}"/>
-                            </StackPanel>
-                            <Button  Tag="{x:Bind}" Margin="200, 0, 0,0" Click="Delete_Property_Click" >
+                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                            <FontIcon Glyph="&#xE77B;"/>
+
+                            <TextBlock Text="Ψευδώνυμο:" VerticalAlignment="Center"/>
+                            <TextBlock FontWeight="SemiBold" VerticalAlignment="Center" Text="{x:Bind}" Margin="0, 0, 15,0"/>
+
+
+                            <Button  Tag="{x:Bind}" Margin="150, 0, 0,0" Click="Delete_Property_Click" >
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
                                         <FontIcon Glyph="&#xE74D;" Foreground="Red"/>

@@ -45,7 +45,7 @@
                             <TextBlock Text="Έτος κατασκευής:" />
                             <TextBlock Text="1979" FontWeight="SemiBold"  Margin="0, 0, 15,0" />
 
-                            <TextBlock Text="Όρωφος:" />
+                            <TextBlock Text="Όροφος:" />
                             <TextBlock Text="5" FontWeight="SemiBold"  Margin="0, 0, 15,0" />
                         </StackPanel>
                     </Border>

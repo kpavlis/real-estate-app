@@ -23,11 +23,11 @@ namespace Software_Technology.Navigation_UI_Pages
     {
         MainWindow x;
 
-        string Username { get { return username_obj.Text; } }
-        string Surname { get { return surname_obj.Text; } }
+        string Username { get { return username_obj.Text; } set { username_obj.Text = value; } }
+        string Surname { get { return surname_obj.Text; } set { surname_obj.Text = value; } }
         string Password { get { return password_obj.Password.ToString(); } }
-        string Email { get {  return email_obj.Text; } }
-        string Phone { get { return phone_obj.Text; } }
+        string Email { get {  return email_obj.Text; } set { email_obj.Text = value; } }
+        string Phone { get { return phone_obj.Text; } set { phone_obj.Text = value; } }
 
         public Members_Data()
         {

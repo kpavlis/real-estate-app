@@ -213,6 +213,8 @@ namespace Software_Technology
             nv_Delete_Property.Visibility = Visibility.Collapsed;
             nv_History_Property.Visibility = Visibility.Collapsed;
             nv_Member_Data.Visibility = Visibility.Collapsed;
+            nv_Delete_Property_Admins.Visibility = Visibility.Collapsed;
+            nv_Delete_User_Admins.Visibility = Visibility.Collapsed;
             nv_Admin_Data.Visibility = Visibility.Collapsed;
 
             sign_out_button.Visibility = Visibility.Collapsed;
@@ -235,6 +237,8 @@ namespace Software_Technology
                 //ID=0,Name=1,Surname=2,EncryptedPassword=3,Username=4
                 Admins admin = new Admins(logInValues[0], logInValues[4], logInValues[1], logInValues[2], logInValues[3]);
                 admin_variable = admin;
+                nv_Delete_Property_Admins.Visibility = Visibility.Visible;
+                nv_Delete_User_Admins.Visibility = Visibility.Visible;
                 nv_Admin_Data.Visibility = Visibility.Visible;
 
                 Person_Image.DisplayName = admin_variable.name + " " + admin_variable.surname;
@@ -341,6 +345,12 @@ namespace Software_Technology
                             break;
                         case "Members_Data":
                             contentFrame.Navigate(typeof(Members_Data), this);
+                            break;
+                        case "Delete_Properties_Admins":
+                            contentFrame.Navigate(typeof(Delete_Properties_Admins), this);
+                            break;
+                        case "Delete_Users_Admins":
+                            contentFrame.Navigate(typeof(Delete_Users_Admins), this);
                             break;
                         case "Admins_Data":
                             contentFrame.Navigate(typeof(Admins_Data), this);

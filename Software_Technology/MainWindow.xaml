@@ -56,6 +56,16 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem x:Name="nv_Member_Data" Visibility="Collapsed" Icon="Contact" Content="Προσωπικά Στοιχεία" Tag="Members_Data" />
+                <NavigationViewItem x:Name="nv_Delete_Property_Admins" Visibility="Collapsed" Content="Αφαίρεση Ακινήτων Admins" Tag="Delete_Properties_Admins">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xECC9;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="nv_Delete_User_Admins" Visibility="Collapsed" Content="Αφαίρεση Χρηστών Admins" Tag="Delete_Users_Admins">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xEE57;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem x:Name="nv_Admin_Data" Visibility="Collapsed" Icon="Contact" Content="Προσωπικά Στοιχεία Admins" Tag="Admins_Data" />
    
             </NavigationView.MenuItems>

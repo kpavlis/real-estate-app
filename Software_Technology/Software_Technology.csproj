@@ -33,6 +33,10 @@
 
     <None Remove="Navigation_UI_Pages\Delete_Properties.xaml" />
 
+    <None Remove="Navigation_UI_Pages\Delete_Properties_Admins.xaml" />
+
+    <None Remove="Navigation_UI_Pages\Delete_Users_Admins.xaml" />
+
     <None Remove="Navigation_UI_Pages\Edit_Properties.xaml" />
 
     <None Remove="Navigation_UI_Pages\History_Properties.xaml" />
@@ -104,6 +108,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Remove="Navigation_UI_Pages\Submit_Home.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Navigation_UI_Pages\Delete_Users_Admins.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Navigation_UI_Pages\Delete_Properties_Admins.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Navigation_UI_Pages\Status_Properties.xaml">

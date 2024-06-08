@@ -57,7 +57,7 @@
                         <NumberBox x:Name="year_obj"/>
                         <TextBlock Text="Τετραγωνικά μέτρα:"/>
                         <NumberBox x:Name="square_meters_obj"/>
-                        <TextBlock Text="Όρωφος:"/>
+                        <TextBlock Text="Όροφος:"/>
                         <NumberBox x:Name="floor_obj"/>
                         <TextBlock Text="Προς Πώληση ή Ενοικίαση:"/>
                         <ComboBox x:Name="property_state_obj" PlaceholderText="Επιλογή" Width="200">

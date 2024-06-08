@@ -35,6 +35,7 @@ namespace Software_Technology.Navigation_UI_Pages
         List<StorageFile> current_file_list = new List<StorageFile>();
         List<string> database_file_list = new List<string>();
 
+        //Properties
         string Type { get { return type_obj.Text; } }
         string Area { get { return area_obj.Text; } }
         string Info { get { return info_obj.Document.ToString(); } }
