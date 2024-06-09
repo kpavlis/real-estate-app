@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Text.Json;
 using System.Reflection.PortableExecutable;
+using System.Xml;
 
 namespace Software_Technology.Classes
 {
@@ -110,55 +111,241 @@ namespace Software_Technology.Classes
             return logInValues;
         }
 
-        public static void UpdateRealEstatesList(string username, string realEstatesList, string listType)
+        public static void ChangePassword(string usersID, string hashedPassword)
         {
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                Debug.WriteLine("Hello " + username);
-                Debug.WriteLine("Hello " + realEstatesList);
-                string columnName;
-                switch (listType.ToLower())
+                String updateSQL = $"UPDATE Members SET hashedPassword = @hashedPassword WHERE usersID = @usersID";
+                using (var command = new SQLiteCommand(updateSQL, connection))
                 {
-                    case "sold":
-                        columnName = "soldRealEstates";
-                        break;
-                    case "bought":
-                        columnName = "boughtRealEstates";
-                        break;
-                    case "leased":
-                        columnName = "leasedRealEstates";
-                        break;
-                    case "rented":
-                        columnName = "rentedRealEstates";
-                        break;
-                    default:
-                        throw new ArgumentException("Invalid list type!");
-                }
-                String updateSQL = $"UPDATE Members SET {columnName} = @realEstatesList WHERE username = @username";
-                using( var command = new SQLiteCommand(updateSQL, connection))
-                {
-                    command.Parameters.AddWithValue("username", username);
-                    command.Parameters.AddWithValue("realEstatesList", realEstatesList);
+                    command.Parameters.AddWithValue("hashedPassword", hashedPassword);
+                    command.Parameters.AddWithValue("usersID", usersID);
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        Debug.WriteLine("Success Update!");
+                        Debug.WriteLine("Password Changed Successfully!");
                     }
                     else
                     {
-                        Debug.WriteLine("Failed Update!");
+                        Debug.WriteLine("Password Change Failed!");
                     }
                 }
             }
         }
 
+        public static void AddRealEstate(RealEstate realEstate)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string insertSQL = "INSERT INTO RealEstates (realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image) VALUES (@realEstateID,@buyer_tenantID,@seller_lessorID,@price,@size,@floor,@year,@bedrooms,@availability,@leaseSell,@area,@type,@details,@image)";
+                using ( var command = new SQLiteCommand(insertSQL, connection))
+                {
+                    command.Parameters.AddWithValue("realEstateID", realEstate.realEstateID);
+                    command.Parameters.AddWithValue("buyer_tenantID", realEstate.buyer_tenantID);
+                    command.Parameters.AddWithValue("seller_lessorID", realEstate.seller_lessorID);
+                    command.Parameters.AddWithValue("price", realEstate.price);
+                    command.Parameters.AddWithValue("size", realEstate.size);
+                    command.Parameters.AddWithValue("floor", realEstate.floor);
+                    command.Parameters.AddWithValue("year", realEstate.year);
+                    command.Parameters.AddWithValue("bedrooms", realEstate.bedrooms);
+                    command.Parameters.AddWithValue("availability", realEstate.availability);
+                    command.Parameters.AddWithValue("leaseSell", realEstate.leaseSell);
+                    command.Parameters.AddWithValue("area", realEstate.area);
+                    command.Parameters.AddWithValue("type", realEstate.type);
+                    command.Parameters.AddWithValue("details", realEstate.details);
+                    command.Parameters.AddWithValue("image", realEstate.images);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Debug.WriteLine("Success Insert of RealEstate!");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Failed Insert of RealEstate!");
+                    }
+                }
+            }
+        }
+
+        public static List<RealEstate> RetrieveUsersRealEstates(string buyer_tenantID, string seller_lessorID)
+        {
+            List<RealEstate> foundRealEstates = new List<RealEstate>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from RealEstates WHERE @buyer_tenantID = buyer_tenantID OR @seller_lessorID = seller_lessorID";
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@buyer_tenantID", buyer_tenantID);
+                    command.Parameters.AddWithValue("@seller_lessorID", seller_lessorID);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read() == true)
+                        {
+                            int realEstateID = (int)reader.GetInt32(0);
+                            buyer_tenantID = reader.GetString(1);
+                            seller_lessorID = reader.GetString(2);
+                            int price = (int)reader.GetInt32(3);
+                            int size = (int)reader.GetInt32(4);
+                            int floor = (int)reader.GetInt32(5);
+                            int year = (int)reader.GetInt32(6);
+                            int bedrooms = (int)reader.GetInt32(7);
+                            bool availability = reader.GetBoolean(8);
+                            bool leaseSell = reader.GetBoolean(9);
+                            string area = reader.GetString(10);
+                            string type = reader.GetString(11);
+                            string details = reader.GetString(12);
+                            string listimage = reader.GetString(13);
+
+
+                            string[] images = listimage.Split(",", StringSplitOptions.None);
+
+                            List<string> listImages = images.ToList();
+                            RealEstate real = new RealEstate(realEstateID, buyer_tenantID, seller_lessorID, price, size, floor, year, bedrooms, availability, leaseSell, area, type, details, listImages);
+                            foundRealEstates.Add(real);
+                        }
+                    }
+                }
+            }
+            
+            if (foundRealEstates.Count == 0)
+            {
+                Debug.WriteLine("The user has no real estates yet!!!");
+            }
+            return foundRealEstates;
+        }
+
+        public static List<RealEstate> ShowRealEstateToBuy_Rent(bool leaseSell)
+        {
+            List<RealEstate> foundRealEstates = new List<RealEstate>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from RealEstates WHERE @leaseSell = leaseSell";
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@leaseSell", leaseSell);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read() == true)
+                        {
+                            int realEstateID = (int)reader.GetInt32(0);
+                            string buyer_tenantID = reader.GetString(1);
+                            string seller_lessorID = reader.GetString(2);
+                            int price = (int)reader.GetInt32(3);
+                            int size = (int)reader.GetInt32(4);
+                            int floor = (int)reader.GetInt32(5);
+                            int year = (int)reader.GetInt32(6);
+                            int bedrooms = (int)reader.GetInt32(7);
+                            bool availability = reader.GetBoolean(8);
+                            leaseSell = reader.GetBoolean(9);
+                            string area = reader.GetString(10);
+                            string type = reader.GetString(11);
+                            string details = reader.GetString(12);
+                            string listimage = reader.GetString(13);
+
+
+                            string[] images = listimage.Split(",", StringSplitOptions.None);
+
+                            List<string> listImages = images.ToList();
+                            RealEstate real = new RealEstate(realEstateID, buyer_tenantID, seller_lessorID, price, size, floor, year, bedrooms, availability, leaseSell, area, type, details, listImages);
+                            foundRealEstates.Add(real);
+                        }
+                    }
+                }
+            }
+            if (foundRealEstates.Count == 0)
+            {
+                Debug.WriteLine("No real estates found!!!");
+            }
+            return foundRealEstates;
+        }
+
+        public static void Buy_Sell_Rent_LeaseRealEstate(RealEstate realEstate, string buyer_tenantID)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String updateSQL = $"UPDATE RealEstates SET buyer_tenantID = @buyer_tenantID, availability = @availability WHERE realEstateID = @realEstateID";
+                using (var command = new SQLiteCommand(updateSQL, connection))
+                {
+                    command.Parameters.AddWithValue("buyer_tenantID", buyer_tenantID);
+                    command.Parameters.AddWithValue("realEstateID", realEstate.realEstateID);
+                    command.Parameters.AddWithValue("availability", false);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Debug.WriteLine("RealEstate sold/bought Successfully!");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("RealEstate sold/bought Change Failed!");
+                    }
+                }
+            }
+        }
+        public static void UpdateContactDetails(string usersID, string email, string phoneNumber)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String updateSQL = $"UPDATE Members SET ";
+
+                if (!string.IsNullOrEmpty(email))
+                {
+                    updateSQL += "email = @email";
+                }
+
+                if (!string.IsNullOrEmpty(phoneNumber))
+                {
+
+                    if (!string.IsNullOrEmpty(email))
+                    {
+
+                        updateSQL += ", ";
+                    }
+                    updateSQL += "phoneNumber = @phoneNumber";
+                }
+
+                updateSQL += " WHERE usersID = @usersID ";
+
+                using (var command = new SQLiteCommand(updateSQL, connection))
+                {
+                    if (!string.IsNullOrEmpty(email))
+                    {
+                        command.Parameters.AddWithValue("email", email);
+                    }
+
+                    if (!string.IsNullOrEmpty(phoneNumber))
+                    {
+                        command.Parameters.AddWithValue("phoneNumber", phoneNumber);
+                    }
+
+                    command.Parameters.AddWithValue("usersID", usersID);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Debug.WriteLine("Contact Details Changed Successfully");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Contact Details Change Failed!");
+                    }
+                }
+
+                
+            }
+        }
         public static bool DeleteRealEstateFromDatabase(int realEstateID)
         {
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Delete from RealEstaes WHERE realEstateID =@realEstateID";
+                String selectSQL = "Delete from RealEstates WHERE realEstateID =@realEstateID";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     command.Parameters.AddWithValue("@realEstateID", realEstateID);

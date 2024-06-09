@@ -61,7 +61,7 @@ namespace Software_Technology
         { 
             connection = new SQLiteConnection(connectionString);
             connection.Open();
-            String createSQLMembers = "Create table if not exists Members(email Text,usersID Text primary key,username Text,name Text,surname Text,phoneNumber Text,hashedPassword Text,soldRealEstates Text,boughtRealEstates Text,leasedRealEstates Text,rentedRealEstates Text)";
+            String createSQLMembers = "Create table if not exists Members(email Text,usersID Text primary key,username Text,name Text,surname Text,phoneNumber Text,hashedPassword Text)";
             SQLiteCommand commandMembers = new SQLiteCommand(createSQLMembers, connection);
             commandMembers.ExecuteNonQuery();
 
@@ -69,8 +69,8 @@ namespace Software_Technology
             SQLiteCommand commandAdmins = new SQLiteCommand(createSQLAdmins, connection);
             commandAdmins.ExecuteNonQuery();
 
-            String createSQLRealEstates = "Create table if not exists RealEstaes(realEstateID Int,submitterID Int,seller_lessorID Int,price Int,size Int,floor Int,year Int,bedrooms Int,availability Boolean,leaseSell Boolean,area Text,type Text,details Text,image Text)";
-            SQLiteCommand commandRealEstates = new SQLiteCommand(createSQLAdmins, connection);
+            String createSQLRealEstates = "Create table if not exists RealEstates(realEstateID Int,buyer_tenantID Text,seller_lessorID Text,price Int,size Int,floor Int,year Int,bedrooms Int,availability Boolean,leaseSell Boolean,area Text,type Text,details Text,image Text)";
+            SQLiteCommand commandRealEstates = new SQLiteCommand(createSQLRealEstates, connection);
             commandRealEstates.ExecuteNonQuery();
             connection.Close();
 
@@ -211,19 +211,40 @@ namespace Software_Technology
         {
             List<string> logInValues = Users.LogIn(((Sign_In_Page)sender.Content).Username, ((Sign_In_Page)sender.Content).Password);
             logInValues.Add(((Sign_In_Page)sender.Content).Username);
-            if (!logInValues.Count.Equals(1) && logInValues[6].StartsWith("A"))
+            if (!logInValues.Count.Equals(1) && logInValues[0].StartsWith("A"))
             {
                 //ID=0,Name=1,Surname=2,EncryptedPassword=3,Username=4
                 Admins admin = new Admins(logInValues[0], logInValues[4], logInValues[1], logInValues[2], logInValues[3]);
                
             }
-            else if (!logInValues.Count.Equals(1) && logInValues[6].StartsWith("M"))
+            else if (!logInValues.Count.Equals(1) && logInValues[0].StartsWith("M"))
             {
                 //ID=0,Email=1,Name=2,Surname=3,PhoneNumber=4,EncryptedPassword=5,USername=6
-                Members member = new Members(logInValues[1], logInValues[0], logInValues[6], logInValues[2], logInValues[3], logInValues[4], logInValues[5]);
-                member.UpdateRealEstatesListMember(logInValues[6]); //Show my sold real estates
-                Debug.WriteLine(member.soldRealEstates.Count());
-                Debug.WriteLine(member.boughtRealEstates.Count());
+                Members member = new Members(logInValues[1], logInValues[0], logInValues[6], logInValues[2], logInValues[3], logInValues[4], logInValues[5], null, null, null, null);
+                List<RealEstate> membersRealEstates = DatabaseController.RetrieveUsersRealEstates(logInValues[0], logInValues[0]);
+                if (membersRealEstates.Count > 0)
+                {
+                    foreach (var realEstate in membersRealEstates)
+                    {
+                        if (realEstate.buyer_tenantID == logInValues[0] && realEstate.leaseSell)
+                        {
+                            member.rentedRealEstates.Add(realEstate);
+                        }
+                        else if(realEstate.buyer_tenantID == logInValues[0] && !realEstate.leaseSell)
+                        {
+                            member.boughtRealEstates.Add(realEstate);
+                        }
+                        else if(realEstate.seller_lessorID == logInValues[0] && realEstate.leaseSell)
+                        {
+                            member.leasedRealEstates.Add(realEstate);
+                        }
+                        else if(realEstate.seller_lessorID == logInValues[0] && !realEstate.leaseSell)
+                        {
+                            member.soldRealEstates.Add(realEstate);
+                        }
+                    }
+                }
+                
             }
         }
 
@@ -233,7 +254,7 @@ namespace Software_Technology
 
             Random random = new Random();
             string memberID = "M" + random.Next(1000, 5001);
-            Members member = new Members(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Phone,((Sign_Up_Page)sender.Content).Password);
+            Members member = new Members(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Phone,((Sign_Up_Page)sender.Content).Password,null,null,null,null);
             member.SignUpMember(member.email,memberID,member.username,member.name,member.surname,member.phoneNumber, member.GetPassword());
             //app main window (successfull sign in == successfull log in)
         } 

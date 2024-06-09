@@ -28,6 +28,11 @@ public abstract class Users
         this.surname = surname;
         this._password = _password;
     }
+
+    public string GetUsersID()
+    {
+        return _usersID; 
+    }
     public string GetUsername()
     {
         return username;
@@ -63,10 +68,10 @@ public abstract class Users
         return logInValues;
     }
 
-    public string ChangePassword(String newPassword)
+    public static void ChangePassword(String usersID, String newPassword)
 	{
-        _password = newPassword;
-        return _password;
+        string hashedPassword = HashPassword(newPassword);
+        DatabaseController.ChangePassword(usersID, hashedPassword);
     }
     public static string ShowAreas()
     {
