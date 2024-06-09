@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Software_Technology.Classes
 {
-    class RealEstate
+    public class RealEstate
     {
         public int realEstateID { get; }
         public string buyer_tenantID { get; private set; }
@@ -22,7 +22,7 @@ namespace Software_Technology.Classes
         public string area { get; private set; }
         public string type { get; private set; }
         public string details { get; private set; }
-        public List<string> images { get; private set; }
+        public List<string> images { get; private set; } 
 
         public RealEstate(int realEstateID, string buyer_tenantID, string seller_lessorID, int price, int size, int floor, int year, int bedrooms, bool availability, bool leaseSell, string area, string type, string details, List<string> images) 
         {
@@ -39,7 +39,7 @@ namespace Software_Technology.Classes
             this.area = area;
             this.type = type;
             this.details = details;
-            this.images = images;
+            this.images = new List<string>(images);
         }
 
         protected void ChangeRealEstateAttributes(int newPrice, int newSize, int newFloor, int newYear, int newBedrooms, bool newAvailability,bool newLeaseSell, string newArea, string newType, string newDetails, List<string> newImages)

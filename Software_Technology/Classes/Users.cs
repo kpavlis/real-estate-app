@@ -38,7 +38,7 @@ public abstract class Users
         return _password;
     }
 
-    public string GetUserID()
+    public string GetUsersID()
     {
         return _usersID;
     }
@@ -68,14 +68,10 @@ public abstract class Users
         return logInValues;
     }
 
-    public string ChangePassword(String newPassword)
-	{
-        _password = newPassword;
-        return _password;
-    }
-    public static string ShowAreas()
+    public void ChangePassword(String usersID, String newPassword)
     {
-        return "";
+        string hashedPassword = HashPassword(newPassword);
+        DatabaseController.ChangePassword(usersID, hashedPassword);
     }
 
     

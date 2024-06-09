@@ -44,7 +44,12 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Password!= null)
+            {
+                x.member_variable.ChangePassword(x.member_variable.GetUsersID(), Password.ToString());
+            }
+            
+            x.member_variable.ChangeContactDetailsMember(Email.ToString(), Phone.ToString());
         }
     }
 }

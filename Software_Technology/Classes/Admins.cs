@@ -27,7 +27,7 @@ namespace Software_Technology.Classes
         {
             if (memberToBeDeleted.boughtRealEstates.Count == 0 && memberToBeDeleted.soldRealEstates.Count == 0)
             {
-                return DatabaseController.DeleteMemberFromDatabase(memberToBeDeleted.GetUserID());
+                return DatabaseController.DeleteMemberFromDatabase(memberToBeDeleted.GetUsersID());
             }
             
             return false;

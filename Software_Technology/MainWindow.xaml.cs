@@ -248,11 +248,42 @@ namespace Software_Technology
             }
             else if (!logInValues.Count.Equals(1) && logInValues[0].StartsWith("M"))
             {
+
                 //ID=0,Email=1,Name=2,Surname=3,PhoneNumber=4,EncryptedPassword=5,USername=6
-                Members member = new Members(logInValues[1], logInValues[0], logInValues[6], logInValues[2], logInValues[4], logInValues[5], logInValues[3]);
-                //member.UpdateRealEstatesListMember(logInValues[6]); //Show my sold real estates
-                Debug.WriteLine(member.soldRealEstates.Count());
-                Debug.WriteLine(member.boughtRealEstates.Count());
+                Members member = new Members(logInValues[1], logInValues[0], logInValues[6], logInValues[2], logInValues[4], logInValues[5], logInValues[3], new List<RealEstate>(), new List<RealEstate>(), new List<RealEstate>(), new List<RealEstate>());
+                List<RealEstate> membersRealEstates = DatabaseController.RetrieveUsersRealEstates(logInValues[0], logInValues[0]);
+                if (membersRealEstates.Count > 0)
+                {
+                    foreach (var realEstate in membersRealEstates)
+                    {
+                        if (realEstate.buyer_tenantID == logInValues[0] && realEstate.leaseSell)
+                        {
+                            member.rentedRealEstates.Add(realEstate);
+                        }
+                        else if (realEstate.buyer_tenantID == logInValues[0] && !realEstate.leaseSell)
+                        {
+                            member.boughtRealEstates.Add(realEstate);
+                        }
+                        else if (realEstate.seller_lessorID == logInValues[0] && realEstate.leaseSell)
+                        {
+                            member.leasedRealEstates.Add(realEstate);
+                        }
+                        else if (realEstate.seller_lessorID == logInValues[0] && !realEstate.leaseSell)
+                        {
+                            member.soldRealEstates.Add(realEstate);
+                        }
+                    }
+                }
+
+                
+                Debug.WriteLine(member.GetUsersID());
+                Debug.WriteLine(member.GetUsername());
+                Debug.WriteLine(member.GetPassword());
+                Debug.WriteLine(member.name);
+                Debug.WriteLine(member.surname);
+                Debug.WriteLine(member.email);
+                Debug.WriteLine(member.phoneNumber);
+
                 member_variable = member;
                 nv_Add_Property.Visibility = Visibility.Visible;
                 nv_Status_Property.Visibility = Visibility.Visible;
@@ -282,7 +313,8 @@ namespace Software_Technology
 
             Random random = new Random();
             string memberID = "M" + random.Next(1000, 5001);
-            Members member = new Members(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Phone,((Sign_Up_Page)sender.Content).Password);
+
+            Members member = new Members(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Phone,((Sign_Up_Page)sender.Content).Password, new List<RealEstate>(),new List<RealEstate>(),new List<RealEstate>(),new List<RealEstate>());
             member.SignUpMember(member.email,memberID,member.username,member.name,member.surname,member.phoneNumber, member.GetPassword());
             //app main window (successfull sign in == successfull log in)
             member_variable = member;
