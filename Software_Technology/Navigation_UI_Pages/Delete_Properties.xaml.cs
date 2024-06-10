@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Software_Technology.Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,9 +31,9 @@ namespace Software_Technology.Navigation_UI_Pages
 
         List<string> properties = new List<string>();
 
-        List<string> _data_bind_delete = new List<string>();
+        List<int> _data_bind_delete = new List<int>();
 
-        public List<string> Data_bind_Delete
+        public List<int> Data_bind_Delete
         {
             get { return _data_bind_delete; }
             set
@@ -62,7 +63,7 @@ namespace Software_Technology.Navigation_UI_Pages
             properties.Add("Property 10");
             properties.Add("Property 11");
 
-            Combo_Selection.SelectedIndex = 0;
+            //Combo_Selection.SelectedIndex = 0;
 
         }
 
@@ -72,6 +73,7 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 x = e.Parameter as MainWindow;
             }
+            Combo_Selection.SelectedIndex = 0;
         }
 
         private void Delete_Property_Click(object sender, RoutedEventArgs e)
@@ -95,7 +97,8 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             if (((ComboBox)sender).SelectedValue.ToString() == "Πώληση")
             {
-                Data_bind_Delete = properties;
+                //!!!!!!!!!!
+                Data_bind_Delete = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), false));
                 Debug.WriteLine("Hello 1");
             }
             else

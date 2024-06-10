@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
@@ -13,23 +14,31 @@ using System.Threading.Tasks;
 
 namespace Software_Technology.Classes
 {
-    class Members:Users
+    class Members : Users
     {
         public string email { get; private set; }
         public string phoneNumber { get; private set; }
         public string hashedPassword { get; private set; }
+        public List<RealEstate> soldRealEstates { get; private set; }
+        public List<RealEstate> boughtRealEstates { get; private set; }
+        public List<RealEstate> leasedRealEstates { get; private set; }
+        public List<RealEstate> rentedRealEstates { get; private set; }
 
-        public List<RealEstate> soldRealEstates = new List<RealEstate>();
-        public List<RealEstate> boughtRealEstates = new List<RealEstate>();
-        List<RealEstate> leasedRealEstates = new List<RealEstate>();
-        List<RealEstate> rentedRealEstates = new List<RealEstate>();
-        
-        
-        public Members(string email, string _usersID, string username, string  name, string surname,string phoneNumber, string _password) :base(_usersID, username, name, surname, _password)
+
+
+
+
+
+        public Members(string email, string _usersID, string username, string name, string surname, string phoneNumber, string _password, List<RealEstate> soldRealEstates, List<RealEstate> boughtRealEstates, List<RealEstate> leasedRealEstates, List<RealEstate> rentedRealEstates) : base(_usersID, username, name, surname, _password)
         {
             this.email = email;
             this.phoneNumber = phoneNumber;
+            this.soldRealEstates = new List<RealEstate>(soldRealEstates);
+            this.boughtRealEstates = new List<RealEstate>(boughtRealEstates);
+            this.leasedRealEstates = new List<RealEstate>(leasedRealEstates);
+            this.rentedRealEstates = new List<RealEstate>(rentedRealEstates);
         }
+
 
         public void SignUpMember(string email, string usersID, string username, string name, string surname, string phoneNumber, string password)
         {
@@ -37,9 +46,10 @@ namespace Software_Technology.Classes
             DatabaseController.SignUp(email, usersID, username, name, surname, phoneNumber, hashedPassword);
         }
 
-        public void AddRealEstate(RealEstate realEstate)
+
+        public void AddRealEstateMember(RealEstate realEstate)
         {
-            if(realEstate.leaseSell==true)
+            if (realEstate.leaseSell == true)
             {
                 leasedRealEstates.Add(realEstate);
             }
@@ -47,28 +57,86 @@ namespace Software_Technology.Classes
             {
                 soldRealEstates.Add(realEstate);
             }
-
-            
-           
+            DatabaseController.AddRealEstate(realEstate);
         }
-        
-        public static string ShowRealEstateToBuy() { return ""; }
-        public static string ShowRealEstateToRent() { return ""; }
-        public static string ViewRealEstateInformation() { return ""; }
-        public void BuyRealEstate(RealEstate realEstateToBeBought) { }
-        public void SellRealEstate(RealEstate realEstateToBeSold) { }
-        public void RentRealEstate(RealEstate realEstateToBeRented) { }
-        public void LeaseRealEstate(RealEstate realEstateToBeDeLeased) { }
-        public void ShowMyPurchased_RentedRealEstates() { }
-        public void ShowMySold_LeasedRealEstates() { }
-        public void DeleteMyRealEstate(RealEstate realEstateToBeDeleted) { }
-        public void ChangeContactDetails(string newEmail,string newPhoneNumber)
+
+
+
+        public List<RealEstate> ShowRealEstateToBuy_RentMember(bool leaseSell, string area, int minSize, int minBedrooms, int maxPrice)
+        {
+            var allRealEstates = soldRealEstates.Concat(boughtRealEstates).Concat(leasedRealEstates).Concat(rentedRealEstates).ToList();
+            return allRealEstates
+                .Where(re => (leaseSell == null || re.leaseSell == leaseSell) &&
+                             (area == null || re.area == area) &&
+                             (minSize == null || re.size >= minSize) &&
+                             (re.buyer_tenantID == null) &&
+                             (minBedrooms == null || re.bedrooms >= minBedrooms) &&
+                             (maxPrice == null || re.price <= maxPrice))
+                .ToList();
+        }
+
+        public bool Buy_Sell_Rent_LeaseRealEstateMember(RealEstate realEstate, string buyer_tenantID)
+        {
+            switch (realEstate.leaseSell)
+            {
+                case false:
+                    if (!boughtRealEstates.Contains(realEstate))
+                    {
+                        boughtRealEstates.Add(realEstate);
+                    }
+                    break;
+                case true:
+                    if (!rentedRealEstates.Contains(realEstate))
+                    {
+                        rentedRealEstates.Add(realEstate);
+                    }
+                    break;
+                default:
+                    throw new ArgumentException("Invalid list Type");
+            }
+            DatabaseController.Buy_Sell_Rent_LeaseRealEstate(realEstate, buyer_tenantID);
+            return true;
+        }
+        public List<RealEstate> ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember(string listType)
+        {
+            switch (listType.ToLower())
+            {
+                case "sold":
+                    return soldRealEstates;
+                case "bought":
+                    return boughtRealEstates;
+                case "rented":
+                    return rentedRealEstates;
+                case "leased":
+                    return leasedRealEstates;
+                default:
+                    throw new ArgumentException("Invalid list Type");
+            }
+        }
+
+        public void DeleteMyRealEstateMember(RealEstate realEstateToBeDeleted)
+        {
+            if (soldRealEstates.Remove(realEstateToBeDeleted))
+            {
+                Debug.WriteLine("Real estate has been removed from soldRealEstates");
+
+            }
+            else if (leasedRealEstates.Remove(realEstateToBeDeleted))
+            {
+                Debug.WriteLine("Real estate has been removed from leasedRealEstates");
+
+            }
+            DatabaseController.DeleteRealEstateFromDatabase(realEstateToBeDeleted.realEstateID);
+        }
+        public void ChangeContactDetailsMember(string newEmail, string newPhoneNumber)
         {
             this.email = newEmail;
             this.phoneNumber = newPhoneNumber;
-            //DatabaseController.UpdateContactDetails()
+            string _usersID = GetUsersID();
+            DatabaseController.UpdateContactDetails(_usersID, newEmail, newPhoneNumber);
         }
 
-        
+
+
     }
 }

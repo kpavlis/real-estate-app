@@ -13,7 +13,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.ComponentModel;
-
+using Software_Technology.Classes;
+using System.Diagnostics;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -28,7 +29,10 @@ namespace Software_Technology.Navigation_UI_Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        List<string> delete_users = new List<string>();
+        List<string> delete_usersID = new List<string>();
+        List<string> delete_usersUsername = new List<string>();
+
+
 
         List<string> _data_bind_delete_users_admins = new List<string>();
 
@@ -51,16 +55,9 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             this.InitializeComponent();
 
-            delete_users.Add("User_1");
-            delete_users.Add("User_2");
-            delete_users.Add("User_3");
-            delete_users.Add("User_4");
-            delete_users.Add("User_5");
-            delete_users.Add("User_6");
-            delete_users.Add("User_7");
-            delete_users.Add("User_8");
+            
 
-            Data_bind_Delete_Users_Admins = delete_users;
+            //Data_bind_Delete_Users_Admins = delete_users;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -68,6 +65,15 @@ namespace Software_Technology.Navigation_UI_Pages
             if (e.Parameter != null)
             {
                 x = e.Parameter as MainWindow;
+            }
+
+            delete_usersUsername = new List<String>(DatabaseController.GetMembersUsername());
+
+            delete_usersID = new List<String>(DatabaseController.GetMembersID());
+
+            for (int i=0; i < delete_usersID.Count;i++)
+            {
+                Data_bind_Delete_Users_Admins.Add(delete_usersUsername[i]+","+delete_usersID[i]);
             }
         }
 
@@ -79,6 +85,12 @@ namespace Software_Technology.Navigation_UI_Pages
         private void Delete_Property_Click(object sender, RoutedEventArgs e)
         {
             ((Button)sender).IsEnabled = false;
+
+            string memberusername0 = (String)((Button)sender).Tag;
+
+            string[] memberusername = memberusername0.Split(',');
+
+            x.admin_variable.DeleteMember(memberusername[1]);
         }
     }
 }

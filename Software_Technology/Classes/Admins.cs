@@ -23,14 +23,17 @@ namespace Software_Technology.Classes
             }
         }
 
-        public bool DeleteMember(Members memberToBeDeleted) 
+        public void DeleteMember(String memberToBeDeletedID) 
         {
-            if (memberToBeDeleted.boughtRealEstates.Count == 0 && memberToBeDeleted.soldRealEstates.Count == 0)
-            {
-                return DatabaseController.DeleteMemberFromDatabase(memberToBeDeleted.GetUserID());
-            }
             
-            return false;
+            DatabaseController.DeleteMemberFromDatabase(memberToBeDeletedID);
+            
+        }
+
+        public void HelloWorld()
+        {
+            Debug.WriteLine("HIII!");
+
         }
     }
 }
