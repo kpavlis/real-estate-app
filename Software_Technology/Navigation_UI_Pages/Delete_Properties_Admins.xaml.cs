@@ -29,7 +29,7 @@ namespace Software_Technology.Navigation_UI_Pages
 
         List<string> _data_bind_delete_properties_admins = new List<string>();
 
-        public List<string> Data_bind_Delete_Properties_Admins
+        internal List<string> Data_bind_Delete_Properties_Admins
         {
             get { return _data_bind_delete_properties_admins; }
             set

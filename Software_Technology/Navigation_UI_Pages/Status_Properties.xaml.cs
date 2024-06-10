@@ -61,7 +61,7 @@ namespace Software_Technology.Navigation_UI_Pages
             sale.Add("Property_7");
             sale.Add("Property_8");
 
-            Combo_Selection.SelectedIndex = 0;
+            //Combo_Selection.SelectedIndex = 0;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -70,6 +70,10 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 x = e.Parameter as MainWindow;
             }
+
+            Combo_Selection.SelectedIndex = 0;
+
+            Debug.WriteLine(x.member_variable.email);
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -83,11 +87,13 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 Data_bind_Status = sale;
                 Debug.WriteLine("Hello 1");
+                Debug.WriteLine(x.member_variable.surname);
             }
             else
             {
                 Data_bind_Status = new List<string>();
                 Debug.WriteLine("Hello 2");
+                Debug.WriteLine(x.member_variable.phoneNumber);
             }
         }
     }
