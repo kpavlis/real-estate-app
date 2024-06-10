@@ -117,7 +117,7 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Delete * from RealEstaes WHERE realEstateID =@realEstateID";
+                String selectSQL = "Delete from RealEstates WHERE realEstateID=@realEstateID";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     command.Parameters.AddWithValue("@realEstateID", realEstateID);

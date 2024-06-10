@@ -105,6 +105,7 @@ namespace Software_Technology.Navigation_UI_Pages
             }
             else
             {
+                Data_bind_Delete = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), true));
                 Debug.WriteLine("Hello 2");
             }
         }

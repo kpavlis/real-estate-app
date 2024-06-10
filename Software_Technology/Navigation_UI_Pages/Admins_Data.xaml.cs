@@ -5,8 +5,10 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.WindowsAppSDK.Runtime.Packages;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -45,7 +47,14 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
+            if (!(String.IsNullOrEmpty(Password)) && !(String.IsNullOrWhiteSpace(Password)))
+            {
+                x.admin_variable.ChangePassword(x.admin_variable.GetUsersID(), Password.ToString());
 
+            }
+
+            Debug.WriteLine(Name.ToString(), Surname.ToString());
+            x.admin_variable.UpdateNameSurnameUsers(x.admin_variable.GetUsersID(), Name.ToString(), Surname.ToString());
         }
     }
 }
