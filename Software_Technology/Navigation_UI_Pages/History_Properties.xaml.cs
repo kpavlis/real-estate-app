@@ -14,6 +14,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Software_Technology.Classes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,9 +32,9 @@ namespace Software_Technology.Navigation_UI_Pages
 
         List<string> buy = new List<string>();
 
-        List<string> _data_bind_history = new List<string>();
+        List<RealEstate> _data_bind_history = new List<RealEstate>();
 
-        public List<string> Data_bind_History
+        internal List<RealEstate> Data_bind_History
         {
             get { return _data_bind_history; }
             set
@@ -61,7 +62,7 @@ namespace Software_Technology.Navigation_UI_Pages
             buy.Add("Property_7");
             buy.Add("Property_8");
 
-            Combo_Selection.SelectedIndex = 0;
+            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -70,6 +71,7 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 x = e.Parameter as MainWindow;
             }
+            Combo_Selection.SelectedIndex = 0;
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -81,13 +83,15 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             if (((ComboBox)sender).SelectedValue.ToString() == "Αγορασμένα")
             {
-                Data_bind_History = buy;
+                //Data_bind_History = buy;
                 Debug.WriteLine("Hello 1");
+                Data_bind_History = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("bought");
             }
             else
             {
-                Data_bind_History = new List<string>();
+                //Data_bind_History = new List<string>();
                 Debug.WriteLine("Hello 2");
+                Data_bind_History = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("rented");
             }
         }
     }

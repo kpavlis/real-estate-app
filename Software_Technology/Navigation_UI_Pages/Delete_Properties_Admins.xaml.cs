@@ -13,8 +13,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.ComponentModel;
-
-
+using Software_Technology.Classes;
 
 namespace Software_Technology.Navigation_UI_Pages
 {
@@ -25,11 +24,11 @@ namespace Software_Technology.Navigation_UI_Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        List<string> delete_properties = new List<string>();
+        List<int> delete_properties = new List<int>();
 
-        List<string> _data_bind_delete_properties_admins = new List<string>();
+        List<int> _data_bind_delete_properties_admins = new List<int>();
 
-        internal List<string> Data_bind_Delete_Properties_Admins
+        public List<int> Data_bind_Delete_Properties_Admins
         {
             get { return _data_bind_delete_properties_admins; }
             set
@@ -47,15 +46,6 @@ namespace Software_Technology.Navigation_UI_Pages
         public Delete_Properties_Admins()
         {
             this.InitializeComponent();
-
-            delete_properties.Add("Property_1");
-            delete_properties.Add("Property_2");
-            delete_properties.Add("Property_3");
-            delete_properties.Add("Property_4");
-            delete_properties.Add("Property_5");
-            delete_properties.Add("Property_6");
-            delete_properties.Add("Property_7");
-            delete_properties.Add("Property_8");
 
             Data_bind_Delete_Properties_Admins = delete_properties;
         }

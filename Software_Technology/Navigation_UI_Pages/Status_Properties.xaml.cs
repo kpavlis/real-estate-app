@@ -14,6 +14,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Software_Technology.Classes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,9 +32,10 @@ namespace Software_Technology.Navigation_UI_Pages
 
         List<string> sale = new List<string>();
 
-        List<string> _data_bind_status = new List<string>();
+        List<RealEstate> _data_bind_status = new List<RealEstate>();
+        
 
-        public List<string> Data_bind_Status
+        internal List<RealEstate> Data_bind_Status
         {
             get { return _data_bind_status; }
             set
@@ -51,17 +53,6 @@ namespace Software_Technology.Navigation_UI_Pages
         public Status_Properties()
         {
             this.InitializeComponent();
-
-            sale.Add("Property_1");
-            sale.Add("Property_2");
-            sale.Add("Property_3");
-            sale.Add("Property_4");
-            sale.Add("Property_5");
-            sale.Add("Property_6");
-            sale.Add("Property_7");
-            sale.Add("Property_8");
-
-            //Combo_Selection.SelectedIndex = 0;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -73,7 +64,6 @@ namespace Software_Technology.Navigation_UI_Pages
 
             Combo_Selection.SelectedIndex = 0;
 
-            Debug.WriteLine(x.member_variable.email);
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -85,15 +75,21 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             if (((ComboBox)sender).SelectedValue.ToString() == "Πώληση")
             {
-                Data_bind_Status = sale;
+                
+                
+                
                 Debug.WriteLine("Hello 1");
-                Debug.WriteLine(x.member_variable.surname);
+                
+                Data_bind_Status = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("sold");
+
             }
             else
             {
-                Data_bind_Status = new List<string>();
+                
                 Debug.WriteLine("Hello 2");
-                Debug.WriteLine(x.member_variable.phoneNumber);
+                
+                Data_bind_Status = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("leased");
+
             }
         }
     }
