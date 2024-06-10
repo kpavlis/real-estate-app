@@ -42,5 +42,10 @@ namespace Software_Technology.Navigation_UI_Pages
                 x = e.Parameter as MainWindow;
             }
         }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
