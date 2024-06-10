@@ -75,11 +75,11 @@ namespace Software_Technology.Navigation_UI_Pages
         public Edit_Properties()
         {
             this.InitializeComponent();
-            property_state_obj.SelectedIndex = 1;
-            myproperties.Add("Assets/Properties_Pictures/Angelo_Beta.jpg");
-            myproperties.Add("Assets/Properties_Pictures/zoo.png");
-            test_list.Add("Hello");
-            NavLinksList.ItemsSource = myproperties;
+            
+            //myproperties.Add("Assets/Properties_Pictures/Angelo_Beta.jpg");
+            //myproperties.Add("Assets/Properties_Pictures/zoo.png");
+            //test_list.Add("Hello");
+            //NavLinksList.ItemsSource = myproperties;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -88,6 +88,8 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 x = e.Parameter as MainWindow;
             }
+
+            property_state_obj.SelectedIndex = 1;
             Combo_Selection.SelectedIndex= 0;
         }
 
@@ -200,6 +202,7 @@ namespace Software_Technology.Navigation_UI_Pages
                     }
                 }
             }
+
         }
 
 
@@ -212,12 +215,12 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             if(((ComboBox)sender).SelectedValue.ToString() == "Πώληση")
             {
-                Data_bind_Edit = test_list;
+                //Data_bind_Edit = test_list;
                 Pane_Type.Text = "προς Πώληση";
             }
             else
             {
-                Data_bind_Edit = myproperties;
+                //Data_bind_Edit = myproperties;
                 Pane_Type.Text = "προς Εκμίσθωση";
             }
         }
