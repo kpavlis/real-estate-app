@@ -53,7 +53,6 @@ namespace Software_Technology.Navigation_UI_Pages
         public Status_Properties()
         {
             this.InitializeComponent();
-            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -62,8 +61,9 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 x = e.Parameter as MainWindow;
             }
+
             Combo_Selection.SelectedIndex = 0;
-            
+
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -80,8 +80,8 @@ namespace Software_Technology.Navigation_UI_Pages
                 
                 Debug.WriteLine("Hello 1");
                 
-
                 Data_bind_Status = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("sold");
+
             }
             else
             {
@@ -89,6 +89,7 @@ namespace Software_Technology.Navigation_UI_Pages
                 Debug.WriteLine("Hello 2");
                 
                 Data_bind_Status = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("leased");
+
             }
         }
     }

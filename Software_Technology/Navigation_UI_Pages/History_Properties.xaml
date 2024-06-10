@@ -20,7 +20,7 @@
 
         <StackPanel Orientation="Horizontal" Spacing="15" HorizontalAlignment="Center" Margin="0, 15,0,5">
             <FontIcon Glyph="&#xE81C;" FontSize="42"/>
-            <TextBlock Text="Ιστορικό Ακινήτων" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <TextBlock Text="Ιστορικό Αγοράς/Ενοικίασης" FontSize="23" FontWeight="SemiBold" VerticalAlignment="Center"/>
         </StackPanel>
 
         <TextBlock Grid.Row="1" FontWeight="SemiBold" FontSize="18" HorizontalAlignment="Center" Text="Δείτε τα ακίνητα που έχετε αγοράσει ή μισθώσει." Margin="0, 10,0,10"/>

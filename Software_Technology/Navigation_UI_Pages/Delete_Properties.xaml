@@ -27,7 +27,7 @@
 
         <ComboBox SelectionChanged="Combo_Selection_SelectionChanged" Grid.Row="2" PlaceholderText="Επιλογή" x:Name="Combo_Selection" Header="Τύπος" Width="150" HorizontalAlignment="Center" Margin="0, 20,0,0">
             <x:String>Πώληση</x:String>
-            <x:String>Μίσθωση</x:String>
+            <x:String>Εκμίσθωση</x:String>
         </ComboBox>
 
         <ListView x:Name="NavLinksList" Margin="0,12,0,0" SelectionMode="None" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Padding="12"
