@@ -30,6 +30,7 @@ namespace Software_Technology.Navigation_UI_Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        //Temporary List
         List<string> sale = new List<string>();
 
         List<RealEstate> _data_bind_status = new List<RealEstate>();
@@ -75,8 +76,6 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             if (((ComboBox)sender).SelectedValue.ToString() == "Πώληση")
             {
-                
-                
                 
                 Debug.WriteLine("Hello 1");
                 

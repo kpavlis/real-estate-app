@@ -6,6 +6,7 @@
     xmlns:local="using:Software_Technology.Navigation_UI_Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:classes="using:Software_Technology.Classes"
     mc:Ignorable="d"
     >
 
@@ -81,7 +82,7 @@
 
         <GridView
             x:Name="BasicGridView"
-            ItemsSource="{x:Bind collect}"
+            ItemsSource="{x:Bind Data_bind_For_Rent}"
             IsItemClickEnabled="False"
             SelectionMode="None"
             Grid.Row="2"
@@ -89,18 +90,18 @@
             >
 
             <GridView.ItemTemplate>
-                <DataTemplate x:DataType="local:Test_Real">
+                <DataTemplate x:DataType="classes:RealEstate">
                     <Border BorderThickness="1.2" BorderBrush="LightGray" Background="{ThemeResource AcrylicInAppFillColorBaseBrush}" CornerRadius="12" Margin="8" Padding="10" Width="250">
                         <StackPanel Spacing="18" >
 
-                            <FlipView Height="150" ItemsSource="{x:Bind image}">
+                            <FlipView Height="150" ItemsSource="{x:Bind images}">
                                 <FlipView.ItemTemplate>
                                     <DataTemplate x:DataType="x:String">
                                         <Image Source="{x:Bind}"/>
                                     </DataTemplate>
                                 </FlipView.ItemTemplate>
                             </FlipView>
-                            <TextBlock Text="{x:Bind name}" FontSize="20" FontWeight="SemiBold" Width="200" TextWrapping="WrapWholeWords"/>
+                            <TextBlock Text="{x:Bind type}" FontSize="20" FontWeight="SemiBold" Width="200" TextWrapping="WrapWholeWords"/>
                             <Grid>
 
                                 <Grid.RowDefinitions>
@@ -112,22 +113,25 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Spacing="10">
+                                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
                                     <Image Source="/Assets/Icons/size.png" Height="30" Width="30"/>
-                                    <TextBlock Text="500 τ.μ." VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind size}" VerticalAlignment="Center" Margin="10, 0,0,0"/>
+                                    <TextBlock Text=" τ.μ." VerticalAlignment="Center"/>
                                 </StackPanel>
-                                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Spacing="10" Margin="10, 0,0,0">
+                                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="10, 0,0,0">
                                     <Image Source="/Assets/Icons/year.png" Height="28" Width="28"/>
-                                    <TextBlock Text="2003" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind year}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </StackPanel>
 
-                                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Spacing="10" Margin="0, 12,0,0" >
+                                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0, 12,0,0" >
                                     <Image Source="/Assets/Icons/rooms.png" Height="30" Width="30"/>
-                                    <TextBlock Text="3 Υπνο/δωμ." VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind bedrooms}" VerticalAlignment="Center"  Margin="10, 0, 0,0"/>
+                                    <TextBlock Text=" Υπνο/δωμ." VerticalAlignment="Center"  Margin="10, 0, 0,0"/>
                                 </StackPanel>
-                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Spacing="6" Margin="10, 12,0,0">
+                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="10, 12,0,0">
                                     <Image Source="/Assets/Icons/price.png" Height="30" Width="30"/>
-                                    <TextBlock Text="350$/μ." VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind price}" VerticalAlignment="Center" Margin="6, 0, 0,0"/>
+                                    <TextBlock Text="$/μ." VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">

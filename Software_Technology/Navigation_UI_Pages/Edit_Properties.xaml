@@ -45,12 +45,12 @@
                         <ListView x:Name="NavLinksList" Margin="0,20,0,0" SelectionMode="Single" Grid.Row="3" VerticalAlignment="Stretch"
                           IsItemClickEnabled="True" ItemsSource="{x:Bind Data_bind_Edit, Mode=OneWay}" ItemClick="List_ItemClick">
                             <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="x:String">
+                                <DataTemplate x:DataType="classes:RealEstate">
                                     <StackPanel Orientation="Horizontal" Spacing="8">
                                         <FontIcon Glyph="&#xED14;"/>
                                         <StackPanel>
                                             <TextBlock Text="Κωδικός Ακινήτου:"/>
-                                            <TextBlock FontWeight="SemiBold" Text="{x:Bind}"/>
+                                            <TextBlock FontWeight="SemiBold" Text="{x:Bind realEstateID}"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>

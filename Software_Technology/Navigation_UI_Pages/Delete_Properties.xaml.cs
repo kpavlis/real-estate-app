@@ -78,14 +78,16 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Delete_Property_Click(object sender, RoutedEventArgs e)
         {
-            int num = properties.IndexOf(((string)((Button)sender).Tag));
-            properties.RemoveAt(num);
-            ((Button)sender).IsEnabled = false;
+            //Write the delete code here.
 
-            foreach (string item in properties)
-            {
-                Debug.WriteLine(item);
-            }
+            Debug.WriteLine((((Button)sender).Tag).ToString());
+            //properties.RemoveAt(num);
+            //((Button)sender).IsEnabled = false;
+
+            //foreach (string item in properties)
+            //{
+                //Debug.WriteLine(item);
+            //}
         }
 
         private void OnPropertyChanged(string propertyName)
