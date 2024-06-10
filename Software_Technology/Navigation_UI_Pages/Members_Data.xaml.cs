@@ -12,6 +12,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using System.Diagnostics;
+using Software_Technology.Classes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -24,6 +26,8 @@ namespace Software_Technology.Navigation_UI_Pages
         MainWindow x;
 
         string Username { get { return username_obj.Text; } set { username_obj.Text = value; } }
+
+        string NameOfUser { get { return name_obj.Text; } set { name_obj.Text = value; } }
         string Surname { get { return surname_obj.Text; } set { surname_obj.Text = value; } }
         string Password { get { return password_obj.Password.ToString(); } }
         string Email { get {  return email_obj.Text; } set { email_obj.Text = value; } }
@@ -44,11 +48,15 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            if (Password!= null)
+            Debug.WriteLine(Password.ToString());
+            if (!(String.IsNullOrEmpty(Password)) && !(String.IsNullOrWhiteSpace(Password)))
             {
                 x.member_variable.ChangePassword(x.member_variable.GetUsersID(), Password.ToString());
+                
             }
-            
+
+            Debug.WriteLine(Email.ToString(), Phone.ToString());
+            x.member_variable.UpdateNameSurnameUsers(x.member_variable.GetUsersID(), NameOfUser.ToString(), Surname.ToString());
             x.member_variable.ChangeContactDetailsMember(Email.ToString(), Phone.ToString());
         }
     }

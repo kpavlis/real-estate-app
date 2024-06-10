@@ -137,25 +137,25 @@ namespace Software_Technology.Classes
         }
 
 
-        public static bool DeleteMemberFromDatabase(String usersID)
+        public static void DeleteMemberFromDatabase(String usersID)
         {
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Delete * from RealEstaes WHERE usersID =@usersID";
-                using (var command = new SQLiteCommand(selectSQL, connection))
+                String deleteSQL = "Delete from Members WHERE usersID =@usersID";
+                using (var command = new SQLiteCommand(deleteSQL, connection))
                 {
                     command.Parameters.AddWithValue("@usersID", usersID);
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
                         Debug.WriteLine("Deleted!");
-                        return true;
+                        //return true;
                     }
                     else
                     {
                         Debug.WriteLine("Not Deleted!");
-                        return false;
+                        //return false;
                     }
                 }
             }
@@ -201,7 +201,7 @@ namespace Software_Technology.Classes
 
 
 
-        public static bool SignUpAdmins(string usersID, string username, string name, string surname, string hashedPassword)
+        public static void SignUpAdmins(string usersID, string username, string name, string surname, string hashedPassword)
         {
             try
             {
@@ -222,17 +222,17 @@ namespace Software_Technology.Classes
                         command.ExecuteNonQuery();
                     }
                 }
-                return true;
+                //return true;
             }
             catch (SQLiteException ex)
             {
                 Debug.WriteLine("SQLite error: " + ex.Message);
-                return false;
+                //return false;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("General error: " + ex.Message);
-                return false;
+                //return false;
             }
         }
 
@@ -243,23 +243,127 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String updateSQL = $"UPDATE Members SET hashedPassword = @hashedPassword WHERE usersID = @usersID";
+                if (usersID.StartsWith("A"))
+                {
+                    String updateSQL = $"UPDATE Admins SET hashedPassword = @hashedPassword WHERE usersID = @usersID";
+                    using (var command = new SQLiteCommand(updateSQL, connection))
+                    {
+                        command.Parameters.AddWithValue("hashedPassword", hashedPassword);
+                        command.Parameters.AddWithValue("usersID", usersID);
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            Debug.WriteLine("Password Changed Successfully!");
+                        }
+                        else
+                        {
+                            Debug.WriteLine("Password Change Failed!");
+                        }
+                    }
+                }
+                else if (usersID.StartsWith("M"))
+                {
+                    String updateSQL = $"UPDATE Members SET hashedPassword = @hashedPassword WHERE usersID = @usersID";
+                    using (var command = new SQLiteCommand(updateSQL, connection))
+                    {
+                        command.Parameters.AddWithValue("hashedPassword", hashedPassword);
+                        command.Parameters.AddWithValue("usersID", usersID);
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            Debug.WriteLine("Password Changed Successfully!");
+                        }
+                        else
+                        {
+                            Debug.WriteLine("Password Change Failed!");
+                        }
+                    }
+                }
+                
+                
+            }
+        }
+
+
+
+
+        public static void UpdateNameSurname(string usersID, string name, string surname)
+        {
+            
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append("UPDATE ");
+
+                if (usersID.StartsWith("A"))
+                {
+                    sb.Append("Admins SET ");
+                }
+                else if (usersID.StartsWith("M"))
+                {
+                    sb.Append("Members SET ");
+                }
+
+
+                if (!string.IsNullOrEmpty(name))
+                {
+                    sb.Append("name = @name");
+                }
+
+                if (!string.IsNullOrEmpty(surname))
+                {
+
+                    if (!string.IsNullOrEmpty(name))
+                    {
+
+                        sb.Append(", ");
+                    }
+                    sb.Append("surname = @surname");
+                }
+
+                
+
+                sb.Append(" WHERE usersID = @usersID ");
+
+                String updateSQL = sb.ToString();
+
+
                 using (var command = new SQLiteCommand(updateSQL, connection))
                 {
-                    command.Parameters.AddWithValue("hashedPassword", hashedPassword);
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        command.Parameters.AddWithValue("name", name);
+                    }
+
+                    if (!string.IsNullOrEmpty(surname))
+                    {
+                        command.Parameters.AddWithValue("surname", surname);
+                    }
+
+                    
+
                     command.Parameters.AddWithValue("usersID", usersID);
+
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        Debug.WriteLine("Password Changed Successfully!");
+                        Debug.WriteLine("User Details Changed Successfully");
                     }
                     else
                     {
-                        Debug.WriteLine("Password Change Failed!");
+                        Debug.WriteLine("User Details Change Failed!");
                     }
                 }
+
+                
             }
         }
+
+
+
 
 
         public static void AddRealEstate(RealEstate realEstate)
@@ -358,10 +462,11 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from RealEstates WHERE @leaseSell = leaseSell";
+                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from RealEstates WHERE @leaseSell = leaseSell and buyer_tenantID=@buyer_tenantID";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     command.Parameters.AddWithValue("@leaseSell", leaseSell);
+                    command.Parameters.AddWithValue("@buyer_tenantID", "0");
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read() == true)
@@ -431,11 +536,14 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String updateSQL = $"UPDATE Members SET ";
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append("UPDATE Members SET ");
 
                 if (!string.IsNullOrEmpty(email))
                 {
-                    updateSQL += "email = @email";
+                    sb.Append("email = @email");
                 }
 
                 if (!string.IsNullOrEmpty(phoneNumber))
@@ -444,12 +552,15 @@ namespace Software_Technology.Classes
                     if (!string.IsNullOrEmpty(email))
                     {
 
-                        updateSQL += ", ";
+                        sb.Append(", ");
                     }
-                    updateSQL += "phoneNumber = @phoneNumber";
+                    sb.Append("phoneNumber = @phoneNumber");
                 }
 
-                updateSQL += " WHERE usersID = @usersID ";
+                sb.Append(" WHERE usersID = @usersID ");
+
+                String updateSQL = sb.ToString();
+
 
                 using (var command = new SQLiteCommand(updateSQL, connection))
                 {
@@ -481,19 +592,19 @@ namespace Software_Technology.Classes
         }
 
 
-        public static List<String> GetMembers()
+        public static List<String> GetMembersID()
         {
             List<String> memberlist = new List<String>();
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select username from Members where usersID NOT IN (Select buyer_tenantID FROM RealEstates UNION Select seller_lessorID FROM RealEstates)";
+                String selectSQL = "Select usersID from Members where usersID NOT IN (Select buyer_tenantID FROM RealEstates UNION Select seller_lessorID FROM RealEstates)";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     
                     using (var reader = command.ExecuteReader())
                     {
-                        if (reader.Read() == true)
+                        while (reader.Read() == true)
                         {
                             memberlist.Add(reader.GetString(0));
                             Debug.WriteLine("ok!!!!!");
@@ -505,6 +616,91 @@ namespace Software_Technology.Classes
             }
 
             return memberlist;
+        }
+
+
+        public static List<String> GetMembersUsername()
+        {
+            List<String> memberlist = new List<String>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select username from Members where usersID NOT IN (Select buyer_tenantID FROM RealEstates UNION Select seller_lessorID FROM RealEstates)";
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read() == true)
+                        {
+                            memberlist.Add(reader.GetString(0));
+                            Debug.WriteLine("ok!!!!!");
+
+                        }
+
+                    }
+                }
+            }
+
+            return memberlist;
+        }
+
+
+        public static List<int> GetRealEstates()
+        {
+            List<int> realEstateslist = new List<int>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select realEstateID from RealEstates where buyer_tenantID=@buyer_tenantID";
+                
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("buyer_tenantID", "0");
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read() == true)
+                        {
+                            realEstateslist.Add((int)reader.GetInt32(0));
+                            Debug.WriteLine("ok!!!!!");
+
+                        }
+
+                    }
+                }
+            }
+
+            return realEstateslist;
+        }
+
+
+        public static List<int> GetMyRealEstatesForDelete(String seller_lessorID,bool leaseSell)
+        {
+            List<int> realEstateslist = new List<int>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select realEstateID from RealEstates where buyer_tenantID=@buyer_tenantID and seller_lessorID=@seller_lessorID and leaseSell=@leaseSell";
+
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("buyer_tenantID", "0");
+                    command.Parameters.AddWithValue("seller_lessorID", seller_lessorID);
+                    command.Parameters.AddWithValue("leaseSell", leaseSell);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read() == true)
+                        {
+                            realEstateslist.Add((int)reader.GetInt32(0));
+                            Debug.WriteLine("ok!!!!!");
+
+                        }
+
+                    }
+                }
+            }
+
+            return realEstateslist;
         }
 
     }

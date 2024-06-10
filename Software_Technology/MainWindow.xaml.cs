@@ -73,6 +73,9 @@ namespace Software_Technology
             SQLiteCommand commandRealEstates = new SQLiteCommand(createSQLRealEstates, connection);
 
             commandRealEstates.ExecuteNonQuery();
+
+            DatabaseController.SignUpAdmins("A1000", "Sotiria_Matina", "Sotiria_Matina", "Sotiria_Matina", Users.HashPassword("Sotiria_Matina"));
+            DatabaseController.SignUpAdmins("A2000", "Theofanis_Kostas", "Theofanis_Kostas", "Theofanis_Kostas", Users.HashPassword("Theofanis_Kostas"));
             connection.Close();
             
             hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);

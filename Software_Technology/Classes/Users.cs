@@ -74,7 +74,16 @@ public abstract class Users
         DatabaseController.ChangePassword(usersID, hashedPassword);
     }
 
-    
+
+    public void UpdateNameSurnameUsers(String usersID, String newName,String newSurname)
+    {
+        
+        this.name = newName;
+        this.surname = newSurname;
+        DatabaseController.UpdateNameSurname(usersID, newName, newSurname);
+    }
+
+
     //Encypt password 
     public static string HashPassword(String _password) 
 	{

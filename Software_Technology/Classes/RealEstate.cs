@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Software_Technology.Classes
 {
-    public class RealEstate
+    class RealEstate
     {
         public int realEstateID { get; }
         public string buyer_tenantID { get; private set; }
