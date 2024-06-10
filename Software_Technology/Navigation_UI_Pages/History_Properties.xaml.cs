@@ -30,6 +30,7 @@ namespace Software_Technology.Navigation_UI_Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        //Temporary List
         List<string> buy = new List<string>();
 
         List<RealEstate> _data_bind_history = new List<RealEstate>();
@@ -52,7 +53,7 @@ namespace Software_Technology.Navigation_UI_Pages
         public History_Properties()
         {
             this.InitializeComponent();
-
+            //This code will be removed
             buy.Add("Property_1");
             buy.Add("Property_2");
             buy.Add("Property_3");

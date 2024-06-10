@@ -16,6 +16,7 @@ using Software_Technology.Navigation_UI_Pages;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using Software_Technology.Classes;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,17 +28,23 @@ namespace Software_Technology.Special_UI_Pages
     /// </summary>
     public sealed partial class Real_Estate_Info : Page
     {
-        string phone_number;
-        string email;
-        Test_Real _object;
-        internal Real_Estate_Info(Test_Real x)
+        string phone_number_;
+        string email_;
+
+        RealEstate _object;
+
+        string Phone_Number { get { return phone_number.Text; } set { phone_number.Text = value; } }
+        string Email { get { return email.Text; } set { email.Text = value; } }
+
+        internal Real_Estate_Info(RealEstate x)
         {
             this.InitializeComponent();
             _object = x;
-            phone_number = "6944520267";
-            email = "konstantinos1125@gmail.com";
+            phone_number_ = "6944520267";
+            email_ = "konstantinos1125@gmail.com";
 
         }
+
 
 
         

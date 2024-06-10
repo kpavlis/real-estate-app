@@ -17,12 +17,14 @@ using Windows.Foundation.Collections;
 using Software_Technology.Navigation_UI_Pages;
 using System.Diagnostics;
 using Software_Technology.Special_UI_Pages;
+using Software_Technology.Classes;
+using System.ComponentModel;
 
 
 namespace Software_Technology.Navigation_UI_Pages
 {
     
-    public sealed partial class Real_Estate_for_Sale : Page
+    public sealed partial class Real_Estate_for_Sale : Page, INotifyPropertyChanged
     {
         MainWindow x;
 
@@ -31,7 +33,27 @@ namespace Software_Technology.Navigation_UI_Pages
         int Bedrooms_Selection { get { return Bedrooms_Combobox.SelectedIndex; } set { Bedrooms_Combobox.SelectedIndex = value; } }
         int Max_Price_Selection { get { return (int)Max_Price_Slider.Value; } set { Max_Price_Slider.Value = value; } }
 
+        //TemporaryList
         List<Test_Real> collect = new List<Test_Real>();
+
+        List<RealEstate> _data_bind_for_sale = new List<RealEstate>();
+
+        internal List<RealEstate> Data_bind_For_Sale
+        {
+            get { return _data_bind_for_sale; }
+            set
+            {
+                if (_data_bind_for_sale != value)
+                {
+                    _data_bind_for_sale = value;
+                    OnPropertyChanged(nameof(Data_bind_For_Sale));
+                }
+
+            }
+
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public Real_Estate_for_Sale()
         {
@@ -59,6 +81,11 @@ namespace Software_Technology.Navigation_UI_Pages
             //x.member_variable.ShowRealEstateToBuy_Rent()
         }
 
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
@@ -66,7 +93,7 @@ namespace Software_Technology.Navigation_UI_Pages
             dialog.XamlRoot = this.XamlRoot;
             dialog.Title = "Πληροφορίες Ακινήτου";
             dialog.CloseButtonText = "Κλείσιμο";
-            dialog.Content = new Real_Estate_Info((Test_Real)(((Button)sender).Tag));
+            dialog.Content = new Real_Estate_Info((RealEstate)(((Button)sender).Tag));
 
             var result = await dialog.ShowAsync();
 
