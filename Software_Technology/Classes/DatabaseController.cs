@@ -368,7 +368,11 @@ namespace Software_Technology.Classes
 
         public static void AddRealEstate(RealEstate realEstate)
         {
-            Debug.WriteLine("mphka");
+            //Debug.WriteLine("MOHKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+            String stringImages = String.Join(",", realEstate.images);
+
+
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
@@ -389,7 +393,7 @@ namespace Software_Technology.Classes
                     command.Parameters.AddWithValue("area", realEstate.area);
                     command.Parameters.AddWithValue("type", realEstate.type);
                     command.Parameters.AddWithValue("details", realEstate.details);
-                    command.Parameters.AddWithValue("image", realEstate.images);
+                    command.Parameters.AddWithValue("image", stringImages);
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
@@ -418,7 +422,7 @@ namespace Software_Technology.Classes
                     command.Parameters.AddWithValue("@seller_lessorID", seller_lessorID);
                     using (var reader = command.ExecuteReader())
                     {
-                        if (reader.Read() == true)
+                        while (reader.Read() == true)
                         {
                             int realEstateID = (int)reader.GetInt32(0);
                             buyer_tenantID = reader.GetString(1);
@@ -462,14 +466,14 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from RealEstates WHERE @leaseSell = leaseSell and buyer_tenantID=@buyer_tenantID";
+                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from RealEstates WHERE @leaseSell = leaseSell and availability=@availability";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     command.Parameters.AddWithValue("@leaseSell", leaseSell);
-                    command.Parameters.AddWithValue("@buyer_tenantID", "0");
+                    command.Parameters.AddWithValue("@availability", true);
                     using (var reader = command.ExecuteReader())
                     {
-                        if (reader.Read() == true)
+                        while (reader.Read() == true)
                         {
                             int realEstateID = (int)reader.GetInt32(0);
                             string buyer_tenantID = reader.GetString(1);
@@ -500,6 +504,7 @@ namespace Software_Technology.Classes
             {
                 Debug.WriteLine("No real estates found!!!");
             }
+            Debug.WriteLine("sth bash ta akinhta einai :" + foundRealEstates.Count.ToString());
             return foundRealEstates;
         }
 
@@ -652,11 +657,11 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select realEstateID from RealEstates where buyer_tenantID=@buyer_tenantID";
+                String selectSQL = "Select realEstateID from RealEstates where availability=@availability";
                 
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
-                    command.Parameters.AddWithValue("buyer_tenantID", "0");
+                    command.Parameters.AddWithValue("availability", true);
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read() == true)
@@ -702,6 +707,36 @@ namespace Software_Technology.Classes
 
             return realEstateslist;
         }
+
+
+        public static List<int> GetRealEstates1(String id)
+        {
+            List<int> realEstateslist = new List<int>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select realEstateID from RealEstates where leaseSell=@leaseSell and (buyer_tenantID=@id or seller_lessorID=@id)";
+
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("leaseSell", false);
+                    command.Parameters.AddWithValue("id", id);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read() == true)
+                        {
+                            realEstateslist.Add((int)reader.GetInt32(0));
+                            Debug.WriteLine("NA ENA AKINHTO");
+
+                        }
+
+                    }
+                }
+            }
+
+            return realEstateslist;
+        }
+
 
     }
 }

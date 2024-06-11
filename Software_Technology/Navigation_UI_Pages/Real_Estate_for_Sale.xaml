@@ -82,7 +82,7 @@
 
             <GridView
                 x:Name="BasicGridView"
-                ItemsSource="{x:Bind Data_bind_For_Sale}"
+                ItemsSource="{x:Bind Data_bind_For_Sale,Mode=OneWay}"
                 IsItemClickEnabled="False"
                 SelectionMode="None"
                 Grid.Row="2"
@@ -135,7 +135,7 @@
                             </Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
                                  <Button HorizontalAlignment="Center" Content="Περισσότερα" Tag="{x:Bind}" Click="Button_Click" />
-                                 <Button HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Αγορά" Click="Buy_Click" />
+                                <Button HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Αγορά" Tag="{x:Bind}" Click="Buy_Click" />
                             </StackPanel>
                             
                         </StackPanel>

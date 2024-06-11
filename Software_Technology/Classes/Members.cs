@@ -58,22 +58,55 @@ namespace Software_Technology.Classes
                 soldRealEstates.Add(realEstate);
             }
             DatabaseController.AddRealEstate(realEstate);
+            
         }
 
 
 
-        public List<RealEstate> ShowRealEstateToBuy_RentMember(bool leaseSell, string area, int minSize, int minBedrooms, int maxPrice)
+        public static List<RealEstate> ShowRealEstateToBuy_RentMember(String userIDExists, bool leaseSell, int location, int minSize, int minBedrooms, int maxPrice)
         {
-            var allRealEstates = soldRealEstates.Concat(boughtRealEstates).Concat(leasedRealEstates).Concat(rentedRealEstates).ToList();
+            //List<int> mylist = new List<int>(DatabaseController.GetRealEstates());
+            //Debug.WriteLine("to apotelesmata einai :" + mylist.Count.ToString());
+
+            String reArea = "";
+
+            
+
+
+            switch (location)
+            {
+                case 2:
+                    reArea = "Αθήνα";
+                    break;
+                case 3:
+                    reArea = "Θεσσαλονίκη";
+                    break;
+            }
+            List<RealEstate> allRealEstates= new List<RealEstate>(DatabaseController.ShowRealEstateToBuy_Rent(leaseSell));
+            //var allRealEstates = soldRealEstates.Concat(boughtRealEstates).Concat(leasedRealEstates).Concat(rentedRealEstates).ToList();
+            /*foreach (RealEstate i in allRealEstates)
+            {
+                Debug.WriteLine(i.realEstateID);
+            }
+            return allRealEstates;*/
+            //Debug.WriteLine("ta akinita ola einai");
+            Debug.WriteLine(allRealEstates.Count());
+
+
+
             return allRealEstates
-                .Where(re => (leaseSell == null || re.leaseSell == leaseSell) &&
-                             (area == null || re.area == area) &&
-                             (minSize == null || re.size >= minSize) &&
-                             (re.buyer_tenantID == null) &&
-                             (minBedrooms == null || re.bedrooms >= minBedrooms) &&
-                             (maxPrice == null || re.price <= maxPrice))
+                .Where(re => (String.IsNullOrEmpty(reArea) || re.area.Equals(reArea)) &&
+                             (minSize == 0 || re.size >= minSize) &&
+                             (String.IsNullOrEmpty(userIDExists) || !(re.seller_lessorID.Equals(userIDExists))) &&
+                             (minBedrooms == 0 || re.bedrooms >= minBedrooms) &&
+                             (maxPrice == 0 || re.price <= maxPrice))
                 .ToList();
+            
+
+            
+
         }
+
 
         public bool Buy_Sell_Rent_LeaseRealEstateMember(RealEstate realEstate, string buyer_tenantID)
         {
@@ -99,6 +132,7 @@ namespace Software_Technology.Classes
         }
         public List<RealEstate> ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember(string listType)
         {
+            //List<RealEstate> membersRealEstates = DatabaseController.RetrieveUsersRealEstates(logInValues[0], logInValues[0]);
             switch (listType.ToLower())
             {
                 case "sold":
@@ -114,19 +148,34 @@ namespace Software_Technology.Classes
             }
         }
 
-        public void DeleteMyRealEstateMember(RealEstate realEstateToBeDeleted)
+        public void DeleteMyRealEstateMember(int realEstateID)
         {
-            if (soldRealEstates.Remove(realEstateToBeDeleted))
-            {
-                Debug.WriteLine("Real estate has been removed from soldRealEstates");
 
-            }
-            else if (leasedRealEstates.Remove(realEstateToBeDeleted))
-            {
-                Debug.WriteLine("Real estate has been removed from leasedRealEstates");
+            var allRealEstates = soldRealEstates.Concat(leasedRealEstates).ToList();
 
+
+            foreach (RealEstate realEstateToBeDeleted in allRealEstates)
+            {
+                if(realEstateToBeDeleted.realEstateID == realEstateID)
+                {
+
+                    if (soldRealEstates.Remove(realEstateToBeDeleted))
+                    {
+                        Debug.WriteLine("Real estate has been removed from soldRealEstates");
+
+                    }
+                    else if (leasedRealEstates.Remove(realEstateToBeDeleted))
+                    {
+                        Debug.WriteLine("Real estate has been removed from leasedRealEstates");
+
+                    }
+                    DatabaseController.DeleteRealEstateFromDatabase(realEstateID);
+                }
             }
-            DatabaseController.DeleteRealEstateFromDatabase(realEstateToBeDeleted.realEstateID);
+
+
+            
+            
         }
         public void ChangeContactDetailsMember(string newEmail, string newPhoneNumber)
         {

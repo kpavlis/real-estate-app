@@ -39,7 +39,7 @@ namespace Software_Technology.Navigation_UI_Pages
         List<StorageFile> current_file_list = new List<StorageFile>();
         List<string> database_file_list = new List<string>();
 
-        List<string> _data_bind_edit = new List<string>();
+        List<int> _data_bind_edit = new List<int>();
 
         //Properties
         string Type { get { return type_obj.Text; } set { type_obj.Text = value; } }
@@ -52,7 +52,7 @@ namespace Software_Technology.Navigation_UI_Pages
         string Property_State { get { return property_state_obj.SelectedIndex.ToString(); } set { property_state_obj.SelectedIndex = 1; } }
         int Size { get { return (int)square_meters_obj.Value; } set { square_meters_obj.Value = value; } }
 
-        public List<string> Data_bind_Edit { get { return _data_bind_edit; } 
+        public List<int> Data_bind_Edit { get { return _data_bind_edit; } 
             set
             {
                 if (_data_bind_edit != value)
@@ -97,7 +97,7 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             Delete_All_Photos.Visibility = Visibility.Visible;
             Photos_Selection.Visibility = Visibility.Collapsed;
-            //Test_Real x = (Test_Real)e.ClickedItem;
+            //Test_Real x = (Test_Real)e.ClickedItem;//na parw akinhto
             //edit_property = x;
             //property_state_obj.SelectedIndex = 1;
             Size = 1000;
@@ -217,11 +217,13 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 //Data_bind_Edit = test_list;
                 Pane_Type.Text = "προς Πώληση";
+                //Data_bind_Edit = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), false));
             }
             else
             {
                 //Data_bind_Edit = myproperties;
                 Pane_Type.Text = "προς Εκμίσθωση";
+                //Data_bind_Edit = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), true));
             }
         }
     }

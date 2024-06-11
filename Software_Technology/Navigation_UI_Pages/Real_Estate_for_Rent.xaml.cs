@@ -16,6 +16,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Software_Technology.Classes;
 using System.ComponentModel;
+using System.Diagnostics;
 
 
 namespace Software_Technology.Navigation_UI_Pages
@@ -34,6 +35,8 @@ namespace Software_Technology.Navigation_UI_Pages
         List<Test_Real> collect = new List<Test_Real>();
 
         List<RealEstate> _data_bind_for_rent = new List<RealEstate>();
+
+        RealEstate reToBeRent = new RealEstate(0, null, null, 0, 0, 0, 0, 0, true, true, null, null, null, new List<string>());
 
         internal List<RealEstate> Data_bind_For_Rent
         {
@@ -65,6 +68,8 @@ namespace Software_Technology.Navigation_UI_Pages
             collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
             collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
             collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
+
+            //DataContext = this;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -74,6 +79,21 @@ namespace Software_Technology.Navigation_UI_Pages
                 x = e.Parameter as MainWindow;
             }
             //x.member_variable.ShowRealEstateToBuy_Rent()
+            //Debug.WriteLine(Location_Selection);
+            if(x.member_variable!= null) 
+            {
+                Debug.WriteLine("mphka sto if");
+                String userIDExists = x.member_variable.GetUsersID();
+                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, true, 0, 0, 0, 0));
+            }
+            else
+            {
+                Debug.WriteLine("mphka sto if");
+                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember("", true, 0, 0, 0, 0));
+            }
+            //Debug.WriteLine("ta antikeimena einai");
+            //Debug.WriteLine(Data_bind_For_Rent.Count());
+
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -91,10 +111,23 @@ namespace Software_Technology.Navigation_UI_Pages
             dialog.Content = new Real_Estate_Info((RealEstate)(((Button)sender).Tag));
 
             var result = await dialog.ShowAsync();
+
+            RealEstate re = (RealEstate)(((Button)sender).Tag);
+            Debug.WriteLine("Koita edw:");
+            foreach (String i in re.images)
+            {
+                Debug.WriteLine(i);
+            }
         }
 
         private async void Rent_Click(object sender, RoutedEventArgs e)
         {
+            //Debug.WriteLine((RealEstate)(((Button)sender).Tag));
+            reToBeRent = (RealEstate)(((Button)sender).Tag);
+            //Debug.WriteLine(reToBeRent.bedrooms.ToString());
+            //int y = reToBeRent.bedrooms;
+            //Debug.WriteLine((RealEstate)((Button)sender).Tag.realEstateID);
+            //Debug.WriteLine(reToBeRent.ToString());
             if (x.member_variable == null)
             {
                 x.TeachingTip.Title = "Αποτυχία Ενοικίασης";
@@ -122,13 +155,29 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             ((Button)sender.Tag).IsEnabled = false;
             //x.member_variable.Buy_Sell_Rent_LeaseRealEstate()
-
+            //RealEstate re = (int)((Button)sender.Tag);
+            Debug.WriteLine(reToBeRent.realEstateID);
+            x.member_variable.Buy_Sell_Rent_LeaseRealEstateMember(reToBeRent, x.member_variable.GetUsersID());
 
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             //x.member_variable.ShowRealEstateToBuy_Rent()
+            Data_bind_For_Rent.Clear();
+            //Debug.WriteLine("hello");
+            if (x.member_variable != null)
+            {
+                String userIDExists = x.member_variable.GetUsersID();
+                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, true, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
+            }
+            else
+            {
+                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(null, true, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
+            }
+
+            //Debug.WriteLine(Data_bind_For_Rent.Count());
+            
         }
 
         private void Clear_Filters_Click(object sender, RoutedEventArgs e)
