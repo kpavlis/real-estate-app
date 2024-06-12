@@ -40,7 +40,7 @@ namespace Software_Technology.Navigation_UI_Pages
         //Properties
         string Type { get { return type_obj.Text; } }
         string Area { get { return area_obj.Text; } }
-        string Info { get { return info_obj.Document.ToString(); } }
+        string Info { get { string x;  info_obj.Document.GetText( Microsoft.UI.Text.TextGetOptions.None,out x); return x; } }
         int Bedrooms { get { return (int)bedrooms_obj.Value; } }
         int Price { get { return (int)price_obj.Value; } }
         int Year { get { return (int)year_obj.Value; } }
@@ -97,61 +97,65 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             ring.IsActive = true;
 
-            foreach (StorageFile file in current_file_list)
-            {
-                if (file != null)
+            
+                foreach (StorageFile file in current_file_list)
                 {
-                    
-                    // Προσδιορισμός του πλήρους μονοπατιού του φακέλου Assets
-                    string assetsFolderPath = AppContext.BaseDirectory + @"Assets\Properties_Pictures";
-                    //Debug.WriteLine(assetsFolderPath);
-                    // Βεβαιωθείτε ότι ο φάκελος Assets υπάρχει
-                    if (!Directory.Exists(assetsFolderPath))
+                    if (file != null)
                     {
-                        Directory.CreateDirectory(assetsFolderPath);
-                    }
 
-                    // Προσδιορισμός του πλήρους μονοπατιού για το νέο αρχείο
-                    string destinationFilePath = Path.Combine(assetsFolderPath, file.Name);
-                    //Debug.WriteLine(destinationFilePath);
-                    // Αντιγραφή του αρχείου στον φάκελο Assets
-                    await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), file.Name, NameCollisionOption.ReplaceExisting);
-                    File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
-                    current_file_path = @"Assets/Properties_Pictures/" + file.Name;
-                    Debug.WriteLine(current_file_path);
-                    database_file_list.Add(current_file_path);
-                    //Debug.WriteLine(file_path);
-                    //Debug.WriteLine(File.Exists(AppContext.BaseDirectory + file_path).ToString());
-                    //Debug.WriteLine("The Operation Completed!");
-                    Debug.WriteLine("Creation!");
-                    Random random = new Random();
-                    int realEstateID = random.Next(1000, 5001);
-                    
-                    if (Property_State.Equals("Πώληση"))
-                    {
-                        RealEstate realEstate = new RealEstate(realEstateID,"0", x.member_variable.GetUsersID(), Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
-                        x.member_variable.AddRealEstateMember(realEstate);
-                        Debug.WriteLine("The operation has completed!");
-                    }
-                    else if (Property_State.Equals("Ενοικίαση"))
-                    {
-                        RealEstate realEstate = new RealEstate(realEstateID, "0", x.member_variable.GetUsersID(), Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, true, Area, Type, Info, database_file_list);
-                        x.member_variable.AddRealEstateMember(realEstate);
-                        Debug.WriteLine("The operation has completed!");
+                        // Προσδιορισμός του πλήρους μονοπατιού του φακέλου Assets
+                        string assetsFolderPath = AppContext.BaseDirectory + @"Assets\Properties_Pictures";
+                        //Debug.WriteLine(assetsFolderPath);
+                        // Βεβαιωθείτε ότι ο φάκελος Assets υπάρχει
+                        if (!Directory.Exists(assetsFolderPath))
+                        {
+                            Directory.CreateDirectory(assetsFolderPath);
+                        }
+
+                        // Προσδιορισμός του πλήρους μονοπατιού για το νέο αρχείο
+                        string destinationFilePath = Path.Combine(assetsFolderPath, file.Name);
+                        //Debug.WriteLine(destinationFilePath);
+                        // Αντιγραφή του αρχείου στον φάκελο Assets
+                        await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), file.Name, NameCollisionOption.ReplaceExisting);
+                        File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
+                        current_file_path = @"/Assets/Properties_Pictures/" + file.Name;
+                        Debug.WriteLine(current_file_path);
+                        database_file_list.Add(current_file_path);
+                        //Debug.WriteLine(file_path);
+                        //Debug.WriteLine(File.Exists(AppContext.BaseDirectory + file_path).ToString());
+                        //Debug.WriteLine("The Operation Completed!");
+                        Debug.WriteLine("Creation!");
+                        Random random = new Random();
+                        int realEstateID = random.Next(1000, 5001);
+
+                        if (Property_State.Equals("Πώληση"))
+                        {
+                            RealEstate realEstate = new RealEstate(realEstateID, "0", x.member_variable.GetUsersID(), Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
+                            x.member_variable.AddRealEstateMember(realEstate);
+                            Debug.WriteLine("The operation has completed!");
+                        }
+                        else if (Property_State.Equals("Ενοικίαση"))
+                        {
+                            RealEstate realEstate = new RealEstate(realEstateID, "0", x.member_variable.GetUsersID(), Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, true, Area, Type, Info, database_file_list);
+                            x.member_variable.AddRealEstateMember(realEstate);
+                            Debug.WriteLine("The operation has completed!");
+                        }
+                        else
+                        {
+                            Debug.WriteLine("no compare");
+                        }
+
+
                     }
                     else
                     {
-                        Debug.WriteLine("no compare");
+                        Debug.WriteLine("The operation hasn't completed!");
                     }
                     
-                    
                 }
-                else
-                {
-                    Debug.WriteLine("The operation hasn't completed!");
-                }
+                Debug.WriteLine(Info);
                 ring.IsActive = false;
-            }
+            
         }
 
         private void Clean_Photos_Click(object sender, RoutedEventArgs e)

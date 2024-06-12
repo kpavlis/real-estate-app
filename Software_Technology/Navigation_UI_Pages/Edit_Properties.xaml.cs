@@ -76,7 +76,7 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             this.InitializeComponent();
             
-            //myproperties.Add("Assets/Properties_Pictures/Angelo_Beta.jpg");
+            myproperties.Add("/Assets/Properties_Pictures/zoo.png");
             //myproperties.Add("Assets/Properties_Pictures/zoo.png");
             //test_list.Add("Hello");
             //NavLinksList.ItemsSource = myproperties;
@@ -155,8 +155,8 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 foreach (string x in myproperties)
                 {
-                    string filePath = AppContext.BaseDirectory + "/" + x;
-
+                    string filePath = AppContext.BaseDirectory + x.Substring(1);
+                    Debug.WriteLine(filePath);
                     if (File.Exists(filePath))
                     {
                         // Διαγραφή του αρχείου
@@ -186,7 +186,7 @@ namespace Software_Technology.Navigation_UI_Pages
                         // Αντιγραφή του αρχείου στον φάκελο Assets
                         await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), file.Name, NameCollisionOption.ReplaceExisting);
                         File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
-                        current_file_path = @"Assets/Properties_Pictures/" + file.Name;
+                        current_file_path = @"/Assets/Properties_Pictures/" + file.Name;
                         Debug.WriteLine(current_file_path);
                         database_file_list.Add(current_file_path);
                         //Debug.WriteLine(file_path);
