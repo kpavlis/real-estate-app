@@ -75,10 +75,10 @@ namespace Software_Technology.Classes
 
             switch (location)
             {
-                case 2:
+                case 1:
                     reArea = "Αθήνα";
                     break;
-                case 3:
+                case 2:
                     reArea = "Θεσσαλονίκη";
                     break;
             }
@@ -90,12 +90,14 @@ namespace Software_Technology.Classes
             }
             return allRealEstates;*/
             //Debug.WriteLine("ta akinita ola einai");
-            Debug.WriteLine(allRealEstates.Count());
+            Debug.WriteLine("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
+            Debug.WriteLine(location);
+            Debug.WriteLine(reArea);
 
 
 
             return allRealEstates
-                .Where(re => (String.IsNullOrEmpty(reArea) || re.area.Equals(reArea)) &&
+                .Where(re => (String.IsNullOrEmpty(reArea) || re.area.Contains(reArea,StringComparison.OrdinalIgnoreCase)) &&
                              (minSize == 0 || re.size >= minSize) &&
                              (String.IsNullOrEmpty(userIDExists) || !(re.seller_lessorID.Equals(userIDExists))) &&
                              (minBedrooms == 0 || re.bedrooms >= minBedrooms) &&

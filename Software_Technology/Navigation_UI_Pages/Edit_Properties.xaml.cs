@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
@@ -39,7 +40,7 @@ namespace Software_Technology.Navigation_UI_Pages
         List<StorageFile> current_file_list = new List<StorageFile>();
         List<string> database_file_list = new List<string>();
 
-        List<int> _data_bind_edit = new List<int>();
+        List<RealEstate> _data_bind_edit = new List<RealEstate>();
 
         //Properties
         string Type { get { return type_obj.Text; } set { type_obj.Text = value; } }
@@ -52,7 +53,10 @@ namespace Software_Technology.Navigation_UI_Pages
         string Property_State { get { return property_state_obj.SelectedIndex.ToString(); } set { property_state_obj.SelectedIndex = 1; } }
         int Size { get { return (int)square_meters_obj.Value; } set { square_meters_obj.Value = value; } }
 
-        public List<int> Data_bind_Edit { get { return _data_bind_edit; } 
+
+        RealEstate reToBeEdited = new RealEstate(0, null, null, 0, 0, 0, 0, 0, true, true, null, null, null, new List<string>());
+
+        internal List<RealEstate> Data_bind_Edit { get { return _data_bind_edit; } 
             set
             {
                 if (_data_bind_edit != value)
@@ -100,7 +104,28 @@ namespace Software_Technology.Navigation_UI_Pages
             //Test_Real x = (Test_Real)e.ClickedItem;//na parw akinhto
             //edit_property = x;
             //property_state_obj.SelectedIndex = 1;
-            Size = 1000;
+            //Size = 1000;
+            reToBeEdited = (RealEstate)e.ClickedItem;
+            Type = reToBeEdited.type;
+            Area = reToBeEdited.area;
+            Info = reToBeEdited.details;
+            Bedrooms = reToBeEdited.bedrooms;
+            Year = reToBeEdited.year;
+            Price = reToBeEdited.price;
+            Floor= reToBeEdited.floor;
+            switch (reToBeEdited.leaseSell)
+            {
+                case true:
+                    Property_State = "1";
+                    break;
+                case false:
+                    Property_State = "0";
+                    break;
+            }
+                
+
+            Size = reToBeEdited.size;
+            
         }
 
         private void Delete_All_Photos_Click(object sender, RoutedEventArgs e)
@@ -108,7 +133,8 @@ namespace Software_Technology.Navigation_UI_Pages
             Delete_All_Photos.Visibility = Visibility.Collapsed;
             Photos_Selection.Visibility = Visibility.Visible;
             Photos_Changes = true;
-            
+
+            reToBeEdited.images.Clear();
         }
 
         private async void Add_Photo_Click(object sender, RoutedEventArgs e)
@@ -155,7 +181,7 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 foreach (string x in myproperties)
                 {
-                    string filePath = AppContext.BaseDirectory + "/" + x;
+                    string filePath = AppContext.BaseDirectory + x.Substring(1);
 
                     if (File.Exists(filePath))
                     {
@@ -186,7 +212,7 @@ namespace Software_Technology.Navigation_UI_Pages
                         // Αντιγραφή του αρχείου στον φάκελο Assets
                         await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), file.Name, NameCollisionOption.ReplaceExisting);
                         File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
-                        current_file_path = @"Assets/Properties_Pictures/" + file.Name;
+                        current_file_path = @"/Assets/Properties_Pictures/" + file.Name;
                         Debug.WriteLine(current_file_path);
                         database_file_list.Add(current_file_path);
                         //Debug.WriteLine(file_path);
@@ -202,6 +228,24 @@ namespace Software_Technology.Navigation_UI_Pages
                     }
                 }
             }
+            Debug.WriteLine("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+            Debug.WriteLine(database_file_list.Count);
+            Debug.WriteLine(Size);
+
+            if(database_file_list.Count==0)
+            {
+                database_file_list = reToBeEdited.images;
+            }
+
+            if (Property_State.Equals("1"))
+            {
+                reToBeEdited.ChangeRealEstateAttributes(Price, Size, Floor, Year, Bedrooms, true, true, Area, Type, Info, database_file_list);
+            }
+            else if (Property_State.Equals("0"))
+            {
+                reToBeEdited.ChangeRealEstateAttributes(Price, Size, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
+            }
+            
 
         }
 
@@ -217,13 +261,13 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 //Data_bind_Edit = test_list;
                 Pane_Type.Text = "προς Πώληση";
-                //Data_bind_Edit = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), false));
+                Data_bind_Edit = new List<RealEstate>(DatabaseController.GetMyRealEstates(x.member_variable.GetUsersID(), false));
             }
             else
             {
                 //Data_bind_Edit = myproperties;
                 Pane_Type.Text = "προς Εκμίσθωση";
-                //Data_bind_Edit = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), true));
+                Data_bind_Edit = new List<RealEstate>(DatabaseController.GetMyRealEstates(x.member_variable.GetUsersID(), true));
             }
         }
     }

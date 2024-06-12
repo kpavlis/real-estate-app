@@ -20,10 +20,10 @@ namespace Software_Technology.Classes
             
         }
 
-        public void DeleteMember(String memberToBeDeletedID) 
+        public void DeleteMember(String memberToBeDeletedID, String memberToBeDeletedUsername) 
         {
             
-            DatabaseController.DeleteMemberFromDatabase(memberToBeDeletedID);
+            DatabaseController.DeleteMemberFromDatabase(memberToBeDeletedID, memberToBeDeletedUsername);
             
         }
 

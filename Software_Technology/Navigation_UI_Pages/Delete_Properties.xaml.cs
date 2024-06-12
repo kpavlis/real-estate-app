@@ -99,13 +99,15 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Combo_Selection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (((ComboBox)sender).SelectedValue.ToString() == "Πώληση")
+            Debug.WriteLine("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+            Debug.WriteLine(((ComboBox)sender).SelectedValue.ToString());
+            if (((ComboBox)sender).SelectedValue.ToString().Equals("Πώληση"))
             {
                 //!!!!!!!!!!
                 Data_bind_Delete = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), false));
                 Debug.WriteLine("Hello 1");
             }
-            else
+            else if(((ComboBox)sender).SelectedValue.ToString().Equals("Εκμίσθωση"))
             {
                 Data_bind_Delete = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), true));
                 Debug.WriteLine("Hello 2");

@@ -117,7 +117,7 @@ namespace Software_Technology.Navigation_UI_Pages
                     // Αντιγραφή του αρχείου στον φάκελο Assets
                     await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), file.Name, NameCollisionOption.ReplaceExisting);
                     File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
-                    current_file_path = @"Assets/Properties_Pictures/" + file.Name;
+                    current_file_path = @"/Assets/Properties_Pictures/" + file.Name;
                     Debug.WriteLine(current_file_path);
                     database_file_list.Add(current_file_path);
                     //Debug.WriteLine(file_path);

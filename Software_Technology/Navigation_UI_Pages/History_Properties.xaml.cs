@@ -85,8 +85,8 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             if (((ComboBox)sender).SelectedValue.ToString() == "Αγορασμένα")
             {
-                List<int> mylist = new List<int>(DatabaseController.GetRealEstates1(x.member_variable.GetUsersID()));
-                Debug.WriteLine("reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"+mylist.Count.ToString());
+                //List<int> mylist = new List<int>(DatabaseController.GetRealEstates1(x.member_variable.GetUsersID()));
+                //Debug.WriteLine("reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"+mylist.Count.ToString());
                 //Data_bind_History = buy;
                 Debug.WriteLine("Hello fuiobuiyererurb 1");
                 Data_bind_History = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("bought");

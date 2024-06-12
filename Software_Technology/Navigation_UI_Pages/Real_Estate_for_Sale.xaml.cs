@@ -165,7 +165,17 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Clear_Filters_Click(object sender, RoutedEventArgs e)
         {
-
+            if (x.member_variable != null)
+            {
+                Debug.WriteLine("mphka sto if");
+                String userIDExists = x.member_variable.GetUsersID();
+                Data_bind_For_Sale = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, false, 0, 0, 0, 0));
+            }
+            else
+            {
+                Debug.WriteLine("mphka sto if");
+                Data_bind_For_Sale = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember("", false, 0, 0, 0, 0));
+            }
         }
     }
 

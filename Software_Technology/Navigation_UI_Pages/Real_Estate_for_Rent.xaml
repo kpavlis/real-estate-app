@@ -64,7 +64,7 @@
                         </ComboBox>
 
                         <TextBlock Text="Μέγιστο ενοίκιο/μήνα (σε ευρώ):" FontWeight="SemiBold"/>
-                        <Slider x:Name="Max_Price_Slider" Width="200" Minimum="0" Maximum="1000000" StepFrequency="1000"
+                        <NumberBox x:Name="Max_Price_Slider" Width="200"
                         Value="200000" />
                     </StackPanel>
 

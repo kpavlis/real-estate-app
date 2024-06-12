@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace Software_Technology.Classes
             this.images = new List<string>(images);
         }
 
-        protected void ChangeRealEstateAttributes(int newPrice, int newSize, int newFloor, int newYear, int newBedrooms, bool newAvailability,bool newLeaseSell, string newArea, string newType, string newDetails, List<string> newImages)
+        internal void ChangeRealEstateAttributes(int newPrice, int newSize, int newFloor, int newYear, int newBedrooms, bool newAvailability,bool newLeaseSell, string newArea, string newType, string newDetails, List<string> newImages)
         {
             this.price = newPrice;
             this.size = newSize;
@@ -55,6 +56,7 @@ namespace Software_Technology.Classes
             this.type = newType;
             this.details = newDetails;
             this.images = newImages;
+            Debug.WriteLine("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
             DatabaseController.UpdateRealEstateFromDatabase(realEstateID, buyer_tenantID, seller_lessorID, price, size, floor, year, bedrooms, availability, leaseSell, area, type, details, images);
         }
 
