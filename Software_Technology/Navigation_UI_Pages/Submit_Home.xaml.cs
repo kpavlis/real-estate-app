@@ -40,7 +40,9 @@ namespace Software_Technology.Navigation_UI_Pages
         //Properties
         string Type { get { return type_obj.Text; } }
         string Area { get { return area_obj.Text; } }
-        string Info { get { string x;  info_obj.Document.GetText( Microsoft.UI.Text.TextGetOptions.None,out x); return x; } }
+
+        string Info { get { string x; info_obj.Document.GetText(Microsoft.UI.Text.TextGetOptions.None, out x); return x; } }
+
         int Bedrooms { get { return (int)bedrooms_obj.Value; } }
         int Price { get { return (int)price_obj.Value; } }
         int Year { get { return (int)year_obj.Value; } }
@@ -125,37 +127,37 @@ namespace Software_Technology.Navigation_UI_Pages
                         //Debug.WriteLine(File.Exists(AppContext.BaseDirectory + file_path).ToString());
                         //Debug.WriteLine("The Operation Completed!");
                         Debug.WriteLine("Creation!");
-                        Random random = new Random();
-                        int realEstateID = random.Next(1000, 5001);
-
-                        if (Property_State.Equals("Πώληση"))
-                        {
-                            RealEstate realEstate = new RealEstate(realEstateID, "0", x.member_variable.GetUsersID(), Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
-                            x.member_variable.AddRealEstateMember(realEstate);
-                            Debug.WriteLine("The operation has completed!");
-                        }
-                        else if (Property_State.Equals("Ενοικίαση"))
-                        {
-                            RealEstate realEstate = new RealEstate(realEstateID, "0", x.member_variable.GetUsersID(), Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, true, Area, Type, Info, database_file_list);
-                            x.member_variable.AddRealEstateMember(realEstate);
-                            Debug.WriteLine("The operation has completed!");
-                        }
-                        else
-                        {
-                            Debug.WriteLine("no compare");
-                        }
-
-
+                        
                     }
+                    
                     else
                     {
                         Debug.WriteLine("The operation hasn't completed!");
                     }
                     
                 }
-                Debug.WriteLine(Info);
+
+                Random random = new Random();
+                int realEstateID = random.Next(1000, 5001);
+
+                if (Property_State.Equals("Πώληση"))
+                {
+                    RealEstate realEstate = new RealEstate(realEstateID, "0", x.member_variable.GetUsersID(), Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
+                    x.member_variable.AddRealEstateMember(realEstate);
+                    Debug.WriteLine("The operation has completed!");
+                }
+                else if (Property_State.Equals("Εκμίσθωση"))
+                {
+                    RealEstate realEstate = new RealEstate(realEstateID, "0", x.member_variable.GetUsersID(), Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, true, Area, Type, Info, database_file_list);
+                    x.member_variable.AddRealEstateMember(realEstate);
+                    Debug.WriteLine("The operation has completed!");
+
+                }
+                else
+                {
+                    Debug.WriteLine("no compare");
+                }
                 ring.IsActive = false;
-            
         }
 
         private void Clean_Photos_Click(object sender, RoutedEventArgs e)

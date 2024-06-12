@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.ComponentModel;
 using Software_Technology.Classes;
+using System.Diagnostics;
 
 namespace Software_Technology.Navigation_UI_Pages
 {
@@ -56,6 +57,7 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 x = e.Parameter as MainWindow;
             }
+            Data_bind_Delete_Properties_Admins = new List<int>(DatabaseController.GetRealEstates());
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -66,6 +68,8 @@ namespace Software_Technology.Navigation_UI_Pages
         private void Delete_Property_Click(object sender, RoutedEventArgs e)
         {
             ((Button)sender).IsEnabled = false;
+            Debug.WriteLine((int)((Button)sender).Tag);
+            x.admin_variable.DeleteRealEstate((int)((Button)sender).Tag);
         }
     }
 }

@@ -61,9 +61,9 @@
                         <TextBlock Text="Όροφος:"/>
                         <NumberBox x:Name="floor_obj"/>
                         <TextBlock Text="Προς Πώληση ή Ενοικίαση:"/>
-                        <ComboBox x:Name="property_state_obj" PlaceholderText="Επιλογή" Width="200">
+                        <ComboBox x:Name="property_state_obj" PlaceholderText="Επιλογή" Width="200" SelectedIndex="0">
                             <x:String>Πώληση</x:String>
-                            <x:String>Ενοικίαση</x:String>
+                            <x:String>Εκμίσθωση</x:String>
                         </ComboBox>
                         <TextBlock Text="Εικόνες Ακινήτου (μέχρι 4):"/>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">

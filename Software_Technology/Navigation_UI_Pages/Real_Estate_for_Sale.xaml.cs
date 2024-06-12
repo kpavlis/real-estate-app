@@ -38,6 +38,9 @@ namespace Software_Technology.Navigation_UI_Pages
 
         List<RealEstate> _data_bind_for_sale = new List<RealEstate>();
 
+        RealEstate reToBeBought = new RealEstate(0, null, null, 0, 0, 0, 0, 0, true, true, null, null, null, new List<string>());
+
+
         internal List<RealEstate> Data_bind_For_Sale
         {
             get { return _data_bind_for_sale; }
@@ -79,6 +82,18 @@ namespace Software_Technology.Navigation_UI_Pages
             }
             //Query for Properties
             //x.member_variable.ShowRealEstateToBuy_Rent()
+            //x.member_variable.ShowRealEstateToBuy_RentMember(false,null,0,0,0);
+            if (x.member_variable != null)
+            {
+                Debug.WriteLine("mphka sto if");
+                String userIDExists = x.member_variable.GetUsersID();
+                Data_bind_For_Sale = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, false, 0, 0, 0, 0));
+            }
+            else
+            {
+                Debug.WriteLine("mphka sto if");
+                Data_bind_For_Sale = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember("", false, 0, 0, 0, 0));
+            }
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -101,6 +116,7 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private async void Buy_Click(object sender, RoutedEventArgs e)
         {
+            reToBeBought = (RealEstate)(((Button)sender).Tag);
             if (x.member_variable == null)
             {
                 x.TeachingTip.Title = "Αποτυχία Αγοράς";
@@ -128,16 +144,38 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             ((Button)sender.Tag).IsEnabled = false;
             //x.member_variable.Buy_Sell_Rent_LeaseRealEstate
+            Debug.WriteLine(reToBeBought.realEstateID);
+            x.member_variable.Buy_Sell_Rent_LeaseRealEstateMember(reToBeBought, x.member_variable.GetUsersID());
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
+            Data_bind_For_Sale.Clear();
             //x.member_variable.ShowRealEstateToBuy_Rent()
+            if (x.member_variable != null)
+            {
+                String userIDExists = x.member_variable.GetUsersID();
+                Data_bind_For_Sale = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, false, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
+            }
+            else
+            {
+                Data_bind_For_Sale = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember("", false, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
+            }
         }
 
         private void Clear_Filters_Click(object sender, RoutedEventArgs e)
         {
-
+            if (x.member_variable != null)
+            {
+                Debug.WriteLine("mphka sto if");
+                String userIDExists = x.member_variable.GetUsersID();
+                Data_bind_For_Sale = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, false, 0, 0, 0, 0));
+            }
+            else
+            {
+                Debug.WriteLine("mphka sto if");
+                Data_bind_For_Sale = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember("", false, 0, 0, 0, 0));
+            }
         }
     }
 

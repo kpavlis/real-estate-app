@@ -73,7 +73,7 @@ namespace Software_Technology.Navigation_UI_Pages
 
             for (int i=0; i < delete_usersID.Count;i++)
             {
-                Data_bind_Delete_Users_Admins.Add(delete_usersUsername[i]+","+delete_usersID[i]);
+                Data_bind_Delete_Users_Admins.Add(delete_usersID[i]+","+ delete_usersUsername[i]);
             }
         }
 
@@ -86,11 +86,11 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             ((Button)sender).IsEnabled = false;
 
-            string memberusername0 = (String)((Button)sender).Tag;
+            string memberToBeDeleted0 = (String)((Button)sender).Tag;
 
-            string[] memberusername = memberusername0.Split(',');
+            string[] memberToBeDeleted = memberToBeDeleted0.Split(',');
 
-            x.admin_variable.DeleteMember(memberusername[1]);
+            x.admin_variable.DeleteMember(memberToBeDeleted[0], memberToBeDeleted[1]);
         }
     }
 }

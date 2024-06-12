@@ -64,7 +64,7 @@
                         </ComboBox>
 
                         <TextBlock Text="Μέγιστο ενοίκιο/μήνα (σε ευρώ):" FontWeight="SemiBold"/>
-                        <Slider x:Name="Max_Price_Slider" Width="200" Minimum="0" Maximum="1000000" StepFrequency="1000"
+                        <NumberBox x:Name="Max_Price_Slider" Width="200"
                         Value="200000" />
                     </StackPanel>
 
@@ -82,7 +82,7 @@
 
         <GridView
             x:Name="BasicGridView"
-            ItemsSource="{x:Bind Data_bind_For_Rent}"
+            ItemsSource="{x:Bind Data_bind_For_Rent,Mode=OneWay}"
             IsItemClickEnabled="False"
             SelectionMode="None"
             Grid.Row="2"
@@ -136,7 +136,7 @@
                             </Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
                                 <Button HorizontalAlignment="Center" Content="Περισσότερα" Tag="{x:Bind}" Click="Button_Click" />
-                                <Button HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Ενοικίαση" Click="Rent_Click"/>
+                                <Button HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Ενοικίαση" Tag="{x:Bind}" Click="Rent_Click"/>
                             </StackPanel>
 
                         </StackPanel>
