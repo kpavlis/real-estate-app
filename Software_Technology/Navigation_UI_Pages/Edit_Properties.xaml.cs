@@ -80,7 +80,7 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             this.InitializeComponent();
             
-            //myproperties.Add("Assets/Properties_Pictures/Angelo_Beta.jpg");
+            myproperties.Add("/Assets/Properties_Pictures/zoo.png");
             //myproperties.Add("Assets/Properties_Pictures/zoo.png");
             //test_list.Add("Hello");
             //NavLinksList.ItemsSource = myproperties;
