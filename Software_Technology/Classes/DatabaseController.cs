@@ -117,7 +117,7 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Delete * from RealEstaes WHERE realEstateID =@realEstateID";
+                String selectSQL = "Delete from RealEstates WHERE realEstateID=@realEstateID";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     command.Parameters.AddWithValue("@realEstateID", realEstateID);
@@ -137,15 +137,16 @@ namespace Software_Technology.Classes
         }
 
 
-        public static void DeleteMemberFromDatabase(String usersID)
+        public static void DeleteMemberFromDatabase(String usersID,String username)
         {
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String deleteSQL = "Delete from Members WHERE usersID =@usersID";
+                String deleteSQL = "Delete from Members WHERE usersID =@usersID and username=@username";
                 using (var command = new SQLiteCommand(deleteSQL, connection))
                 {
                     command.Parameters.AddWithValue("@usersID", usersID);
+                    command.Parameters.AddWithValue("@username", username);
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
@@ -167,7 +168,7 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Update * SET realEstateID = @realEstateID, buyer_tenantID = @buyer_tenantID, seller_lessorID = @seller_lessorID, price = @price, size = @size, floor = @floor,year = @year, bedrooms = @bedrooms, availability = @availability, leaseSell = @leaseSell, area = @area, type = @type, details = @details, image = @image WHERE realEstateID =@realEstateID";
+                String selectSQL = "Update RealEstates SET realEstateID = @realEstateID, buyer_tenantID = @buyer_tenantID, seller_lessorID = @seller_lessorID, price = @price, size = @size, floor = @floor,year = @year, bedrooms = @bedrooms, availability = @availability, leaseSell = @leaseSell, area = @area, type = @type, details = @details, image = @image WHERE realEstateID =@realEstateID";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     command.Parameters.AddWithValue("@realEstateID", realEstateID);
@@ -368,7 +369,14 @@ namespace Software_Technology.Classes
 
         public static void AddRealEstate(RealEstate realEstate)
         {
-            Debug.WriteLine("mphka");
+            //Debug.WriteLine("MOHKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+            
+            String stringImages = String.Join(",", realEstate.images);
+            
+            
+
+
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
@@ -389,7 +397,7 @@ namespace Software_Technology.Classes
                     command.Parameters.AddWithValue("area", realEstate.area);
                     command.Parameters.AddWithValue("type", realEstate.type);
                     command.Parameters.AddWithValue("details", realEstate.details);
-                    command.Parameters.AddWithValue("image", realEstate.images);
+                    command.Parameters.AddWithValue("image", stringImages);
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
@@ -418,7 +426,7 @@ namespace Software_Technology.Classes
                     command.Parameters.AddWithValue("@seller_lessorID", seller_lessorID);
                     using (var reader = command.ExecuteReader())
                     {
-                        if (reader.Read() == true)
+                        while (reader.Read() == true)
                         {
                             int realEstateID = (int)reader.GetInt32(0);
                             buyer_tenantID = reader.GetString(1);
@@ -462,14 +470,14 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from RealEstates WHERE @leaseSell = leaseSell and buyer_tenantID=@buyer_tenantID";
+                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from RealEstates WHERE @leaseSell = leaseSell and availability=@availability";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     command.Parameters.AddWithValue("@leaseSell", leaseSell);
-                    command.Parameters.AddWithValue("@buyer_tenantID", "0");
+                    command.Parameters.AddWithValue("@availability", true);
                     using (var reader = command.ExecuteReader())
                     {
-                        if (reader.Read() == true)
+                        while (reader.Read() == true)
                         {
                             int realEstateID = (int)reader.GetInt32(0);
                             string buyer_tenantID = reader.GetString(1);
@@ -500,6 +508,7 @@ namespace Software_Technology.Classes
             {
                 Debug.WriteLine("No real estates found!!!");
             }
+            Debug.WriteLine("sth bash ta akinhta einai :" + foundRealEstates.Count.ToString());
             return foundRealEstates;
         }
 
@@ -652,11 +661,11 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select realEstateID from RealEstates where buyer_tenantID=@buyer_tenantID";
+                String selectSQL = "Select realEstateID from RealEstates where availability=@availability";
                 
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
-                    command.Parameters.AddWithValue("buyer_tenantID", "0");
+                    command.Parameters.AddWithValue("availability", true);
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read() == true)
@@ -680,11 +689,11 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select realEstateID from RealEstates where buyer_tenantID=@buyer_tenantID and seller_lessorID=@seller_lessorID and leaseSell=@leaseSell";
+                String selectSQL = "Select realEstateID from RealEstates where availability=@availability and seller_lessorID=@seller_lessorID and leaseSell=@leaseSell";
 
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
-                    command.Parameters.AddWithValue("buyer_tenantID", "0");
+                    command.Parameters.AddWithValue("availability", true);
                     command.Parameters.AddWithValue("seller_lessorID", seller_lessorID);
                     command.Parameters.AddWithValue("leaseSell", leaseSell);
                     using (var reader = command.ExecuteReader())
@@ -702,6 +711,118 @@ namespace Software_Technology.Classes
 
             return realEstateslist;
         }
+
+
+        public static List<int> GetRealEstates1(String id)
+        {
+            List<int> realEstateslist = new List<int>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select realEstateID from RealEstates where leaseSell=@leaseSell and (buyer_tenantID=@id or seller_lessorID=@id)";
+
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("leaseSell", false);
+                    command.Parameters.AddWithValue("id", id);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read() == true)
+                        {
+                            realEstateslist.Add((int)reader.GetInt32(0));
+                            Debug.WriteLine("NA ENA AKINHTO");
+
+                        }
+
+                    }
+                }
+            }
+
+            return realEstateslist;
+        }
+
+
+        public static List<RealEstate> GetMyRealEstates(String seller_lessorID, bool leaseSell)
+        {
+            List<RealEstate> realEstateslist = new List<RealEstate>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select realEstateID,buyer_tenantID,seller_lessorID,price,size,floor,year,bedrooms,availability,leaseSell,area,type,details,image from RealEstates where availability=@availability and seller_lessorID=@seller_lessorID and leaseSell=@leaseSell";
+
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("availability", true);
+                    command.Parameters.AddWithValue("seller_lessorID", seller_lessorID);
+                    command.Parameters.AddWithValue("leaseSell", leaseSell);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read() == true)
+                        {
+                            int realEstateID = (int)reader.GetInt32(0);
+                            string buyer_tenantID = reader.GetString(1);
+                            seller_lessorID = reader.GetString(2);
+                            int price = (int)reader.GetInt32(3);
+                            int size = (int)reader.GetInt32(4);
+                            int floor = (int)reader.GetInt32(5);
+                            int year = (int)reader.GetInt32(6);
+                            int bedrooms = (int)reader.GetInt32(7);
+                            bool availability = reader.GetBoolean(8);
+                            leaseSell = reader.GetBoolean(9);
+                            string area = reader.GetString(10);
+                            string type = reader.GetString(11);
+                            string details = reader.GetString(12);
+                            string listimage = reader.GetString(13);
+
+
+                            string[] images = listimage.Split(",", StringSplitOptions.None);
+
+                            List<string> listImages = images.ToList();
+                            RealEstate real = new RealEstate(realEstateID, buyer_tenantID, seller_lessorID, price, size, floor, year, bedrooms, availability, leaseSell, area, type, details, listImages);
+                            realEstateslist.Add(real);
+
+                        }
+
+                    }
+                }
+            }
+            if (realEstateslist.Count == 0)
+            {
+                Debug.WriteLine("No real estates found!!!");
+            }
+            Debug.WriteLine("sth bash ta akinhta einai :" + realEstateslist.Count.ToString());
+            return realEstateslist;
+        }
+
+
+        public static List<String> GetMemberContactDetails(String seller_lessorID)
+        {
+            List<String> sellerLessorContactDetails = new List<String>();
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                String selectSQL = "Select email,phoneNumber from Members where usersID=@usersID";
+                
+                using (var command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("usersID", seller_lessorID);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read() == true)
+                        {
+                            sellerLessorContactDetails.Add(reader.GetString(0));
+                            sellerLessorContactDetails.Add(reader.GetString(1));
+                            Debug.WriteLine("ok!!!!!");
+
+                        }
+
+                    }
+                }
+            }
+
+            return sellerLessorContactDetails;
+        }
+
 
     }
 }

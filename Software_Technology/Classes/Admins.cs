@@ -12,21 +12,18 @@ namespace Software_Technology.Classes
     {
         public Admins(string _usersID, string username, string name, string surname, string _password) : base(_usersID, username, name, surname, _password) { }
 
-        public bool DeleteRealEstate(RealEstate realEstateToBeDeleted) {
+        public void DeleteRealEstate(int realEstateToBeDeletedID) {
 
-            if (realEstateToBeDeleted.buyer_tenantID == null) {
-                return DatabaseController.DeleteRealEstateFromDatabase(realEstateToBeDeleted.realEstateID);
-            }
-            else
-            {
-                return false;
-            }
+            
+            DatabaseController.DeleteRealEstateFromDatabase(realEstateToBeDeletedID);
+            
+            
         }
 
-        public void DeleteMember(String memberToBeDeletedID) 
+        public void DeleteMember(String memberToBeDeletedID, String memberToBeDeletedUsername) 
         {
             
-            DatabaseController.DeleteMemberFromDatabase(memberToBeDeletedID);
+            DatabaseController.DeleteMemberFromDatabase(memberToBeDeletedID, memberToBeDeletedUsername);
             
         }
 

@@ -79,15 +79,17 @@ namespace Software_Technology.Navigation_UI_Pages
         private void Delete_Property_Click(object sender, RoutedEventArgs e)
         {
             //Write the delete code here.
-
+            ((Button)sender).IsEnabled = false;
             Debug.WriteLine((((Button)sender).Tag).ToString());
             //properties.RemoveAt(num);
             //((Button)sender).IsEnabled = false;
 
             //foreach (string item in properties)
             //{
-                //Debug.WriteLine(item);
+            //Debug.WriteLine(item);
             //}
+            int myR = (int)((Button)sender).Tag;
+            x.member_variable.DeleteMyRealEstateMember(myR);
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -97,14 +99,17 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Combo_Selection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (((ComboBox)sender).SelectedValue.ToString() == "Πώληση")
+            Debug.WriteLine("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+            Debug.WriteLine(((ComboBox)sender).SelectedValue.ToString());
+            if (((ComboBox)sender).SelectedValue.ToString().Equals("Πώληση"))
             {
                 //!!!!!!!!!!
                 Data_bind_Delete = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), false));
                 Debug.WriteLine("Hello 1");
             }
-            else
+            else if(((ComboBox)sender).SelectedValue.ToString().Equals("Εκμίσθωση"))
             {
+                Data_bind_Delete = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), true));
                 Debug.WriteLine("Hello 2");
             }
         }

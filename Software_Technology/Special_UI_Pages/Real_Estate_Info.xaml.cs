@@ -28,8 +28,7 @@ namespace Software_Technology.Special_UI_Pages
     /// </summary>
     public sealed partial class Real_Estate_Info : Page
     {
-        string phone_number_;
-        string email_;
+        
 
         RealEstate _object;
 
@@ -40,8 +39,14 @@ namespace Software_Technology.Special_UI_Pages
         {
             this.InitializeComponent();
             _object = x;
-            phone_number_ = "6944520267";
-            email_ = "konstantinos1125@gmail.com";
+            //Phone_Number = "6944520267";
+            //Email = "konstantinos1125@gmail.com";
+            //String id = x.seller_lessorID;
+
+
+            List<String> contactDetailsList = new List<String>(DatabaseController.GetMemberContactDetails(x.seller_lessorID));
+            Email = contactDetailsList[0];
+            Phone_Number = contactDetailsList[1];
 
         }
 

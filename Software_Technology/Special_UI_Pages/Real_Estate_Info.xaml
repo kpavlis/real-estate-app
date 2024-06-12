@@ -119,17 +119,17 @@
                 <StackPanel Grid.Row="5" Spacing="5"  VerticalAlignment="Center" Margin="0, 20,0, 10">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12">
                         <FontIcon Glyph="&#xE717;" FontSize="25"/>
-                        <TextBlock x:Name="phone_number" Text="Αριθμος Κινητού" FontSize="16" VerticalAlignment="Center" />
+                        <TextBlock Text="Αριθμος Κινητού" FontSize="16" VerticalAlignment="Center" />
                     </StackPanel>
-                    <TextBlock Text="{x:Bind phone_number}" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="phone_number" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
                 </StackPanel>
 
                 <StackPanel Grid.Row="5" Grid.Column="1" Spacing="5"  VerticalAlignment="Center" Margin="0, 20,0, 10">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12">
                         <FontIcon Glyph="&#xE715;" FontSize="25"/>
-                        <TextBlock x:Name="email" Text="Ηλεκτρονικό Ταχυδρομείο" FontSize="16" VerticalAlignment="Center" />
+                        <TextBlock  Text="Ηλεκτρονικό Ταχυδρομείο" FontSize="16" VerticalAlignment="Center" />
                     </StackPanel>
-                    <TextBlock Text="{x:Bind email}" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="email" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
