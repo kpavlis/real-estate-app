@@ -59,24 +59,10 @@ namespace Software_Technology
 
         public MainWindow()
         { 
-            connection = new SQLiteConnection(connectionString);
-            connection.Open();
-            String createSQLMembers = "Create table if not exists Members(email Text,usersID Text primary key,username Text,name Text,surname Text,phoneNumber Text,hashedPassword Text,soldRealEstates Text,boughtRealEstates Text,leasedRealEstates Text,rentedRealEstates Text)";
-            SQLiteCommand commandMembers = new SQLiteCommand(createSQLMembers, connection);
-            commandMembers.ExecuteNonQuery();
-
-            String createSQLAdmins = "Create table if not exists Admins(usersID Text primary key,username Text,name Text,surname Text,hashedPassword Text)";
-            SQLiteCommand commandAdmins = new SQLiteCommand(createSQLAdmins, connection);
-            commandAdmins.ExecuteNonQuery();
-
-            String createSQLRealEstates = "Create table if not exists RealEstates(realEstateID Int primary key,buyer_tenantID Text,seller_lessorID Text,price Int,size Int,floor Int,year Int,bedrooms Int,availability Boolean,leaseSell Boolean,area Text,type Text,details Text,image Text)";
-            SQLiteCommand commandRealEstates = new SQLiteCommand(createSQLRealEstates, connection);
-
-            commandRealEstates.ExecuteNonQuery();
-
+            DatabaseController.CreateTables();
             DatabaseController.SignUpAdmins("A1000", "Sotiria_Matina", "Sotiria_Matina", "Sotiria_Matina", Users.HashPassword("Sotiria_Matina"));
             DatabaseController.SignUpAdmins("A2000", "Theofanis_Kostas", "Theofanis_Kostas", "Theofanis_Kostas", Users.HashPassword("Theofanis_Kostas"));
-            connection.Close();
+            
             
             hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             SizeWindow();

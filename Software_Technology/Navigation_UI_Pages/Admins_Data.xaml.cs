@@ -55,6 +55,10 @@ namespace Software_Technology.Navigation_UI_Pages
 
             Debug.WriteLine(Name.ToString(), Surname.ToString());
             x.admin_variable.UpdateNameSurnameUsers(x.admin_variable.GetUsersID(), Name.ToString(), Surname.ToString());
+
+            x.TeachingTip.Title = "Επιτυχής ενημέρωση στοιχείων admin!";
+            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.IsOpen = true;
         }
     }
 }

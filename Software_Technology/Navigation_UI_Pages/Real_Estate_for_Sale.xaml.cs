@@ -146,6 +146,10 @@ namespace Software_Technology.Navigation_UI_Pages
             //x.member_variable.Buy_Sell_Rent_LeaseRealEstate
             Debug.WriteLine(reToBeBought.realEstateID);
             x.member_variable.Buy_Sell_Rent_LeaseRealEstateMember(reToBeBought, x.member_variable.GetUsersID());
+
+            x.TeachingTip.Title = "Επιτυχής αγορά ακινήτου !";
+            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.IsOpen = true;
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
