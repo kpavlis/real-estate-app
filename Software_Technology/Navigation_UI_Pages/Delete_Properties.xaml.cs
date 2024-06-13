@@ -88,8 +88,30 @@ namespace Software_Technology.Navigation_UI_Pages
             //{
             //Debug.WriteLine(item);
             //}
-            int myR = (int)((Button)sender).Tag;
-            x.member_variable.DeleteMyRealEstateMember(myR);
+            int realEstateIDtoDelete = (int)((Button)sender).Tag;
+            List<String> imagesToDelete = new List<String>(DatabaseController.GetRealEstatesFrorDeleteImages(realEstateIDtoDelete));
+            x.member_variable.DeleteMyRealEstateMember(realEstateIDtoDelete);
+
+            
+
+            foreach (string x in imagesToDelete)
+            {
+                string filePath = AppContext.BaseDirectory + x.Substring(1);
+
+                if (File.Exists(filePath))
+                {
+                    // Διαγραφή του αρχείου
+                    Debug.WriteLine(x);
+                    File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
+                    File.Delete(filePath);
+                    //Debug.WriteLine("Operation Completed");
+                }
+            }
+
+
+            x.TeachingTip.Title = "Επιτυχής διαγραφή χρήστη !";
+            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.IsOpen = true;
         }
 
         private void OnPropertyChanged(string propertyName)

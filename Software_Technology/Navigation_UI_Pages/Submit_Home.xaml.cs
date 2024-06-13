@@ -104,7 +104,6 @@ namespace Software_Technology.Navigation_UI_Pages
                 {
                     if (file != null)
                     {
-
                         // Προσδιορισμός του πλήρους μονοπατιού του φακέλου Assets
                         string assetsFolderPath = AppContext.BaseDirectory + @"Assets\Properties_Pictures";
                         //Debug.WriteLine(assetsFolderPath);
@@ -113,23 +112,22 @@ namespace Software_Technology.Navigation_UI_Pages
                         {
                             Directory.CreateDirectory(assetsFolderPath);
                         }
-
+                        String myString = x.member_variable.GetUsersID() + "_" + file.Name;
                         // Προσδιορισμός του πλήρους μονοπατιού για το νέο αρχείο
-                        string destinationFilePath = Path.Combine(assetsFolderPath, file.Name);
-                        //Debug.WriteLine(destinationFilePath);
+                        string destinationFilePath = Path.Combine(assetsFolderPath, myString);
+                        Debug.WriteLine("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+                        Debug.WriteLine(destinationFilePath);
                         // Αντιγραφή του αρχείου στον φάκελο Assets
-                        await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), file.Name, NameCollisionOption.ReplaceExisting);
+                        await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), myString, NameCollisionOption.ReplaceExisting);
                         File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
-                        current_file_path = @"/Assets/Properties_Pictures/" + file.Name;
+                        current_file_path = @"/Assets/Properties_Pictures/" + x.member_variable.GetUsersID() + "_" + file.Name;
                         Debug.WriteLine(current_file_path);
                         database_file_list.Add(current_file_path);
                         //Debug.WriteLine(file_path);
                         //Debug.WriteLine(File.Exists(AppContext.BaseDirectory + file_path).ToString());
                         //Debug.WriteLine("The Operation Completed!");
                         Debug.WriteLine("Creation!");
-                        
                     }
-                    
                     else
                     {
                         Debug.WriteLine("The operation hasn't completed!");
@@ -158,6 +156,14 @@ namespace Software_Technology.Navigation_UI_Pages
                     Debug.WriteLine("no compare");
                 }
                 ring.IsActive = false;
+
+
+
+
+
+                x.TeachingTip.Title = "Επιτυχής υποβολή ακινήτου!";
+                x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+                x.TeachingTip.IsOpen = true;
         }
 
         private void Clean_Photos_Click(object sender, RoutedEventArgs e)
@@ -165,7 +171,8 @@ namespace Software_Technology.Navigation_UI_Pages
             photos_group.Text = "Δεν έχεις επιλέξει φωτογραφία";
             current_file_list.Clear();
             add_photo_button.IsEnabled = true;
-            counter = 0; 
+            counter = 0;
+            database_file_list.Clear();
         }
     }
 }

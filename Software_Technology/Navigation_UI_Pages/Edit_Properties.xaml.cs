@@ -45,7 +45,7 @@ namespace Software_Technology.Navigation_UI_Pages
         //Properties
         string Type { get { return type_obj.Text; } set { type_obj.Text = value; } }
         string Area { get { return area_obj.Text; } set { area_obj.Text = value; } }
-        string Info { get { return info_obj.Document.ToString(); } set { info_obj.Document.SetText(Microsoft.UI.Text.TextSetOptions.None, value); } }
+        string Info { get { string x; info_obj.Document.GetText(Microsoft.UI.Text.TextGetOptions.None, out x); return x; } set { info_obj.Document.SetText(Microsoft.UI.Text.TextSetOptions.None, value); } }
         int Bedrooms { get { return (int)bedrooms_obj.Value; } set { bedrooms_obj.Value = value; } }
         int Price { get { return (int)price_obj.Value; } set { price_obj.Value = value; } }
         int Year { get { return (int)year_obj.Value; } set { year_obj.Value = value; } }
@@ -106,6 +106,7 @@ namespace Software_Technology.Navigation_UI_Pages
             //property_state_obj.SelectedIndex = 1;
             //Size = 1000;
             reToBeEdited = (RealEstate)e.ClickedItem;
+            myproperties = new List<String>(reToBeEdited.images);
             Type = reToBeEdited.type;
             Area = reToBeEdited.area;
             Info = reToBeEdited.details;
@@ -173,6 +174,7 @@ namespace Software_Technology.Navigation_UI_Pages
             current_file_list.Clear();
             add_photo_button.IsEnabled = true;
             counter = 0;
+            database_file_list.Clear();
         }
 
         private async void Update_Property_Click(object sender, RoutedEventArgs e)
@@ -205,14 +207,14 @@ namespace Software_Technology.Navigation_UI_Pages
                         {
                             Directory.CreateDirectory(assetsFolderPath);
                         }
-
+                        String myString = x.member_variable.GetUsersID() + "_" + file.Name;
                         // Προσδιορισμός του πλήρους μονοπατιού για το νέο αρχείο
-                        string destinationFilePath = Path.Combine(assetsFolderPath, file.Name);
+                        string destinationFilePath = Path.Combine(assetsFolderPath, myString);
                         //Debug.WriteLine(destinationFilePath);
                         // Αντιγραφή του αρχείου στον φάκελο Assets
-                        await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), file.Name, NameCollisionOption.ReplaceExisting);
+                        await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), myString, NameCollisionOption.ReplaceExisting);
                         File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
-                        current_file_path = @"/Assets/Properties_Pictures/" + file.Name;
+                        current_file_path = @"/Assets/Properties_Pictures/" + x.member_variable.GetUsersID() + "_" + file.Name;
                         Debug.WriteLine(current_file_path);
                         database_file_list.Add(current_file_path);
                         //Debug.WriteLine(file_path);
@@ -245,8 +247,12 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 reToBeEdited.ChangeRealEstateAttributes(Price, Size, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
             }
+
             
 
+            x.TeachingTip.Title = "Επιτυχής ενημέρωση ακινήτου !";
+            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.IsOpen = true;
         }
 
 
@@ -257,7 +263,7 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(((ComboBox)sender).SelectedValue.ToString() == "Πώληση")
+            if(((ComboBox)sender).SelectedValue.ToString().Equals("Πώληση"))
             {
                 //Data_bind_Edit = test_list;
                 Pane_Type.Text = "προς Πώληση";

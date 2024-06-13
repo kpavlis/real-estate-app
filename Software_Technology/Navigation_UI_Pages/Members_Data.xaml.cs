@@ -58,6 +58,10 @@ namespace Software_Technology.Navigation_UI_Pages
             Debug.WriteLine(Email.ToString(), Phone.ToString());
             x.member_variable.UpdateNameSurnameUsers(x.member_variable.GetUsersID(), NameOfUser.ToString(), Surname.ToString());
             x.member_variable.ChangeContactDetailsMember(Email.ToString(), Phone.ToString());
+
+            x.TeachingTip.Title = "Επιτυχής ενημέρωση στοιχείων χρήστη !";
+            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.IsOpen = true;
         }
     }
 }

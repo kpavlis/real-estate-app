@@ -19,6 +19,26 @@ namespace Software_Technology.Classes
         static SQLiteConnection connection;
 
 
+        public static void CreateTables()
+        {
+            connection = new SQLiteConnection(connectionString);
+            connection.Open();
+            String createSQLMembers = "Create table if not exists Members(email Text,usersID Text primary key,username Text,name Text,surname Text,phoneNumber Text,hashedPassword Text,soldRealEstates Text,boughtRealEstates Text,leasedRealEstates Text,rentedRealEstates Text)";
+            SQLiteCommand commandMembers = new SQLiteCommand(createSQLMembers, connection);
+            commandMembers.ExecuteNonQuery();
+
+            String createSQLAdmins = "Create table if not exists Admins(usersID Text primary key,username Text,name Text,surname Text,hashedPassword Text)";
+            SQLiteCommand commandAdmins = new SQLiteCommand(createSQLAdmins, connection);
+            commandAdmins.ExecuteNonQuery();
+
+            String createSQLRealEstates = "Create table if not exists RealEstates(realEstateID Int primary key,buyer_tenantID Text,seller_lessorID Text,price Int,size Int,floor Int,year Int,bedrooms Int,availability Boolean,leaseSell Boolean,area Text,type Text,details Text,image Text)";
+            SQLiteCommand commandRealEstates = new SQLiteCommand(createSQLRealEstates, connection);
+
+            commandRealEstates.ExecuteNonQuery();
+            connection.Close();
+        }
+
+
         public static bool SignUp(string email, string usersID, string username, string name, string surname, string phoneNumber, string hashedPassword)
         {
             try
@@ -713,32 +733,41 @@ namespace Software_Technology.Classes
         }
 
 
-        public static List<int> GetRealEstates1(String id)
+        public static List<String> GetRealEstatesFrorDeleteImages(int realEstateID)
         {
-            List<int> realEstateslist = new List<int>();
+            List<String> listImages = new List<String>();
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select realEstateID from RealEstates where leaseSell=@leaseSell and (buyer_tenantID=@id or seller_lessorID=@id)";
+                String selectSQL = "Select image from RealEstates where realEstateID=@realEstateID";
 
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
-                    command.Parameters.AddWithValue("leaseSell", false);
-                    command.Parameters.AddWithValue("id", id);
+                    command.Parameters.AddWithValue("realEstateID", realEstateID);
                     using (var reader = command.ExecuteReader())
                     {
-                        while (reader.Read() == true)
+                        if (reader.Read() == true)
                         {
-                            realEstateslist.Add((int)reader.GetInt32(0));
-                            Debug.WriteLine("NA ENA AKINHTO");
+                            
+                            string listimage = reader.GetString(0);
+
+
+                            string[] images = listimage.Split(",", StringSplitOptions.None);
+
+                            listImages = images.ToList();
+                            
 
                         }
 
                     }
                 }
             }
-
-            return realEstateslist;
+            Debug.WriteLine("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+            foreach (String item in listImages)
+            {
+                Debug.WriteLine(item);
+            }
+            return listImages;
         }
 
 

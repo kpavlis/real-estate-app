@@ -91,6 +91,10 @@ namespace Software_Technology.Navigation_UI_Pages
             string[] memberToBeDeleted = memberToBeDeleted0.Split(',');
 
             x.admin_variable.DeleteMember(memberToBeDeleted[0], memberToBeDeleted[1]);
+
+            x.TeachingTip.Title = "Επιτυχής διαγραφή χρήστη member !";
+            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.IsOpen = true;
         }
     }
 }

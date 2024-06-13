@@ -29,6 +29,8 @@ namespace Software_Technology.Navigation_UI_Pages
 
         List<int> _data_bind_delete_properties_admins = new List<int>();
 
+        List<string> myproperties = new List<string>();
+
         public List<int> Data_bind_Delete_Properties_Admins
         {
             get { return _data_bind_delete_properties_admins; }
@@ -69,7 +71,28 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             ((Button)sender).IsEnabled = false;
             Debug.WriteLine((int)((Button)sender).Tag);
+            List<String> imagesToDelete = new List<String>(DatabaseController.GetRealEstatesFrorDeleteImages((int)((Button)sender).Tag));
             x.admin_variable.DeleteRealEstate((int)((Button)sender).Tag);
+
+            x.TeachingTip.Title = "Επιτυχής διαγραφή ακινήτου!";
+            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.IsOpen = true;
+
+            
+
+            foreach (string x in imagesToDelete)
+            {
+                string filePath = AppContext.BaseDirectory + x.Substring(1);
+
+                if (File.Exists(filePath))
+                {
+                    // Διαγραφή του αρχείου
+                    Debug.WriteLine(x);
+                    File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
+                    File.Delete(filePath);
+                    //Debug.WriteLine("Operation Completed");
+                }
+            }
         }
     }
 }

@@ -159,6 +159,11 @@ namespace Software_Technology.Navigation_UI_Pages
             Debug.WriteLine(reToBeRent.realEstateID);
             x.member_variable.Buy_Sell_Rent_LeaseRealEstateMember(reToBeRent, x.member_variable.GetUsersID());
 
+
+            x.TeachingTip.Title = "Επιτυχής ενοικίαση ακινήτου !";
+            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.IsOpen = true;
+
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -182,7 +187,17 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Clear_Filters_Click(object sender, RoutedEventArgs e)
         {
-
+            if (x.member_variable != null)
+            {
+                Debug.WriteLine("mphka sto if");
+                String userIDExists = x.member_variable.GetUsersID();
+                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, true, 0, 0, 0, 0));
+            }
+            else
+            {
+                Debug.WriteLine("mphka sto if");
+                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember("", true, 0, 0, 0, 0));
+            }
         }
     }
 }
