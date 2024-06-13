@@ -104,7 +104,14 @@ namespace Software_Technology.Navigation_UI_Pages
                 {
                     if (file != null)
                     {
-                        Directory.CreateDirectory(assetsFolderPath);
+                        // Προσδιορισμός του πλήρους μονοπατιού του φακέλου Assets
+                        string assetsFolderPath = AppContext.BaseDirectory + @"Assets\Properties_Pictures";
+                        //Debug.WriteLine(assetsFolderPath);
+                        // Βεβαιωθείτε ότι ο φάκελος Assets υπάρχει
+                        if (!Directory.Exists(assetsFolderPath))
+                        {
+                            Directory.CreateDirectory(assetsFolderPath);
+                        }
                         String myString = x.member_variable.GetUsersID() + "_" + file.Name;
                         // Προσδιορισμός του πλήρους μονοπατιού για το νέο αρχείο
                         string destinationFilePath = Path.Combine(assetsFolderPath, myString);
