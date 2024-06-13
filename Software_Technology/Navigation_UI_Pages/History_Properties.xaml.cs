@@ -83,7 +83,7 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Combo_Selection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (((ComboBox)sender).SelectedValue.ToString() == "Αγορασμένα")
+            if (((ComboBox)sender).SelectedValue.ToString().Equals("Αγορασμένα"))
             {
                 //List<int> mylist = new List<int>(DatabaseController.GetRealEstates1(x.member_variable.GetUsersID()));
                 //Debug.WriteLine("reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"+mylist.Count.ToString());
