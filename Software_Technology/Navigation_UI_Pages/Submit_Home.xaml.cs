@@ -105,24 +105,22 @@ namespace Software_Technology.Navigation_UI_Pages
                     if (file != null)
                     {
                         Directory.CreateDirectory(assetsFolderPath);
+                        String myString = x.member_variable.GetUsersID() + "_" + file.Name;
+                        // Προσδιορισμός του πλήρους μονοπατιού για το νέο αρχείο
+                        string destinationFilePath = Path.Combine(assetsFolderPath, myString);
+                        Debug.WriteLine("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+                        Debug.WriteLine(destinationFilePath);
+                        // Αντιγραφή του αρχείου στον φάκελο Assets
+                        await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), myString, NameCollisionOption.ReplaceExisting);
+                        File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
+                        current_file_path = @"/Assets/Properties_Pictures/" + x.member_variable.GetUsersID() + "_" + file.Name;
+                        Debug.WriteLine(current_file_path);
+                        database_file_list.Add(current_file_path);
+                        //Debug.WriteLine(file_path);
+                        //Debug.WriteLine(File.Exists(AppContext.BaseDirectory + file_path).ToString());
+                        //Debug.WriteLine("The Operation Completed!");
+                        Debug.WriteLine("Creation!");
                     }
-                    String myString = x.member_variable.GetUsersID() + "_" + file.Name;
-                    // Προσδιορισμός του πλήρους μονοπατιού για το νέο αρχείο
-                    string destinationFilePath = Path.Combine(assetsFolderPath, myString);
-                    Debug.WriteLine("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-                    Debug.WriteLine(destinationFilePath);
-                    // Αντιγραφή του αρχείου στον φάκελο Assets
-                    await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), myString, NameCollisionOption.ReplaceExisting);
-                    File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
-                    current_file_path = @"/Assets/Properties_Pictures/" + x.member_variable.GetUsersID() + "_" + file.Name;
-                    Debug.WriteLine(current_file_path);
-                    database_file_list.Add(current_file_path);
-                    //Debug.WriteLine(file_path);
-                    //Debug.WriteLine(File.Exists(AppContext.BaseDirectory + file_path).ToString());
-                    //Debug.WriteLine("The Operation Completed!");
-                    Debug.WriteLine("Creation!");
-                    
-                    
                     else
                     {
                         Debug.WriteLine("The operation hasn't completed!");
