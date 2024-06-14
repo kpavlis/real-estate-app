@@ -161,7 +161,7 @@ namespace Software_Technology.Navigation_UI_Pages
 
 
 
-                x.TeachingTip.Title = "Επιτυχής υποβολή ακινήτου!";
+                x.TeachingTip.Title = "Επιτυχής Υποβολή Ακινήτου";
                 x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
                 x.TeachingTip.IsOpen = true;
         }

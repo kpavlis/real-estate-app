@@ -1,4 +1,4 @@
-using System;
+ο»Ώusing System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -92,8 +92,8 @@ namespace Software_Technology.Navigation_UI_Pages
 
             x.admin_variable.DeleteMember(memberToBeDeleted[0], memberToBeDeleted[1]);
 
-            x.TeachingTip.Title = "Επιτυχής διαγραφή χρήστη member !";
-            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.Title = "Ξ•Ο€ΞΉΟ„Ο…Ο‡Ξ®Ο‚ Ξ”ΞΉΞ±Ξ³ΟΞ±Ο†Ξ® Ξ§ΟΞ®ΟƒΟ„Ξ· Ξember";
+            x.TeachingTip.Subtitle = "Ξ— Ξ΄ΞΉΞ±Ξ΄ΞΉΞΊΞ±ΟƒΞ―Ξ± ΞΏΞ»ΞΏΞΊΞ»Ξ·ΟΟΞΈΞ·ΞΊΞµ ΞµΟ€ΞΉΟ„Ο…Ο‡ΟΟ‚ !";
             x.TeachingTip.IsOpen = true;
         }
     }

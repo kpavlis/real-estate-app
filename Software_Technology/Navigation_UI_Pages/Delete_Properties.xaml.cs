@@ -109,7 +109,7 @@ namespace Software_Technology.Navigation_UI_Pages
             }
 
 
-            x.TeachingTip.Title = "Επιτυχής διαγραφή χρήστη !";
+            x.TeachingTip.Title = "Επιτυχής Διαγραφή Ακινήτου";
             x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
             x.TeachingTip.IsOpen = true;
         }
