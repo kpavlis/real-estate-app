@@ -129,7 +129,7 @@ namespace Software_Technology.Navigation_UI_Pages
             //int y = reToBeRent.bedrooms;
             //Debug.WriteLine((RealEstate)((Button)sender).Tag.realEstateID);
             //Debug.WriteLine(reToBeRent.ToString());
-            if (x.member_variable == null)
+            if (x.member_variable == null && x.admin_variable != null)
             {
                 x.TeachingTip.Title = "Αποτυχία Ενοικίασης";
                 x.TeachingTip.Subtitle = "Πρέπει να συνδεθείς ως πελάτης για να ενοικιάσεις το ακίνητο !";
