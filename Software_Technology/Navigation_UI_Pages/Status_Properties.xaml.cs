@@ -92,4 +92,31 @@ namespace Software_Technology.Navigation_UI_Pages
             }
         }
     }
+
+    public class FieldConverter : IValueConverter
+    {
+        
+        public object Convert(object initial, Type target, object param, string lang)
+        {
+            bool final = (bool)initial;
+            
+            if (final == true)
+            {
+                
+                return "Διαθέσιμο";
+
+            }
+            else
+            {
+                
+                return "Μη-Διαθέσιμο";
+            }
+           
+        }
+
+        public object ConvertBack(object initial, Type target, object param, string lang)
+        {
+            return null;
+        }
+    }
 }

@@ -86,11 +86,16 @@ namespace Software_Technology.Navigation_UI_Pages
 
                 if (File.Exists(filePath))
                 {
-                    // ÄéáãñáöÞ ôïõ áñ÷åßïõ
-                    Debug.WriteLine(x);
-                    File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
-                    File.Delete(filePath);
-                    //Debug.WriteLine("Operation Completed");
+                    try
+                    {
+                        Debug.WriteLine(x);
+                        File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
+                        File.Delete(filePath);
+                        //Debug.WriteLine("Operation Completed");
+                    } catch(Exception ex)
+                    {
+                        Debug.WriteLine(ex.ToString());
+                    }
                 }
             }
         }

@@ -95,7 +95,7 @@
                                 <NumberBox x:Name="bedrooms_obj"/>
                                 <TextBlock Text="Τιμή:"/>
                                 <NumberBox x:Name="price_obj"/>
-                                <TextBlock Text="Πληροφορίες:"/>
+                                <TextBlock Text="Πληροφορίες:" Margin="0, 37,0,0"/>
                                 <RichEditBox x:Name="info_obj" Height="170"/>
                             </StackPanel>
 
@@ -107,10 +107,13 @@
                                 <TextBlock Text="Όροφος:"/>
                                 <NumberBox x:Name="floor_obj"/>
                                 <TextBlock Text="Προς Πώληση ή Ενοικίαση:"/>
-                                <ComboBox x:Name="property_state_obj" PlaceholderText="Επιλογή" Width="200">
-                                    <x:String>Πώληση</x:String>
-                                    <x:String>Ενοικίαση</x:String>
-                                </ComboBox>
+                                <StackPanel Spacing="5">
+                                    <ComboBox x:Name="property_state_obj" IsEnabled="False" PlaceholderText="Επιλογή" Width="200">
+                                        <x:String>Πώληση</x:String>
+                                        <x:String>Ενοικίαση</x:String>
+                                    </ComboBox>
+                                    <CheckBox Content="Αλλαγή χρήσης του ακινήτου;" Click="CheckBox_Click"/>
+                                </StackPanel>
                                 <TextBlock Text="Εικόνες Ακινήτου:"/>
                                 <Grid>
                                     <Button x:Name="Delete_All_Photos" Content="Διαγραγή των Φωτογραφιών" Click="Delete_All_Photos_Click"/>

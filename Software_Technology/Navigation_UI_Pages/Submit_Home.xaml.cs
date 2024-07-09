@@ -157,7 +157,7 @@ namespace Software_Technology.Navigation_UI_Pages
                 }
                 ring.IsActive = false;
 
-
+                database_file_list.Clear();
 
 
 
