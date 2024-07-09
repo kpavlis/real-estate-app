@@ -101,6 +101,8 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             Delete_All_Photos.Visibility = Visibility.Visible;
             Photos_Selection.Visibility = Visibility.Collapsed;
+            current_file_list.Clear();
+            database_file_list.Clear();
             //Test_Real x = (Test_Real)e.ClickedItem;//na parw akinhto
             //edit_property = x;
             //property_state_obj.SelectedIndex = 1;
@@ -187,11 +189,17 @@ namespace Software_Technology.Navigation_UI_Pages
 
                     if (File.Exists(filePath))
                     {
-                        // Διαγραφή του αρχείου
-                        Debug.WriteLine(x);
-                        File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
-                        File.Delete(filePath);
-                        //Debug.WriteLine("Operation Completed");
+                        try
+                        {
+                            // Διαγραφή του αρχείου
+                            Debug.WriteLine(x);
+                            File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
+                            File.Delete(filePath);
+                            //Debug.WriteLine("Operation Completed");
+                        }catch (Exception ex)
+                        {
+                            Debug.WriteLine(ex.ToString());
+                        }
                     }
                 }
                 foreach (StorageFile file in current_file_list)
@@ -248,9 +256,9 @@ namespace Software_Technology.Navigation_UI_Pages
                 reToBeEdited.ChangeRealEstateAttributes(Price, Size, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
             }
 
-            
+            database_file_list.Clear();
 
-            x.TeachingTip.Title = "Επιτυχής ενημέρωση ακινήτου !";
+            x.TeachingTip.Title = "Επιτυχής Ενημέρωση Ακινήτου";
             x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
             x.TeachingTip.IsOpen = true;
         }
@@ -274,6 +282,27 @@ namespace Software_Technology.Navigation_UI_Pages
                 //Data_bind_Edit = myproperties;
                 Pane_Type.Text = "προς Εκμίσθωση";
                 Data_bind_Edit = new List<RealEstate>(DatabaseController.GetMyRealEstates(x.member_variable.GetUsersID(), true));
+            }
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (((CheckBox)sender).IsChecked == true)
+            {
+                property_state_obj.IsEnabled = true;
+            }
+            else
+            {
+                switch (reToBeEdited.leaseSell)
+                {
+                    case true:
+                        Property_State = "1";
+                        break;
+                    case false:
+                        Property_State = "0";
+                        break;
+                }
+                property_state_obj.IsEnabled = false;
             }
         }
     }

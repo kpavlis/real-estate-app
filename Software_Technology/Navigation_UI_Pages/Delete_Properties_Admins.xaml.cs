@@ -1,4 +1,4 @@
-using System;
+ο»Ώusing System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -74,8 +74,8 @@ namespace Software_Technology.Navigation_UI_Pages
             List<String> imagesToDelete = new List<String>(DatabaseController.GetRealEstatesFrorDeleteImages((int)((Button)sender).Tag));
             x.admin_variable.DeleteRealEstate((int)((Button)sender).Tag);
 
-            x.TeachingTip.Title = "Επιτυχής διαγραφή ακινήτου!";
-            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.Title = "Ξ•Ο€ΞΉΟ„Ο…Ο‡Ξ®Ο‚ Ξ”ΞΉΞ±Ξ³ΟΞ±Ο†Ξ® Ξ‘ΞΊΞΉΞ½Ξ®Ο„ΞΏΟ…";
+            x.TeachingTip.Subtitle = "Ξ— Ξ΄ΞΉΞ±Ξ΄ΞΉΞΊΞ±ΟƒΞ―Ξ± ΞΏΞ»ΞΏΞΊΞ»Ξ·ΟΟΞΈΞ·ΞΊΞµ ΞµΟ€ΞΉΟ„Ο…Ο‡ΟΟ‚ !";
             x.TeachingTip.IsOpen = true;
 
             
@@ -86,11 +86,16 @@ namespace Software_Technology.Navigation_UI_Pages
 
                 if (File.Exists(filePath))
                 {
-                    // Διαγραφή του αρχείου
-                    Debug.WriteLine(x);
-                    File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
-                    File.Delete(filePath);
-                    //Debug.WriteLine("Operation Completed");
+                    try
+                    {
+                        Debug.WriteLine(x);
+                        File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
+                        File.Delete(filePath);
+                        //Debug.WriteLine("Operation Completed");
+                    } catch(Exception ex)
+                    {
+                        Debug.WriteLine(ex.ToString());
+                    }
                 }
             }
         }

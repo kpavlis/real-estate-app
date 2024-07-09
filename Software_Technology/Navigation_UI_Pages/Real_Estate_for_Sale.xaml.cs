@@ -19,6 +19,7 @@ using System.Diagnostics;
 using Software_Technology.Special_UI_Pages;
 using Software_Technology.Classes;
 using System.ComponentModel;
+using Windows.Foundation.Metadata;
 
 
 namespace Software_Technology.Navigation_UI_Pages
@@ -117,11 +118,27 @@ namespace Software_Technology.Navigation_UI_Pages
         private async void Buy_Click(object sender, RoutedEventArgs e)
         {
             reToBeBought = (RealEstate)(((Button)sender).Tag);
-            if (x.member_variable == null)
+            if (x.member_variable == null && x.admin_variable != null)
             {
                 x.TeachingTip.Title = "Αποτυχία Αγοράς";
                 x.TeachingTip.Subtitle = "Πρέπει να συνδεθείς ως πελάτης για να αγοράσεις το ακίνητο !";
                 x.TeachingTip.IsOpen = true;
+            }
+            else if(x.member_variable == null && x.admin_variable == null)
+            {
+                x.dialog.Title = "Προχώρησε σε Σύνδεση/Εγγραφή";
+                x.dialog.PrimaryButtonText = "Σύνδεση";
+                x.dialog.SecondaryButtonText = "";
+                x.dialog.CloseButtonText = "Κλείσιμο";
+                x.dialog.DefaultButton = ContentDialogButton.Primary;
+                x.dialog.Content = new Sign_In_Page(x);
+
+                if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 8))
+                {
+                    x.dialog.XamlRoot = this.XamlRoot;
+                }
+
+                await x.dialog.ShowAsync();
             }
             else
             {
@@ -147,7 +164,7 @@ namespace Software_Technology.Navigation_UI_Pages
             Debug.WriteLine(reToBeBought.realEstateID);
             x.member_variable.Buy_Sell_Rent_LeaseRealEstateMember(reToBeBought, x.member_variable.GetUsersID());
 
-            x.TeachingTip.Title = "Επιτυχής αγορά ακινήτου !";
+            x.TeachingTip.Title = "Επιτυχής Αγορά Ακινήτου";
             x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
             x.TeachingTip.IsOpen = true;
         }

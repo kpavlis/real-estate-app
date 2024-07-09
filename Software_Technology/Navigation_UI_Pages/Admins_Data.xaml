@@ -55,9 +55,10 @@
                     <TextBox x:Name="surname_obj" Text="{x:Bind x.admin_variable.surname}" Width="300"/>
                 </StackPanel>
 
-                <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"  Margin="0,20,0,80">
+                <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"  Margin="0,20,0,39">
                     <TextBlock Text="Κωδικός"/>
-                    <PasswordBox x:Name="password_obj" Width="300"/>
+                    <PasswordBox x:Name="password_obj" Width="300" IsEnabled="False"/>
+                    <CheckBox Content="Αλλαγή του κωδικού πρόσβασης ;" Click="CheckBox_Click"/>
                 </StackPanel>
 
                 <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Content="Ενημέρωση Στοιχείων" Margin="0,0,0,20" Click="Update_Click"/>

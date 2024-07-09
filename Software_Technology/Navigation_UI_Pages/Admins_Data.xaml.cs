@@ -1,4 +1,4 @@
-using Microsoft.UI.Xaml;
+ο»Ώusing Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -56,9 +56,22 @@ namespace Software_Technology.Navigation_UI_Pages
             Debug.WriteLine(Name.ToString(), Surname.ToString());
             x.admin_variable.UpdateNameSurnameUsers(x.admin_variable.GetUsersID(), Name.ToString(), Surname.ToString());
 
-            x.TeachingTip.Title = "Επιτυχής ενημέρωση στοιχείων admin!";
-            x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
+            x.TeachingTip.Title = "Ξ•Ο€ΞΉΟ„Ο…Ο‡Ξ®Ο‚ Ξ•Ξ½Ξ·ΞΌΞ­ΟΟ‰ΟƒΞ· Ξ£Ο„ΞΏΞΉΟ‡ΞµΞ―Ο‰Ξ½ Ξ§ΟΞ®ΟƒΟ„Ξ· Admin";
+            x.TeachingTip.Subtitle = "Ξ— Ξ΄ΞΉΞ±Ξ΄ΞΉΞΊΞ±ΟƒΞ―Ξ± ΞΏΞ»ΞΏΞΊΞ»Ξ·ΟΟΞΈΞ·ΞΊΞµ ΞµΟ€ΞΉΟ„Ο…Ο‡ΟΟ‚ !";
             x.TeachingTip.IsOpen = true;
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (((CheckBox)sender).IsChecked == true)
+            {
+                password_obj.IsEnabled = true;
+            }
+            else
+            {
+                password_obj.Password = "";
+                password_obj.IsEnabled = false;
+            }
         }
     }
 }

@@ -10,6 +10,10 @@
     mc:Ignorable="d"
     >
 
+    <Page.Resources>
+        <local:FieldConverter x:Key="fieldConverter"/>
+    </Page.Resources>
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -36,7 +40,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="classes:RealEstate">
                     <Border Margin="0, 10, 0, 10" Padding="2,10,2,10" Background="{ThemeResource AcrylicInAppFillColorBaseBrush}" BorderThickness="1" BorderBrush="Black" CornerRadius="6" Width="600">
-                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Left" Margin="45, 0 ,0,0">
                             <FontIcon Glyph="&#xE9D5;"/>
 
                             <TextBlock Text="Κωδικός:" Margin="15, 0, 0,0"/>
@@ -47,7 +51,7 @@
                             <TextBlock Text="{x:Bind size}" FontWeight="SemiBold"  Margin="0, 0, 15,0" />
 
                             <TextBlock Text="Διαθεσιμότητα:" />
-                            <TextBlock Text="{x:Bind availability}" FontWeight="SemiBold"  Margin="0, 0, 15,0" />
+                            <TextBlock Text="{x:Bind availability , Converter={StaticResource fieldConverter}}" FontWeight="SemiBold"  Margin="0, 0, 15,0" />
                         </StackPanel>
                     </Border>
                 </DataTemplate>

@@ -125,12 +125,12 @@
                                 <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0, 12,0,0" >
                                     <Image Source="/Assets/Icons/rooms.png" Height="30" Width="30"/>
                                     <TextBlock Text="{x:Bind bedrooms}" VerticalAlignment="Center"  Margin="10, 0, 0,0"/>
-                                    <TextBlock Text=" Υπνο/δωμ." VerticalAlignment="Center"  Margin="10, 0, 0,0"/>
+                                    <TextBlock Text="Υπνο/δω." VerticalAlignment="Center"  Margin="10, 0, 0,0"/>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="10, 12,0,0">
                                     <Image Source="/Assets/Icons/price.png" Height="30" Width="30"/>
                                     <TextBlock Text="{x:Bind price}" VerticalAlignment="Center" Margin="6, 0, 0,0"/>
-                                    <TextBlock Text="$/μ." VerticalAlignment="Center"/>
+                                    <TextBlock Text="$" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">

@@ -100,16 +100,21 @@ namespace Software_Technology.Navigation_UI_Pages
 
                 if (File.Exists(filePath))
                 {
+                    try { 
                     // Διαγραφή του αρχείου
                     Debug.WriteLine(x);
                     File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
                     File.Delete(filePath);
                     //Debug.WriteLine("Operation Completed");
+                    } catch(Exception ex)
+                    {
+                        Debug.WriteLine(ex.ToString());
+                    }
                 }
             }
 
 
-            x.TeachingTip.Title = "Επιτυχής διαγραφή χρήστη !";
+            x.TeachingTip.Title = "Επιτυχής Διαγραφή Ακινήτου";
             x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
             x.TeachingTip.IsOpen = true;
         }
