@@ -92,7 +92,6 @@ namespace Software_Technology.Classes
                             logInValues.Add(reader.GetString(3));
                             logInValues.Add(reader.GetString(4));
                             logInValues.Add(reader.GetString(5));
-                            Debug.WriteLine("Welcome Member!!!!!");
 
                         }
 

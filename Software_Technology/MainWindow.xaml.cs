@@ -34,8 +34,8 @@ namespace Software_Technology
 {
     public sealed partial class MainWindow : Window
     {
-        internal Members member_variable;
-        internal Admins admin_variable;
+        internal Member member_variable;
+        internal Admin admin_variable;
 
         public ContentDialog dialog = new ContentDialog();
 
@@ -60,8 +60,8 @@ namespace Software_Technology
         public MainWindow()
         { 
             DatabaseController.CreateTables();
-            DatabaseController.SignUpAdmins("A1000", "Sotiria_Matina", "Sotiria_Matina", "Sotiria_Matina", Users.HashPassword("Sotiria_Matina"));
-            DatabaseController.SignUpAdmins("A2000", "Theofanis_Kostas", "Theofanis_Kostas", "Theofanis_Kostas", Users.HashPassword("Theofanis_Kostas"));
+            DatabaseController.SignUpAdmins("A1000", "Sotiria_Matina", "Sotiria_Matina", "Sotiria_Matina", User.HashPassword("Sotiria_Matina"));
+            DatabaseController.SignUpAdmins("A2000", "Theofanis_Kostas", "Theofanis_Kostas", "Theofanis_Kostas", User.HashPassword("Theofanis_Kostas"));
             
             
             hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
@@ -215,16 +215,15 @@ namespace Software_Technology
 
         private void Log_In(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            List<string> logInValues = Users.LogIn(((Sign_In_Page)sender.Content).Username, ((Sign_In_Page)sender.Content).Password);
+            List<string> logInValues = User.LogIn(((Sign_In_Page)sender.Content).Username, ((Sign_In_Page)sender.Content).Password);
             logInValues.Add(((Sign_In_Page)sender.Content).Username);
             foreach(string log in logInValues)
             {
                 //Debug.WriteLine(log);
             }
             if (!logInValues.Count.Equals(1) && logInValues[0].StartsWith("A"))
-            {
-                //ID=0,Name=1,Surname=2,EncryptedPassword=3,Username=4
-                Admins admin = new Admins(logInValues[0], logInValues[4], logInValues[1], logInValues[2], logInValues[3]);
+            { 
+                Admin admin = new Admin(logInValues[0], logInValues[4], logInValues[1], logInValues[2], logInValues[3]);
                 admin_variable = admin;
                 nv_Delete_Property_Admins.Visibility = Visibility.Visible;
                 nv_Delete_User_Admins.Visibility = Visibility.Visible;
@@ -238,8 +237,7 @@ namespace Software_Technology
             else if (!logInValues.Count.Equals(1) && logInValues[0].StartsWith("M"))
             {
 
-                //ID=0,Email=1,Name=2,Surname=3,PhoneNumber=4,EncryptedPassword=5,USername=6
-                Members member = new Members(logInValues[1], logInValues[0], logInValues[6], logInValues[2], logInValues[4], logInValues[5], logInValues[3], new List<RealEstate>(), new List<RealEstate>(), new List<RealEstate>(), new List<RealEstate>());
+                Member member = new Member(logInValues[1], logInValues[0], logInValues[6], logInValues[2], logInValues[4], logInValues[5], logInValues[3], new List<RealEstate>(), new List<RealEstate>(), new List<RealEstate>(), new List<RealEstate>());
                 List<RealEstate> membersRealEstates = DatabaseController.RetrieveUsersRealEstates(logInValues[0], logInValues[0]);
                 if (membersRealEstates.Count > 0)
                 {
@@ -295,9 +293,9 @@ namespace Software_Technology
             Random random = new Random();
             string memberID = "M" + random.Next(1000, 5001);
 
-            Members member = new Members(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Phone,((Sign_Up_Page)sender.Content).Password, new List<RealEstate>(),new List<RealEstate>(),new List<RealEstate>(),new List<RealEstate>());
+            Member member = new Member(((Sign_Up_Page)sender.Content).Email, memberID, ((Sign_Up_Page)sender.Content).Username, ((Sign_Up_Page)sender.Content).Name, ((Sign_Up_Page)sender.Content).Surname, ((Sign_Up_Page)sender.Content).Phone,((Sign_Up_Page)sender.Content).Password, new List<RealEstate>(),new List<RealEstate>(),new List<RealEstate>(),new List<RealEstate>());
             member.SignUpMember(member.email,memberID,member.username,member.name,member.surname,member.phoneNumber, member.GetPassword());
-            //app main window (successfull sign in == successfull log in)
+            
             member_variable = member;
             nv_Add_Property.Visibility = Visibility.Visible;
             nv_Status_Property.Visibility = Visibility.Visible;

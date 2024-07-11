@@ -72,12 +72,12 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                
                 String userIDExists = x.member_variable.GetUsersID();
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, true, 0, 0, 0, 0));
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember(userIDExists, true, 0, 0, 0, 0));
             }
             else
             {
                 
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember("", true, 0, 0, 0, 0));
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember("", true, 0, 0, 0, 0));
             }
             
 
@@ -172,11 +172,11 @@ namespace Software_Technology.Navigation_UI_Pages
             if (x.member_variable != null)
             {
                 String userIDExists = x.member_variable.GetUsersID();
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, true, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember(userIDExists, true, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
             }
             else
             {
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(null, true, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember(null, true, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
             }
 
             
@@ -189,12 +189,12 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 
                 String userIDExists = x.member_variable.GetUsersID();
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, true, 0, 0, 0, 0));
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember(userIDExists, true, 0, 0, 0, 0));
             }
             else
             {
                 
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember("", true, 0, 0, 0, 0));
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember("", true, 0, 0, 0, 0));
             }
         }
     }

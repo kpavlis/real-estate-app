@@ -12,7 +12,7 @@ using System.Xml.Linq;
 using Windows.Media.AppBroadcasting;
 using Windows.System;
 
-public abstract class Users
+public abstract class User
 {
     private string _usersID { get; }
     public string username { get; }
@@ -20,7 +20,7 @@ public abstract class Users
     public string surname { get; private set;}
 	private string _password { get; set; }
 
-    public Users(string _usersID, string username, string name, string surname, string _password)
+    public User(string _usersID, string username, string name, string surname, string _password)
     {
         this._usersID = _usersID;
         this.username = username;

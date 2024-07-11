@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Software_Technology.Classes
 {
-    class Members : Users
+    class Member : User
     {
         public string email { get; private set; }
         public string phoneNumber { get; private set; }
@@ -29,7 +29,7 @@ namespace Software_Technology.Classes
 
 
 
-        public Members(string email, string _usersID, string username, string name, string surname, string phoneNumber, string _password, List<RealEstate> soldRealEstates, List<RealEstate> boughtRealEstates, List<RealEstate> leasedRealEstates, List<RealEstate> rentedRealEstates) : base(_usersID, username, name, surname, _password)
+        public Member(string email, string _usersID, string username, string name, string surname, string phoneNumber, string _password, List<RealEstate> soldRealEstates, List<RealEstate> boughtRealEstates, List<RealEstate> leasedRealEstates, List<RealEstate> rentedRealEstates) : base(_usersID, username, name, surname, _password)
         {
             this.email = email;
             this.phoneNumber = phoneNumber;
