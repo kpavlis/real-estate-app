@@ -30,8 +30,6 @@ namespace Software_Technology.Navigation_UI_Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //Temporary List
-        List<string> sale = new List<string>();
 
         List<RealEstate> _data_bind_status = new List<RealEstate>();
         
@@ -77,7 +75,6 @@ namespace Software_Technology.Navigation_UI_Pages
             if (((ComboBox)sender).SelectedValue.ToString() == "Πώληση")
             {
                 
-                Debug.WriteLine("Hello 1");
                 
                 Data_bind_Status = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("sold");
 
@@ -85,7 +82,6 @@ namespace Software_Technology.Navigation_UI_Pages
             else
             {
                 
-                Debug.WriteLine("Hello 2");
                 
                 Data_bind_Status = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("leased");
 

@@ -39,9 +39,6 @@ namespace Software_Technology.Special_UI_Pages
         {
             this.InitializeComponent();
             _object = x;
-            //Phone_Number = "6944520267";
-            //Email = "konstantinos1125@gmail.com";
-            //String id = x.seller_lessorID;
 
 
             List<String> contactDetailsList = new List<String>(DatabaseController.GetMemberContactDetails(x.seller_lessorID));

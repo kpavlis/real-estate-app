@@ -104,33 +104,27 @@ namespace Software_Technology.Navigation_UI_Pages
                 {
                     if (file != null)
                     {
-                        // Προσδιορισμός του πλήρους μονοπατιού του φακέλου Assets
+                        
                         string assetsFolderPath = AppContext.BaseDirectory + @"Assets\Properties_Pictures";
-                        //Debug.WriteLine(assetsFolderPath);
-                        // Βεβαιωθείτε ότι ο φάκελος Assets υπάρχει
+                        
                         if (!Directory.Exists(assetsFolderPath))
                         {
                             Directory.CreateDirectory(assetsFolderPath);
                         }
                         String myString = x.member_variable.GetUsersID() + "_" + file.Name;
-                        // Προσδιορισμός του πλήρους μονοπατιού για το νέο αρχείο
+                        
                         string destinationFilePath = Path.Combine(assetsFolderPath, myString);
-                        Debug.WriteLine("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-                        Debug.WriteLine(destinationFilePath);
-                        // Αντιγραφή του αρχείου στον φάκελο Assets
+                        
                         await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), myString, NameCollisionOption.ReplaceExisting);
                         File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
                         current_file_path = @"/Assets/Properties_Pictures/" + x.member_variable.GetUsersID() + "_" + file.Name;
-                        Debug.WriteLine(current_file_path);
+                        
                         database_file_list.Add(current_file_path);
-                        //Debug.WriteLine(file_path);
-                        //Debug.WriteLine(File.Exists(AppContext.BaseDirectory + file_path).ToString());
-                        //Debug.WriteLine("The Operation Completed!");
-                        Debug.WriteLine("Creation!");
+                        
                     }
                     else
                     {
-                        Debug.WriteLine("The operation hasn't completed!");
+                        //Debug.WriteLine("The operation hasn't completed!");
                     }
                     
                 }
@@ -142,18 +136,18 @@ namespace Software_Technology.Navigation_UI_Pages
                 {
                     RealEstate realEstate = new RealEstate(realEstateID, "0", x.member_variable.GetUsersID(), Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, false, Area, Type, Info, database_file_list);
                     x.member_variable.AddRealEstateMember(realEstate);
-                    Debug.WriteLine("The operation has completed!");
+                    
                 }
                 else if (Property_State.Equals("Εκμίσθωση"))
                 {
                     RealEstate realEstate = new RealEstate(realEstateID, "0", x.member_variable.GetUsersID(), Price, (int)square_meters_obj.Value, Floor, Year, Bedrooms, true, true, Area, Type, Info, database_file_list);
                     x.member_variable.AddRealEstateMember(realEstate);
-                    Debug.WriteLine("The operation has completed!");
+                    
 
                 }
                 else
                 {
-                    Debug.WriteLine("no compare");
+                    //Debug.WriteLine("no compare");
                 }
                 ring.IsActive = false;
 

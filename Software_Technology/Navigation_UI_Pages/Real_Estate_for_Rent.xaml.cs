@@ -32,8 +32,7 @@ namespace Software_Technology.Navigation_UI_Pages
         int Bedrooms_Selection { get { return Bedrooms_Combobox.SelectedIndex; } set { Bedrooms_Combobox.SelectedIndex = value; } }
         int Max_Price_Selection { get { return (int)Max_Price_Slider.Value; } set { Max_Price_Slider.Value = value; } }
 
-        //Temporary List
-        List<Test_Real> collect = new List<Test_Real>();
+       
 
         List<RealEstate> _data_bind_for_rent = new List<RealEstate>();
 
@@ -59,18 +58,7 @@ namespace Software_Technology.Navigation_UI_Pages
         public Real_Estate_for_Rent()
         {
             this.InitializeComponent();
-            // This is a temporary code. It will be removed in a future update.
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.","550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Διαμέρισμα", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
-            collect.Add(new Test_Real("/Assets/interior_test.jpg", "/Assets/house_icon.png", "Μονοκατοικία", "Ωραίο και καλό. Έχει μεγάλα δωμάτια με επαρκή εξαερισμό.", "550", "6os", "Μαρούσι, Αθήνα", "Ένα όμορφο αγροτικό σπίτι."));
-
-            //DataContext = this;
+            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -79,21 +67,19 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 x = e.Parameter as MainWindow;
             }
-            //x.member_variable.ShowRealEstateToBuy_Rent()
-            //Debug.WriteLine(Location_Selection);
+            
             if(x.member_variable!= null) 
             {
-                Debug.WriteLine("mphka sto if");
+               
                 String userIDExists = x.member_variable.GetUsersID();
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, true, 0, 0, 0, 0));
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember(userIDExists, true, 0, 0, 0, 0));
             }
             else
             {
-                Debug.WriteLine("mphka sto if");
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember("", true, 0, 0, 0, 0));
+                
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember("", true, 0, 0, 0, 0));
             }
-            //Debug.WriteLine("ta antikeimena einai");
-            //Debug.WriteLine(Data_bind_For_Rent.Count());
+            
 
         }
 
@@ -114,21 +100,18 @@ namespace Software_Technology.Navigation_UI_Pages
             var result = await dialog.ShowAsync();
 
             RealEstate re = (RealEstate)(((Button)sender).Tag);
-            Debug.WriteLine("Koita edw:");
+            
             foreach (String i in re.images)
             {
-                Debug.WriteLine(i);
+                //Debug.WriteLine(i);
             }
         }
 
         private async void Rent_Click(object sender, RoutedEventArgs e)
         {
-            //Debug.WriteLine((RealEstate)(((Button)sender).Tag));
+            
             reToBeRent = (RealEstate)(((Button)sender).Tag);
-            //Debug.WriteLine(reToBeRent.bedrooms.ToString());
-            //int y = reToBeRent.bedrooms;
-            //Debug.WriteLine((RealEstate)((Button)sender).Tag.realEstateID);
-            //Debug.WriteLine(reToBeRent.ToString());
+            
             if (x.member_variable == null && x.admin_variable != null)
             {
                 x.TeachingTip.Title = "Αποτυχία Ενοικίασης";
@@ -171,9 +154,7 @@ namespace Software_Technology.Navigation_UI_Pages
         private void Pay_Click(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             ((Button)sender.Tag).IsEnabled = false;
-            //x.member_variable.Buy_Sell_Rent_LeaseRealEstate()
-            //RealEstate re = (int)((Button)sender.Tag);
-            Debug.WriteLine(reToBeRent.realEstateID);
+            
             x.member_variable.Buy_Sell_Rent_LeaseRealEstateMember(reToBeRent, x.member_variable.GetUsersID());
 
 
@@ -185,20 +166,20 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            //x.member_variable.ShowRealEstateToBuy_Rent()
+            
             Data_bind_For_Rent.Clear();
-            //Debug.WriteLine("hello");
+            
             if (x.member_variable != null)
             {
                 String userIDExists = x.member_variable.GetUsersID();
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, true, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember(userIDExists, true, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
             }
             else
             {
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(null, true, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember(null, true, Location_Selection, Min_Square_Meters_Selection, Bedrooms_Selection, Max_Price_Selection));
             }
 
-            //Debug.WriteLine(Data_bind_For_Rent.Count());
+            
             
         }
 
@@ -206,14 +187,14 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             if (x.member_variable != null)
             {
-                Debug.WriteLine("mphka sto if");
+                
                 String userIDExists = x.member_variable.GetUsersID();
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember(userIDExists, true, 0, 0, 0, 0));
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember(userIDExists, true, 0, 0, 0, 0));
             }
             else
             {
-                Debug.WriteLine("mphka sto if");
-                Data_bind_For_Rent = new List<RealEstate>(Members.ShowRealEstateToBuy_RentMember("", true, 0, 0, 0, 0));
+                
+                Data_bind_For_Rent = new List<RealEstate>(Member.ShowRealEstateToBuy_RentMember("", true, 0, 0, 0, 0));
             }
         }
     }

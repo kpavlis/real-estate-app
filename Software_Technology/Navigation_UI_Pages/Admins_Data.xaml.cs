@@ -53,7 +53,6 @@ namespace Software_Technology.Navigation_UI_Pages
 
             }
 
-            Debug.WriteLine(Name.ToString(), Surname.ToString());
             x.admin_variable.UpdateNameSurnameUsers(x.admin_variable.GetUsersID(), Name.ToString(), Surname.ToString());
 
             x.TeachingTip.Title = "Επιτυχής Ενημέρωση Στοιχείων Χρήστη Admin";

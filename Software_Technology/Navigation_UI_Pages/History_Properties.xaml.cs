@@ -30,8 +30,7 @@ namespace Software_Technology.Navigation_UI_Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //Temporary List
-        List<string> buy = new List<string>();
+
 
         List<RealEstate> _data_bind_history = new List<RealEstate>();
 
@@ -53,15 +52,7 @@ namespace Software_Technology.Navigation_UI_Pages
         public History_Properties()
         {
             this.InitializeComponent();
-            //This code will be removed
-            buy.Add("Property_1");
-            buy.Add("Property_2");
-            buy.Add("Property_3");
-            buy.Add("Property_4");
-            buy.Add("Property_5");
-            buy.Add("Property_6");
-            buy.Add("Property_7");
-            buy.Add("Property_8");
+            
 
             
         }
@@ -85,16 +76,12 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             if (((ComboBox)sender).SelectedValue.ToString().Equals("Αγορασμένα"))
             {
-                //List<int> mylist = new List<int>(DatabaseController.GetRealEstates1(x.member_variable.GetUsersID()));
-                //Debug.WriteLine("reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"+mylist.Count.ToString());
-                //Data_bind_History = buy;
-                Debug.WriteLine("Hello fuiobuiyererurb 1");
+                
                 Data_bind_History = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("bought");
             }
             else
             {
-                //Data_bind_History = new List<string>();
-                Debug.WriteLine("Hello 2");
+                
                 Data_bind_History = x.member_variable.ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember("rented");
             }
         }

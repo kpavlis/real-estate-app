@@ -64,12 +64,10 @@ namespace Software_Technology.Classes
             }
             catch (SQLiteException ex)
             {
-                Debug.WriteLine("SQLite error: " + ex.Message);
                 return false;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("General error: " + ex.Message);
                 return false;
             }
         }
@@ -94,7 +92,6 @@ namespace Software_Technology.Classes
                             logInValues.Add(reader.GetString(3));
                             logInValues.Add(reader.GetString(4));
                             logInValues.Add(reader.GetString(5));
-                            Debug.WriteLine("Welcome Member!!!!!");
 
                         }
 
@@ -116,17 +113,13 @@ namespace Software_Technology.Classes
                             logInValues.Add(reader.GetString(1));
                             logInValues.Add(reader.GetString(2));
                             logInValues.Add(reader.GetString(3));
-                            Debug.WriteLine("Welcome Admin!!!!!");
+                            
                         }
 
                     }
                 }
             }
 
-            if(logInValues.Count == 0)
-            {
-                Debug.WriteLine("User not found!!!");
-            }
             return logInValues;
         }
 
@@ -144,12 +137,12 @@ namespace Software_Technology.Classes
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        Debug.WriteLine("Deleted!");
+                        
                         return true;
                     }
                     else
                     {
-                        Debug.WriteLine("Not Deleted!");
+                        
                         return false;
                     }
                 }
@@ -170,12 +163,12 @@ namespace Software_Technology.Classes
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        Debug.WriteLine("Deleted!");
+                        
                         //return true;
                     }
                     else
                     {
-                        Debug.WriteLine("Not Deleted!");
+                        
                         //return false;
                     }
                 }
@@ -208,12 +201,12 @@ namespace Software_Technology.Classes
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        Debug.WriteLine("Edited!");
+                        
                         return true;
                     }
                     else
                     {
-                        Debug.WriteLine("Not Edited!");
+                        
                         return false;
                     }
                 }
@@ -247,12 +240,12 @@ namespace Software_Technology.Classes
             }
             catch (SQLiteException ex)
             {
-                Debug.WriteLine("SQLite error: " + ex.Message);
+                
                 //return false;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("General error: " + ex.Message);
+                
                 //return false;
             }
         }
@@ -274,11 +267,11 @@ namespace Software_Technology.Classes
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
-                            Debug.WriteLine("Password Changed Successfully!");
+                            //Debug.WriteLine("Password Changed Successfully!");
                         }
                         else
                         {
-                            Debug.WriteLine("Password Change Failed!");
+                            //Debug.WriteLine("Password Change Failed!");
                         }
                     }
                 }
@@ -292,11 +285,11 @@ namespace Software_Technology.Classes
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
-                            Debug.WriteLine("Password Changed Successfully!");
+                            //Debug.WriteLine("Password Changed Successfully!");
                         }
                         else
                         {
-                            Debug.WriteLine("Password Change Failed!");
+                            //Debug.WriteLine("Password Change Failed!");
                         }
                     }
                 }
@@ -371,11 +364,11 @@ namespace Software_Technology.Classes
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        Debug.WriteLine("User Details Changed Successfully");
+                        //Debug.WriteLine("User Details Changed Successfully");
                     }
                     else
                     {
-                        Debug.WriteLine("User Details Change Failed!");
+                        //Debug.WriteLine("User Details Change Failed!");
                     }
                 }
 
@@ -389,13 +382,9 @@ namespace Software_Technology.Classes
 
         public static void AddRealEstate(RealEstate realEstate)
         {
-            //Debug.WriteLine("MOHKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
             
             String stringImages = String.Join(",", realEstate.images);
             
-            
-
 
             using (var connection = new SQLiteConnection(connectionString))
             {
@@ -421,11 +410,11 @@ namespace Software_Technology.Classes
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        Debug.WriteLine("Success Insert of RealEstate!");
+                        //Debug.WriteLine("Success Insert of RealEstate!");
                     }
                     else
                     {
-                        Debug.WriteLine("Failed Insert of RealEstate!");
+                        //Debug.WriteLine("Failed Insert of RealEstate!");
                     }
                 }
             }
@@ -476,7 +465,7 @@ namespace Software_Technology.Classes
 
             if (foundRealEstates.Count == 0)
             {
-                Debug.WriteLine("The user has no real estates yet!!!");
+                //Debug.WriteLine("The user has no real estates yet!!!");
             }
             return foundRealEstates;
         }
@@ -526,9 +515,8 @@ namespace Software_Technology.Classes
             }
             if (foundRealEstates.Count == 0)
             {
-                Debug.WriteLine("No real estates found!!!");
+                //Debug.WriteLine("No real estates found!!!");
             }
-            Debug.WriteLine("sth bash ta akinhta einai :" + foundRealEstates.Count.ToString());
             return foundRealEstates;
         }
 
@@ -549,11 +537,11 @@ namespace Software_Technology.Classes
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        Debug.WriteLine("RealEstate sold/bought Successfully!");
+                        //Debug.WriteLine("RealEstate sold/bought Successfully!");
                     }
                     else
                     {
-                        Debug.WriteLine("RealEstate sold/bought Change Failed!");
+                        //Debug.WriteLine("RealEstate sold/bought Change Failed!");
                     }
                 }
             }
@@ -608,11 +596,11 @@ namespace Software_Technology.Classes
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        Debug.WriteLine("Contact Details Changed Successfully");
+                        //Debug.WriteLine("Contact Details Changed Successfully");
                     }
                     else
                     {
-                        Debug.WriteLine("Contact Details Change Failed!");
+                        //Debug.WriteLine("Contact Details Change Failed!");
                     }
                 }
 
@@ -636,7 +624,6 @@ namespace Software_Technology.Classes
                         while (reader.Read() == true)
                         {
                             memberlist.Add(reader.GetString(0));
-                            Debug.WriteLine("ok!!!!!");
 
                         }
 
@@ -663,7 +650,7 @@ namespace Software_Technology.Classes
                         while (reader.Read() == true)
                         {
                             memberlist.Add(reader.GetString(0));
-                            Debug.WriteLine("ok!!!!!");
+                            
 
                         }
 
@@ -691,7 +678,7 @@ namespace Software_Technology.Classes
                         while (reader.Read() == true)
                         {
                             realEstateslist.Add((int)reader.GetInt32(0));
-                            Debug.WriteLine("ok!!!!!");
+                            
 
                         }
 
@@ -721,7 +708,7 @@ namespace Software_Technology.Classes
                         while (reader.Read() == true)
                         {
                             realEstateslist.Add((int)reader.GetInt32(0));
-                            Debug.WriteLine("ok!!!!!");
+                            
 
                         }
 
@@ -762,10 +749,10 @@ namespace Software_Technology.Classes
                     }
                 }
             }
-            Debug.WriteLine("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+            
             foreach (String item in listImages)
             {
-                Debug.WriteLine(item);
+                //Debug.WriteLine(item);
             }
             return listImages;
         }
@@ -817,9 +804,9 @@ namespace Software_Technology.Classes
             }
             if (realEstateslist.Count == 0)
             {
-                Debug.WriteLine("No real estates found!!!");
+                //Debug.WriteLine("No real estates found!!!");
             }
-            Debug.WriteLine("sth bash ta akinhta einai :" + realEstateslist.Count.ToString());
+            
             return realEstateslist;
         }
 
@@ -841,7 +828,7 @@ namespace Software_Technology.Classes
                         {
                             sellerLessorContactDetails.Add(reader.GetString(0));
                             sellerLessorContactDetails.Add(reader.GetString(1));
-                            Debug.WriteLine("ok!!!!!");
+                            
 
                         }
 

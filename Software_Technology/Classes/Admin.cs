@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Software_Technology.Classes
 {
-    class Admins:Users
+    class Admin:User
     {
-        public Admins(string _usersID, string username, string name, string surname, string _password) : base(_usersID, username, name, surname, _password) { }
+        public Admin(string _usersID, string username, string name, string surname, string _password) : base(_usersID, username, name, surname, _password) { }
 
         public void DeleteRealEstate(int realEstateToBeDeletedID) {
 
@@ -27,10 +27,5 @@ namespace Software_Technology.Classes
             
         }
 
-        public void HelloWorld()
-        {
-            Debug.WriteLine("HIII!");
-
-        }
     }
 }
