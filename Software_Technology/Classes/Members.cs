@@ -64,15 +64,11 @@ namespace Software_Technology.Classes
 
 
         public static List<RealEstate> ShowRealEstateToBuy_RentMember(String userIDExists, bool leaseSell, int location, int minSize, int minBedrooms, int maxPrice)
-        {
-            //List<int> mylist = new List<int>(DatabaseController.GetRealEstates());
-            //Debug.WriteLine("to apotelesmata einai :" + mylist.Count.ToString());
+        { 
 
             String reArea = "";
 
-            
-
-
+           
             switch (location)
             {
                 case 1:
@@ -83,16 +79,7 @@ namespace Software_Technology.Classes
                     break;
             }
             List<RealEstate> allRealEstates= new List<RealEstate>(DatabaseController.ShowRealEstateToBuy_Rent(leaseSell));
-            //var allRealEstates = soldRealEstates.Concat(boughtRealEstates).Concat(leasedRealEstates).Concat(rentedRealEstates).ToList();
-            /*foreach (RealEstate i in allRealEstates)
-            {
-                Debug.WriteLine(i.realEstateID);
-            }
-            return allRealEstates;*/
-            //Debug.WriteLine("ta akinita ola einai");
-            Debug.WriteLine("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
-            Debug.WriteLine(location);
-            Debug.WriteLine(reArea);
+            
 
 
 
@@ -134,7 +121,7 @@ namespace Software_Technology.Classes
         }
         public List<RealEstate> ShowMyPurchased_Rented_Sold_LeasedRealEstatesMember(string listType)
         {
-            //List<RealEstate> membersRealEstates = DatabaseController.RetrieveUsersRealEstates(logInValues[0], logInValues[0]);
+            
             switch (listType.ToLower())
             {
                 case "sold":

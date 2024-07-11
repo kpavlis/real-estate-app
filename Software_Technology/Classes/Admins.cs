@@ -27,10 +27,5 @@ namespace Software_Technology.Classes
             
         }
 
-        public void HelloWorld()
-        {
-            Debug.WriteLine("HIII!");
-
-        }
     }
 }

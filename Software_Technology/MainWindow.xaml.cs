@@ -264,14 +264,6 @@ namespace Software_Technology
                     }
                 }
 
-                
-                Debug.WriteLine(member.GetUsersID());
-                Debug.WriteLine(member.GetUsername());
-                Debug.WriteLine(member.GetPassword());
-                Debug.WriteLine(member.name);
-                Debug.WriteLine(member.surname);
-                Debug.WriteLine(member.email);
-                Debug.WriteLine(member.phoneNumber);
 
                 member_variable = member;
                 nv_Add_Property.Visibility = Visibility.Visible;

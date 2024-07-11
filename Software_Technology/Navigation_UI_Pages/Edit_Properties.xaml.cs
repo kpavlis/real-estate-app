@@ -68,22 +68,19 @@ namespace Software_Technology.Navigation_UI_Pages
             }
 
         }
-        //Temporary list
-        List<string> test_list = new List<string>();
+
 
         //Temporary list
         List<string> myproperties = new List<string>();
 
-        Test_Real edit_property;
+ 
 
         public Edit_Properties()
         {
             this.InitializeComponent();
             
             myproperties.Add("/Assets/Properties_Pictures/zoo.png");
-            //myproperties.Add("Assets/Properties_Pictures/zoo.png");
-            //test_list.Add("Hello");
-            //NavLinksList.ItemsSource = myproperties;
+    
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -103,10 +100,7 @@ namespace Software_Technology.Navigation_UI_Pages
             Photos_Selection.Visibility = Visibility.Collapsed;
             current_file_list.Clear();
             database_file_list.Clear();
-            //Test_Real x = (Test_Real)e.ClickedItem;//na parw akinhto
-            //edit_property = x;
-            //property_state_obj.SelectedIndex = 1;
-            //Size = 1000;
+           
             reToBeEdited = (RealEstate)e.ClickedItem;
             myproperties = new List<String>(reToBeEdited.images);
             Type = reToBeEdited.type;
@@ -192,13 +186,13 @@ namespace Software_Technology.Navigation_UI_Pages
                         try
                         {
                             // Διαγραφή του αρχείου
-                            Debug.WriteLine(x);
+                            //Debug.WriteLine(x);
                             File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
                             File.Delete(filePath);
                             //Debug.WriteLine("Operation Completed");
                         }catch (Exception ex)
                         {
-                            Debug.WriteLine(ex.ToString());
+                            //Debug.WriteLine(ex.ToString());
                         }
                     }
                 }
@@ -207,28 +201,24 @@ namespace Software_Technology.Navigation_UI_Pages
                     if (file != null)
                     {
 
-                        // Προσδιορισμός του πλήρους μονοπατιού του φακέλου Assets
+                        
                         string assetsFolderPath = AppContext.BaseDirectory + @"Assets\Properties_Pictures";
                         //Debug.WriteLine(assetsFolderPath);
-                        // Βεβαιωθείτε ότι ο φάκελος Assets υπάρχει
+                        
                         if (!Directory.Exists(assetsFolderPath))
                         {
                             Directory.CreateDirectory(assetsFolderPath);
                         }
                         String myString = x.member_variable.GetUsersID() + "_" + file.Name;
-                        // Προσδιορισμός του πλήρους μονοπατιού για το νέο αρχείο
+                        
                         string destinationFilePath = Path.Combine(assetsFolderPath, myString);
-                        //Debug.WriteLine(destinationFilePath);
-                        // Αντιγραφή του αρχείου στον φάκελο Assets
+                        
                         await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), myString, NameCollisionOption.ReplaceExisting);
                         File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
                         current_file_path = @"/Assets/Properties_Pictures/" + x.member_variable.GetUsersID() + "_" + file.Name;
-                        Debug.WriteLine(current_file_path);
+                        //Debug.WriteLine(current_file_path);
                         database_file_list.Add(current_file_path);
-                        //Debug.WriteLine(file_path);
-                        //Debug.WriteLine(File.Exists(AppContext.BaseDirectory + file_path).ToString());
-                        //Debug.WriteLine("The Operation Completed!");
-
+                        
 
 
                     }
@@ -238,9 +228,7 @@ namespace Software_Technology.Navigation_UI_Pages
                     }
                 }
             }
-            Debug.WriteLine("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-            Debug.WriteLine(database_file_list.Count);
-            Debug.WriteLine(Size);
+           
 
             if(database_file_list.Count==0)
             {

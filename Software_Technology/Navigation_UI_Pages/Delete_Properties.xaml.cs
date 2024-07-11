@@ -29,7 +29,7 @@ namespace Software_Technology.Navigation_UI_Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        List<string> properties = new List<string>();
+        
 
         List<int> _data_bind_delete = new List<int>();
 
@@ -51,19 +51,6 @@ namespace Software_Technology.Navigation_UI_Pages
         public Delete_Properties()
         {
             this.InitializeComponent();
-            properties.Add("Property 1");
-            properties.Add("Property 2");
-            properties.Add("Property 3");
-            properties.Add("Property 4");
-            properties.Add("Property 5");
-            properties.Add("Property 6");
-            properties.Add("Property 7");
-            properties.Add("Property 8");
-            properties.Add("Property 9");
-            properties.Add("Property 10");
-            properties.Add("Property 11");
-
-            //Combo_Selection.SelectedIndex = 0;
 
         }
 
@@ -78,16 +65,10 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Delete_Property_Click(object sender, RoutedEventArgs e)
         {
-            //Write the delete code here.
+            
             ((Button)sender).IsEnabled = false;
-            Debug.WriteLine((((Button)sender).Tag).ToString());
-            //properties.RemoveAt(num);
-            //((Button)sender).IsEnabled = false;
-
-            //foreach (string item in properties)
-            //{
-            //Debug.WriteLine(item);
-            //}
+            
+        
             int realEstateIDtoDelete = (int)((Button)sender).Tag;
             List<String> imagesToDelete = new List<String>(DatabaseController.GetRealEstatesFrorDeleteImages(realEstateIDtoDelete));
             x.member_variable.DeleteMyRealEstateMember(realEstateIDtoDelete);
@@ -102,13 +83,13 @@ namespace Software_Technology.Navigation_UI_Pages
                 {
                     try { 
                     // Διαγραφή του αρχείου
-                    Debug.WriteLine(x);
+                    //Debug.WriteLine(x);
                     File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
                     File.Delete(filePath);
                     //Debug.WriteLine("Operation Completed");
                     } catch(Exception ex)
                     {
-                        Debug.WriteLine(ex.ToString());
+                        //Debug.WriteLine(ex.ToString());
                     }
                 }
             }
@@ -126,18 +107,17 @@ namespace Software_Technology.Navigation_UI_Pages
 
         private void Combo_Selection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Debug.WriteLine("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-            Debug.WriteLine(((ComboBox)sender).SelectedValue.ToString());
+            
             if (((ComboBox)sender).SelectedValue.ToString().Equals("Πώληση"))
             {
-                //!!!!!!!!!!
+                
                 Data_bind_Delete = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), false));
-                Debug.WriteLine("Hello 1");
+                
             }
             else if(((ComboBox)sender).SelectedValue.ToString().Equals("Εκμίσθωση"))
             {
                 Data_bind_Delete = new List<int>(DatabaseController.GetMyRealEstatesForDelete(x.member_variable.GetUsersID(), true));
-                Debug.WriteLine("Hello 2");
+                
             }
         }
     }

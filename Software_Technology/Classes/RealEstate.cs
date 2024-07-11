@@ -56,7 +56,6 @@ namespace Software_Technology.Classes
             this.type = newType;
             this.details = newDetails;
             this.images = newImages;
-            Debug.WriteLine("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
             DatabaseController.UpdateRealEstateFromDatabase(realEstateID, buyer_tenantID, seller_lessorID, price, size, floor, year, bedrooms, availability, leaseSell, area, type, details, images);
         }
 

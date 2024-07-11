@@ -55,9 +55,7 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             this.InitializeComponent();
 
-            
-
-            //Data_bind_Delete_Users_Admins = delete_users;
+           
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

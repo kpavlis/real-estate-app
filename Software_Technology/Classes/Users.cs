@@ -59,7 +59,6 @@ public abstract class Users
             }
             else
             {
-                Debug.WriteLine("Incorect User!");
                 logInValues.Clear();
                 return logInValues;
             }
@@ -115,7 +114,6 @@ public abstract class Users
             {
                return false;
             }
-        Debug.WriteLine("Success"); //If all bytes match, the password is valid
 
         return true;
     }

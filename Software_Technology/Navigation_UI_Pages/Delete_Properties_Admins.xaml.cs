@@ -70,7 +70,7 @@ namespace Software_Technology.Navigation_UI_Pages
         private void Delete_Property_Click(object sender, RoutedEventArgs e)
         {
             ((Button)sender).IsEnabled = false;
-            Debug.WriteLine((int)((Button)sender).Tag);
+           
             List<String> imagesToDelete = new List<String>(DatabaseController.GetRealEstatesFrorDeleteImages((int)((Button)sender).Tag));
             x.admin_variable.DeleteRealEstate((int)((Button)sender).Tag);
 
@@ -88,13 +88,13 @@ namespace Software_Technology.Navigation_UI_Pages
                 {
                     try
                     {
-                        Debug.WriteLine(x);
+                        //Debug.WriteLine(x);
                         File.SetAttributes(filePath, System.IO.FileAttributes.Normal);
                         File.Delete(filePath);
                         //Debug.WriteLine("Operation Completed");
                     } catch(Exception ex)
                     {
-                        Debug.WriteLine(ex.ToString());
+                        //Debug.WriteLine(ex.ToString());
                     }
                 }
             }
