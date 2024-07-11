@@ -20,7 +20,7 @@
         <StackPanel  Grid.Row="0" Orientation="Horizontal" Visibility="Visible" Spacing="15" Height="30"  x:Name="TitleBar" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Margin="0, 0, 0, 2">
             <ImageIcon Height="18" Width="18" Margin="15, 0, 0, 0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="Assets/house_icon.png"/>
             <TextBlock VerticalAlignment="Center" Text="Real Estate" />
-            <TextBlock Visibility="Collapsed" VerticalAlignment="Center" Text="PREVIEW" Foreground="Gray" />
+            <TextBlock Visibility="Visible" VerticalAlignment="Center" Text="PREVIEW" Foreground="Gray" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
