@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Text.Json;
 using System.Reflection.PortableExecutable;
+using Windows.Devices.Printers;
 
 namespace Software_Technology.Classes
 {
@@ -155,7 +156,7 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String deleteSQL = "Delete from Members WHERE usersID =@usersID and username=@username";
+                String deleteSQL = "Delete from Members WHERE usersID=@usersID and username=@username";
                 using (var command = new SQLiteCommand(deleteSQL, connection))
                 {
                     command.Parameters.AddWithValue("@usersID", usersID);
@@ -615,7 +616,7 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select usersID from Members where usersID NOT IN (Select buyer_tenantID FROM RealEstates UNION Select seller_lessorID FROM RealEstates)";
+                String selectSQL = "Select usersID from Members where usersID NOT IN (Select buyer_tenantID FROM RealEstates UNION Select seller_lessorID FROM RealEstates) ORDER BY usersID";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
                     
@@ -641,7 +642,7 @@ namespace Software_Technology.Classes
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                String selectSQL = "Select username from Members where usersID NOT IN (Select buyer_tenantID FROM RealEstates UNION Select seller_lessorID FROM RealEstates)";
+                String selectSQL = "Select username from Members where usersID NOT IN (Select buyer_tenantID FROM RealEstates UNION Select seller_lessorID FROM RealEstates) ORDER BY usersID";
                 using (var command = new SQLiteCommand(selectSQL, connection))
                 {
 
