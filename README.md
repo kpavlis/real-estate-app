@@ -31,8 +31,9 @@
 The purpose of this application is to provide a streamlined and intuitive platform for managing real estate listings in Greece. It empowers users to browse, register, edit, and remove properties with ease, while offering essential tools for agents and administrators to handle property data efficiently. Designed with clarity and simplicity in mind, the app bridges the gap between property owners and potential buyers or renters. It is developed solely for academic and research purposes.
 
 ## 📷 Screenshots / Video
+
 _Sample Screens:_
-> <img width="200" height="140" alt="Soft_Tech_1" src="https://github.com/user-attachments/assets/89e3d768-582c-4862-9e68-bf8841f18f2c" />
+> <img width="500" height="240" alt="Soft_Tech_1" src="https://github.com/user-attachments/assets/89e3d768-582c-4862-9e68-bf8841f18f2c" />
 > <img width="200" height="140" alt="Soft_Tech_2" src="https://github.com/user-attachments/assets/15e8f41a-d204-4ae6-8831-84f8d3360b7a" />
 > <img width="200" height="140" alt="Soft_Tech_3" src="https://github.com/user-attachments/assets/845a4245-1bff-42be-ae1a-aadb26c7f039" />
 > <img width="200" height="140" alt="Soft_Tech_4" src="https://github.com/user-attachments/assets/37fa6197-ee20-4708-b555-7aec7ef34419" />
