@@ -263,8 +263,17 @@ namespace Software_Technology.Navigation_UI_Pages
             x.TeachingTip.Title = "Επιτυχής Ενημέρωση Ακινήτου";
             x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
             x.TeachingTip.IsOpen = true;
-            NavLinksList.SelectedItem = null;
+            //NavLinksList.SelectedItem = null;
             Turn_off_controls(true);
+
+            if(Combo_Selection.SelectedValue.Equals("Πώληση"))
+            {
+                Data_bind_Edit = new List<RealEstate>(DatabaseController.GetMyRealEstates(x.member_variable.GetUsersID(), false));
+            }
+            else
+            {
+                Data_bind_Edit = new List<RealEstate>(DatabaseController.GetMyRealEstates(x.member_variable.GetUsersID(), true));
+            }
 
 
         }
