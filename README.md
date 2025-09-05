@@ -39,7 +39,6 @@ _Sample Screens:_
 > <img width="200" height="140" alt="Soft_Tech_4" src="https://github.com/user-attachments/assets/37fa6197-ee20-4708-b555-7aec7ef34419" />
 > <img width="200" height="140" alt="Soft_Tech_5" src="https://github.com/user-attachments/assets/06b85138-a164-4944-959b-52a1e4a5e5da" />
 > <img width="200" height="140" alt="Soft_Tech_6" src="https://github.com/user-attachments/assets/a6b74ac2-215b-4067-a1ac-e4a4b1212d31" />
-> <img width="200" height="140" alt="Soft_Tech_7" src="https://github.com/user-attachments/assets/beaee7a7-2277-422e-9825-78d5531538d0" />
 
 
 ## 🧰 Prerequisites
