@@ -33,7 +33,7 @@ The purpose of this application is to provide a streamlined and intuitive platfo
 ## 📷 Screenshots / Video
 
 _Sample Screens:_
-> <img width="2588" height="1506" alt="Soft_Tech_1" src="https://github.com/user-attachments/assets/39dc19de-12d5-4d31-af0f-2ad7331ab820" />
+> <img width="200" height="140" alt="Soft_Tech_1" src="https://github.com/user-attachments/assets/39dc19de-12d5-4d31-af0f-2ad7331ab820" />
 > <img width="200" height="140" alt="Soft_Tech_2" src="https://github.com/user-attachments/assets/15e8f41a-d204-4ae6-8831-84f8d3360b7a" />
 > <img width="200" height="140" alt="Soft_Tech_3" src="https://github.com/user-attachments/assets/845a4245-1bff-42be-ae1a-aadb26c7f039" />
 > <img width="200" height="140" alt="Soft_Tech_4" src="https://github.com/user-attachments/assets/37fa6197-ee20-4708-b555-7aec7ef34419" />
