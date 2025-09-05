@@ -65,7 +65,7 @@
 
                         <TextBlock Text="Μέγιστο ενοίκιο/μήνα (σε ευρώ):" FontWeight="SemiBold"/>
                         <NumberBox x:Name="Max_Price_Slider" Width="200"
-                        Value="200000" />
+                        Value="200" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0, 15, 0 ,0">

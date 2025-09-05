@@ -100,7 +100,8 @@ namespace Software_Technology.Navigation_UI_Pages
             Photos_Selection.Visibility = Visibility.Collapsed;
             current_file_list.Clear();
             database_file_list.Clear();
-           
+            Turn_off_controls(false);
+
             reToBeEdited = (RealEstate)e.ClickedItem;
             myproperties = new List<String>(reToBeEdited.images);
             Type = reToBeEdited.type;
@@ -114,9 +115,11 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 case true:
                     Property_State = "1";
+                    property_state_obj.SelectedItem = property_state_obj.Items[1];
                     break;
                 case false:
                     Property_State = "0";
+                    property_state_obj.SelectedItem = property_state_obj.Items[0];
                     break;
             }
                 
@@ -179,7 +182,15 @@ namespace Software_Technology.Navigation_UI_Pages
             {
                 foreach (string x in myproperties)
                 {
-                    string filePath = AppContext.BaseDirectory + x.Substring(1);
+                    string filePath = null;
+                    try
+                    {
+                        filePath = AppContext.BaseDirectory + x.Substring(1);
+
+                    }catch(Exception ex)
+                    {
+                        //Nothing
+                    }
 
                     if (File.Exists(filePath))
                     {
@@ -201,26 +212,29 @@ namespace Software_Technology.Navigation_UI_Pages
                     if (file != null)
                     {
 
-                        
-                        string assetsFolderPath = AppContext.BaseDirectory + @"Assets\Properties_Pictures";
-                        //Debug.WriteLine(assetsFolderPath);
-                        
-                        if (!Directory.Exists(assetsFolderPath))
+                        try
                         {
-                            Directory.CreateDirectory(assetsFolderPath);
+                            string assetsFolderPath = AppContext.BaseDirectory + @"Assets\Properties_Pictures";
+                            //Debug.WriteLine(assetsFolderPath);
+
+                            if (!Directory.Exists(assetsFolderPath))
+                            {
+                                Directory.CreateDirectory(assetsFolderPath);
+                            }
+                            String myString = x.member_variable.GetUsersID() + "_" + file.Name;
+
+                            string destinationFilePath = Path.Combine(assetsFolderPath, myString);
+
+                            await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), myString, NameCollisionOption.ReplaceExisting);
+                            File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
+                            current_file_path = @"/Assets/Properties_Pictures/" + x.member_variable.GetUsersID() + "_" + file.Name;
+                            //Debug.WriteLine(current_file_path);
+                            database_file_list.Add(current_file_path);
+
+                        }catch(Exception ex){ 
+                            //Nothing
                         }
-                        String myString = x.member_variable.GetUsersID() + "_" + file.Name;
                         
-                        string destinationFilePath = Path.Combine(assetsFolderPath, myString);
-                        
-                        await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), myString, NameCollisionOption.ReplaceExisting);
-                        File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
-                        current_file_path = @"/Assets/Properties_Pictures/" + x.member_variable.GetUsersID() + "_" + file.Name;
-                        //Debug.WriteLine(current_file_path);
-                        database_file_list.Add(current_file_path);
-                        
-
-
                     }
                     else
                     {
@@ -249,6 +263,10 @@ namespace Software_Technology.Navigation_UI_Pages
             x.TeachingTip.Title = "Επιτυχής Ενημέρωση Ακινήτου";
             x.TeachingTip.Subtitle = "Η διαδικασία ολοκληρώθηκε επιτυχώς !";
             x.TeachingTip.IsOpen = true;
+            NavLinksList.SelectedItem = null;
+            Turn_off_controls(true);
+
+
         }
 
 
@@ -261,13 +279,13 @@ namespace Software_Technology.Navigation_UI_Pages
         {
             if(((ComboBox)sender).SelectedValue.ToString().Equals("Πώληση"))
             {
-                //Data_bind_Edit = test_list;
+                Turn_off_controls(true);
                 Pane_Type.Text = "προς Πώληση";
                 Data_bind_Edit = new List<RealEstate>(DatabaseController.GetMyRealEstates(x.member_variable.GetUsersID(), false));
             }
             else
             {
-                //Data_bind_Edit = myproperties;
+                Turn_off_controls(true);
                 Pane_Type.Text = "προς Εκμίσθωση";
                 Data_bind_Edit = new List<RealEstate>(DatabaseController.GetMyRealEstates(x.member_variable.GetUsersID(), true));
             }
@@ -292,6 +310,52 @@ namespace Software_Technology.Navigation_UI_Pages
                 }
                 property_state_obj.IsEnabled = false;
             }
+        }
+
+        private void Turn_off_controls(bool check)
+        {
+            if (check)
+            {
+                type_obj.IsEnabled = false;
+                type_obj.Text = "";
+                area_obj.IsEnabled = false;
+                area_obj.Text = "";
+                info_obj.IsEnabled = false;
+                info_obj.Document.SetText(Microsoft.UI.Text.TextSetOptions.None, "");
+                bedrooms_obj.IsEnabled = false;
+                bedrooms_obj.Value = 0;
+                price_obj.IsEnabled = false;
+                price_obj.Value = 0;
+                year_obj.IsEnabled = false;
+                year_obj.Value = 0;
+                floor_obj.IsEnabled = false;
+                floor_obj.Value = 0;
+                property_state_obj.IsEnabled = false;
+                property_state_obj.SelectedIndex = -1;
+                square_meters_obj.IsEnabled = false;
+                square_meters_obj.Value = 0;
+                add_photo_button.IsEnabled = false;
+                Delete_All_Photos.IsEnabled = false;
+                update_data_button.IsEnabled = false;
+                property_state_change.IsChecked = false;
+                property_state_change.IsEnabled = false;
+            }
+            else
+            {
+                type_obj.IsEnabled = true;
+                area_obj.IsEnabled = true;
+                info_obj.IsEnabled = true;
+                bedrooms_obj.IsEnabled = true;
+                price_obj.IsEnabled = true;
+                year_obj.IsEnabled = true;
+                floor_obj.IsEnabled = true;
+                square_meters_obj.IsEnabled = true;
+                add_photo_button.IsEnabled = true;
+                Delete_All_Photos.IsEnabled = true;
+                property_state_change.IsEnabled = true;
+                update_data_button.IsEnabled = true;
+            }
+
         }
     }
 }
