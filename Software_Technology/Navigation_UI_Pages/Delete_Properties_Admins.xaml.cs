@@ -82,7 +82,16 @@ namespace Software_Technology.Navigation_UI_Pages
 
             foreach (string x in imagesToDelete)
             {
-                string filePath = AppContext.BaseDirectory + x.Substring(1);
+                string filePath = null;
+                try
+                {
+                    filePath = AppContext.BaseDirectory + x.Substring(1);
+
+                }
+                catch (Exception ex)
+                {
+                    //Nothing
+                }
 
                 if (File.Exists(filePath))
                 {

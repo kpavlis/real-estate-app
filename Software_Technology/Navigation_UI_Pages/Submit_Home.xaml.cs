@@ -104,22 +104,28 @@ namespace Software_Technology.Navigation_UI_Pages
                 {
                     if (file != null)
                     {
-                        
-                        string assetsFolderPath = AppContext.BaseDirectory + @"Assets\Properties_Pictures";
-                        
-                        if (!Directory.Exists(assetsFolderPath))
+                        try
                         {
-                            Directory.CreateDirectory(assetsFolderPath);
+                            string assetsFolderPath = AppContext.BaseDirectory + @"Assets\Properties_Pictures";
+
+                            if (!Directory.Exists(assetsFolderPath))
+                            {
+                                Directory.CreateDirectory(assetsFolderPath);
+                            }
+                            String myString = x.member_variable.GetUsersID() + "_" + file.Name;
+
+                            string destinationFilePath = Path.Combine(assetsFolderPath, myString);
+
+                            await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), myString, NameCollisionOption.ReplaceExisting);
+                            File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
+                            current_file_path = @"/Assets/Properties_Pictures/" + x.member_variable.GetUsersID() + "_" + file.Name;
+
+                            database_file_list.Add(current_file_path);
                         }
-                        String myString = x.member_variable.GetUsersID() + "_" + file.Name;
-                        
-                        string destinationFilePath = Path.Combine(assetsFolderPath, myString);
-                        
-                        await file.CopyAsync(await StorageFolder.GetFolderFromPathAsync(assetsFolderPath), myString, NameCollisionOption.ReplaceExisting);
-                        File.SetAttributes(destinationFilePath, System.IO.FileAttributes.Normal);
-                        current_file_path = @"/Assets/Properties_Pictures/" + x.member_variable.GetUsersID() + "_" + file.Name;
-                        
-                        database_file_list.Add(current_file_path);
+                        catch(Exception ex)
+                        {
+                            //Nothing
+                        }
                         
                     }
                     else

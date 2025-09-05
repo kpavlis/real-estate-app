@@ -112,7 +112,7 @@
                                         <x:String>Πώληση</x:String>
                                         <x:String>Ενοικίαση</x:String>
                                     </ComboBox>
-                                    <CheckBox Content="Αλλαγή χρήσης του ακινήτου;" Click="CheckBox_Click"/>
+                                    <CheckBox x:Name="property_state_change" Content="Αλλαγή χρήσης του ακινήτου;" Click="CheckBox_Click"/>
                                 </StackPanel>
                                 <TextBlock Text="Εικόνες Ακινήτου:"/>
                                 <Grid>
@@ -142,7 +142,7 @@
 
                         <StackPanel Grid.Row="1" Margin="0, 25 ,0 ,0" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="15">
                             <ProgressRing x:Name="ring" IsActive="False"/>
-                            <Button Style="{StaticResource AccentButtonStyle}" Content="Ενημέρωση Στοιχείων" Click="Update_Property_Click"/>
+                            <Button x:Name="update_data_button" Style="{StaticResource AccentButtonStyle}" Content="Ενημέρωση Στοιχείων" Click="Update_Property_Click"/>
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>
