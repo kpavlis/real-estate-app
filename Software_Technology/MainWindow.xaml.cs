@@ -368,6 +368,7 @@ namespace Software_Technology
                             break;
                         case "Settings":
                             contentFrame.Navigate(typeof(Info_Page), this);
+
                             break;
 
                     }
