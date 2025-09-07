@@ -52,7 +52,9 @@ cd real-estate-app
 
 **_Demo Video:_**
 
-(Coming)
+> https://github.com/user-attachments/assets/5742128c-de9b-486d-9f26-a01c2c0efe3c
+
+
 
 # 🔒 Code Ownership & Usage Terms
 
