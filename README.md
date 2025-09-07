@@ -30,35 +30,35 @@
 
 The purpose of this application is to provide a streamlined and intuitive platform for managing real estate listings in Greece. It empowers users to browse, register, edit, and remove properties with ease, while offering essential tools for agents and administrators to handle property data efficiently. Designed with clarity and simplicity in mind, the app bridges the gap between property owners and potential buyers or renters. It is developed solely for academic and research purposes.
 
-## 📷 Screenshots / Video
-
-_Sample Screens:_
-> <img width="200" height="140" alt="Soft_Tech_1" src="https://github.com/user-attachments/assets/39dc19de-12d5-4d31-af0f-2ad7331ab820" />
-> <img width="200" height="140" alt="Soft_Tech_2" src="https://github.com/user-attachments/assets/15e8f41a-d204-4ae6-8831-84f8d3360b7a" />
-> <img width="200" height="140" alt="Soft_Tech_3" src="https://github.com/user-attachments/assets/845a4245-1bff-42be-ae1a-aadb26c7f039" />
-> <img width="200" height="140" alt="Soft_Tech_4" src="https://github.com/user-attachments/assets/37fa6197-ee20-4708-b555-7aec7ef34419" />
-> <img width="200" height="140" alt="Soft_Tech_5" src="https://github.com/user-attachments/assets/06b85138-a164-4944-959b-52a1e4a5e5da" />
-> <img width="200" height="140" alt="Soft_Tech_6" src="https://github.com/user-attachments/assets/a6b74ac2-215b-4067-a1ac-e4a4b1212d31" />
-> <img width="200" height="140" alt="Soft_Tech_7" src="https://github.com/user-attachments/assets/beaee7a7-2277-422e-9825-78d5531538d0" />
-
-
-
 ## 🧰 Prerequisites
 
-- 💻 Windows 10 or later  
-- ⚙️ .NET Framework (version X.X)  
-- 🗄️ SQLite 
+(Coming)
 
 ## 📦 Installation
 
-git clone https://github.com/PavlisKostas/xxx.git
+git clone https://github.com/KonstantinosPavlis/real-estate-app.git
 cd real-estate-app
+
+## 📷 Screenshots / Video
+
+**_App Screens:_**
+> <img width="250" height="160" alt="Soft_Tech_1" src="https://github.com/user-attachments/assets/39dc19de-12d5-4d31-af0f-2ad7331ab820" />
+> <img width="250" height="160" alt="Soft_Tech_2" src="https://github.com/user-attachments/assets/15e8f41a-d204-4ae6-8831-84f8d3360b7a" />
+> <img width="250" height="160" alt="Soft_Tech_3" src="https://github.com/user-attachments/assets/845a4245-1bff-42be-ae1a-aadb26c7f039" />
+> <img width="250" height="160" alt="Soft_Tech_4" src="https://github.com/user-attachments/assets/37fa6197-ee20-4708-b555-7aec7ef34419" />
+> <img width="250" height="160" alt="Soft_Tech_5" src="https://github.com/user-attachments/assets/06b85138-a164-4944-959b-52a1e4a5e5da" />
+> <img width="250" height="160" alt="Soft_Tech_6" src="https://github.com/user-attachments/assets/a6b74ac2-215b-4067-a1ac-e4a4b1212d31" />
+> <img width="250" height="160" alt="Soft_Tech_7" src="https://github.com/user-attachments/assets/beaee7a7-2277-422e-9825-78d5531538d0" />
+
+**_Demo Video:_**
+
+(Coming)
 
 # 🔒 Code Ownership & Usage Terms
 
 This project was created and maintained by:
 
-- Konstantinos Pavlis (@PavlisKostas)
+- Konstantinos Pavlis (@KonstantinosPavlis)
 - Theofanis Tzoumakas (@theofanistzoumakas)
 - Matina Papadakou (@matinapap)
 - Sotiria Lamprinidou (@SotiriaLamprinidou)
@@ -68,6 +68,6 @@ No part of this codebase may be copied, reproduced, modified, distributed, or us
 
 Any attempt to use, republish, or incorporate this code into other projects—whether commercial or non-commercial—without prior consent may result in legal action.
 
-For licensing inquiries or collaboration requests, please contact via Discord: @kostas25_ .
+For licensing inquiries or collaboration requests, please contact via email: konstantinos1125 _at_ gmail.com .
 
 © 2025 Konstantinos Pavlis, Theofanis Tzoumakas, Matina Papadakou, Sotiria Lamprinidou. All rights reserved.
