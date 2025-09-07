@@ -46,7 +46,7 @@ Before building and running this application, ensure you have the following inst
 
 Follow these steps to install and run the application:
 
-1. **Clone the repository**
+1. **Clone the repository (or download and decompress the ZIP file)**
    ```bash
    git clone https://github.com/KonstantinosPavlis/real-estate-app.git
    cd real-estate-app
