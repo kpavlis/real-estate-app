@@ -48,7 +48,7 @@ Follow these steps to install and run the application:
 
 1. **Clone the repository (or download and decompress the ZIP file)**
    ```bash
-   git clone https://github.com/KonstantinosPavlis/real-estate-app.git
+   git clone https://github.com/kpavlis/real-estate-app.git
    cd real-estate-app
    
 2. **Open the project in Visual Studio 2022** using the `.sln` file
