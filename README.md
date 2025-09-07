@@ -86,7 +86,7 @@ Follow these steps to install and run the application:
 
 This project was created and maintained by:
 
-- Konstantinos Pavlis (@KonstantinosPavlis)
+- Konstantinos Pavlis (@kpavlis)
 - Theofanis Tzoumakas (@theofanistzoumakas)
 - Matina Papadakou (@matinapap)
 - Sotiria Lamprinidou (@SotiriaLamprinidou)
