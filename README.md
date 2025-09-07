@@ -32,12 +32,38 @@ The purpose of this application is to provide a streamlined and intuitive platfo
 
 ## 🧰 Prerequisites
 
-(Coming)
+Before building and running this application, ensure you have the following installed:
+
+- **Windows 10 version 1809 or later** (Windows 11 recommended)
+- **Visual Studio 2022** (version 17.1 or newer)
+- Installed Workloads:
+  - .NET Desktop Development
+  - Windows App SDK C# Templates
+- **.NET SDK** (.NET 6)
+- **Developer Mode** enabled in Windows
 
 ## 📦 Installation
 
-git clone https://github.com/KonstantinosPavlis/real-estate-app.git
-cd real-estate-app
+Follow these steps to install and run the application:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/KonstantinosPavlis/real-estate-app.git
+   cd real-estate-app
+   
+2. **Open the project in Visual Studio 2022** using the `.sln` file
+3. **Confirm that the following NuGet packages are installed:**
+    - Microsoft.WindowsAppSDK
+    - System.Data.SQLite
+    - Microsoft.Windows.SDK.BuildTools
+4. **Verify Target Framework**
+     In your `.csproj` file, ensure the framework is set correctly:
+   
+     ```xml
+     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+   
+6. **Run the application** as _Unpackaged app_
+
 
 ## 📷 Screenshots / Video
 
