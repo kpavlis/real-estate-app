@@ -2,6 +2,9 @@
 
 **Find, list, and manage properties with ease — built for the Greek real estate market.**
 
+> ℹ️ This project is not open source and does not grant any usage rights.
+> For usage terms and legal information, see [Code Ownership & Usage Terms](#-code-ownership--usage-terms).
+
 ## 📘 Overview
 
 **Real Estate Management App**, a desktop application designed for Greek-speaking users to manage, browse, and interact with property listings for sale and rent. Whether you're a buyer, seller, or agent, this app makes real estate simple and intuitive! 💼✨
