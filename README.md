@@ -31,7 +31,7 @@
 
 ## 🎯 Purpose
 
-The purpose of this application is to provide a streamlined and intuitive platform for managing real estate listings in Greece. It empowers users to browse, register, edit, and remove properties with ease, while offering essential tools for agents and administrators to handle property data efficiently. Designed with clarity and simplicity in mind, the app bridges the gap between property owners and potential buyers or renters. It is developed solely for academic and research purposes.
+The purpose of this application is to provide a streamlined and intuitive platform for managing real estate listings in Greece. It empowers users to browse, register, edit, and remove properties with ease, while offering essential tools for agents and administrators to handle property data efficiently. Designed with clarity and simplicity in mind, the app bridges the gap between property owners and potential buyers or renters. **It is developed solely for academic and research purposes.**
 
 ## 🧰 Prerequisites
 
