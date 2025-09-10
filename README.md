@@ -57,8 +57,8 @@ Follow these steps to install and run the application:
 2. **Open the project in Visual Studio 2022** using the `.sln` file
 3. **Confirm that the following NuGet packages are installed:**
     - Microsoft.WindowsAppSDK
-    - System.Data.SQLite
     - Microsoft.Windows.SDK.BuildTools
+    - System.Data.SQLite (version **1.0.119**)
 4. **Verify Target Framework**
      In your `.csproj` file, ensure the framework is set correctly:
    
