@@ -7,7 +7,7 @@
 
 ## 📘 Overview
 
-**Real Estate Management App**, a desktop application designed for Greek-speaking users to manage, browse, and interact with property listings for sale and rent. Whether you're a buyer, seller, or agent, this app makes real estate simple and intuitive! 💼✨
+**Real Estate Management App**, a desktop application designed for Greek-speaking users to manage, browse, and interact with property listings for sale and rent. Whether you're a buyer, seller, or agent, this app makes real estate simple and intuitive! It simulates the functionality of a full-featured real estate platform by running entirely on a local database—making it ideal for offline use, development testing, and showcasing features in controlled environments. 💼
 
 ## ✨ Features
 
@@ -56,9 +56,10 @@ Follow these steps to install and run the application:
    
 2. **Open the project in Visual Studio 2022** using the `.sln` file
 3. **Confirm that the following NuGet packages are installed:**
-    - Microsoft.WindowsAppSDK
-    - Microsoft.Windows.SDK.BuildTools
-    - System.Data.SQLite (version **1.0.119**)
+    - Microsoft.WindowsAppSDK (version **10.0.26100.x**)
+    - Microsoft.Windows.SDK.BuildTools (version **1.8.x**)
+    - System.Data.SQLite (version **2.x.x**)
+    - SQLitePCLRaw.bundle_e_sqlite3 (version **3.x.x**)
 4. **Verify Target Framework**
      In your `.csproj` file, ensure the framework is set correctly:
    
