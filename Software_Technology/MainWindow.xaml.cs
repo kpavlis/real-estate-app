@@ -24,7 +24,6 @@ using System.Diagnostics;
 using Windows.Foundation.Metadata;
 using System.Threading;
 using Software_Technology.Navigation_UI_Pages;
-using Microsoft.WindowsAppSDK.Runtime.Packages;
 using System.Xml.Linq;
 using Software_Technology.Classes;
 using System.Data.SQLite;

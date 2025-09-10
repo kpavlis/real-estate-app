@@ -1,5 +1,4 @@
-﻿using Microsoft.WindowsAppSDK.Runtime.Packages;
-using Software_Technology.Classes;
+﻿using Software_Technology.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
