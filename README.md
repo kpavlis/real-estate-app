@@ -42,7 +42,7 @@ Before building and running this application, ensure you have the following inst
 - Installed Workloads:
   - .NET Desktop Development
   - Windows App SDK C# Templates
-- **.NET SDK** (.NET 6)
+- **.NET SDK** (version 6)
 - **Developer Mode** enabled in Windows
 
 ## 📦 Installation
