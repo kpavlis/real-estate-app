@@ -26,7 +26,7 @@
 
 - WindowsAppSDK / WinUI3
 - XAML for the UI
-- C# for the Businnes Logic
+- C# for Business Logic
 - SQLite for the local database
 
 ## 🎯 Purpose
