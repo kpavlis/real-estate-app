@@ -7,7 +7,7 @@
 
 ## 📘 Overview
 
-**Real Estate Management App**, a desktop application designed for Greek-speaking users to manage, browse, and interact with property listings for sale and rent. Whether you're a buyer, seller, or agent, this app makes real estate simple and intuitive! It simulates the functionality of a full-featured real estate platform by running entirely on a local database—making it ideal for offline use, development testing, and showcasing features in controlled environments. 💼
+**Real Estate Management App**, a desktop application designed to help users manage, browse, and interact with property listings for sale and rent. Whether you're a buyer, seller, or agent, this app makes real estate simple and intuitive! It simulates the functionality of a full-featured real estate platform by running entirely on a local database—making it ideal for offline use, development testing, and showcasing features in controlled environments. 💼
 
 > 📌 The **`resources`** folder contains supporting material such as screenshots.
 
@@ -33,7 +33,7 @@
 
 ## 🎯 Purpose
 
-The purpose of this application is to provide a streamlined and intuitive platform for managing real estate listings in Greece. It empowers users to browse, register, edit, and remove properties with ease, while offering essential tools for agents and administrators to handle property data efficiently. Designed with clarity and simplicity in mind, the app bridges the gap between property owners and potential buyers or renters. **It is developed solely for academic and research purposes.**
+The purpose of this application is to provide a streamlined and intuitive platform for managing real estate listings. It empowers users to browse, register, edit, and remove properties with ease, while offering essential tools for agents and administrators to handle property data efficiently. Designed with clarity and simplicity in mind, the app bridges the gap between property owners and potential buyers or renters. **It is developed solely for academic and research purposes.**
 
 ## 🧰 Prerequisites
 
