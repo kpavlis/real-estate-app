@@ -9,6 +9,8 @@
 
 **Real Estate Management App**, a desktop application designed for Greek-speaking users to manage, browse, and interact with property listings for sale and rent. Whether you're a buyer, seller, or agent, this app makes real estate simple and intuitive! It simulates the functionality of a full-featured real estate platform by running entirely on a local database—making it ideal for offline use, development testing, and showcasing features in controlled environments. 💼
 
+> 📌 The **`resources`** folder contains supporting material such as screenshots.
+
 ## ✨ Features
 
 - 🏠 **Home Dashboard** with welcome message and FAQs
@@ -72,13 +74,13 @@ Follow these steps to install and run the application:
 ## 📷 Screenshots / Video
 
 **_App Screens:_**
-> <img width="250" height="160" alt="Soft_Tech_1" src="https://github.com/user-attachments/assets/39dc19de-12d5-4d31-af0f-2ad7331ab820" />
-> <img width="250" height="160" alt="Soft_Tech_2" src="https://github.com/user-attachments/assets/15e8f41a-d204-4ae6-8831-84f8d3360b7a" />
-> <img width="250" height="160" alt="Soft_Tech_3" src="https://github.com/user-attachments/assets/845a4245-1bff-42be-ae1a-aadb26c7f039" />
-> <img width="250" height="160" alt="Soft_Tech_4" src="https://github.com/user-attachments/assets/37fa6197-ee20-4708-b555-7aec7ef34419" />
-> <img width="250" height="160" alt="Soft_Tech_5" src="https://github.com/user-attachments/assets/06b85138-a164-4944-959b-52a1e4a5e5da" />
-> <img width="250" height="160" alt="Soft_Tech_6" src="https://github.com/user-attachments/assets/a6b74ac2-215b-4067-a1ac-e4a4b1212d31" />
-> <img width="250" height="160" alt="Soft_Tech_7" src="https://github.com/user-attachments/assets/beaee7a7-2277-422e-9825-78d5531538d0" />
+> <img width="250" height="160" alt="Soft_Tech_1" src="resources/screenshots/home_faq.png" />
+> <img width="250" height="160" alt="Soft_Tech_2" src="resources/screenshots/properties_list.png" />
+> <img width="250" height="160" alt="Soft_Tech_3" src="resources/screenshots/property_filters.png" />
+> <img width="250" height="160" alt="Soft_Tech_4" src="resources/screenshots/property_popup.png" />
+> <img width="250" height="160" alt="Soft_Tech_5" src="resources/screenshots/add_property.png" />
+> <img width="250" height="160" alt="Soft_Tech_6" src="resources/screenshots/edit_property.png" />
+> <img width="250" height="160" alt="Soft_Tech_7" src="resources/screenshots/delete_property.png" />
 
 **_Demo Video:_**
 
