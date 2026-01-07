@@ -102,4 +102,4 @@ Any attempt to use, republish, or incorporate this code into other projects—wh
 
 For licensing inquiries or collaboration requests, please contact via email: konstantinos1125 _at_ gmail.com .
 
-© 2025 Konstantinos Pavlis, Theofanis Tzoumakas, Matina Papadakou, Sotiria Lamprinidou. All rights reserved.
+© 2026 Konstantinos Pavlis, Theofanis Tzoumakas, Matina Papadakou, Sotiria Lamprinidou. All rights reserved.
